@@ -1,0 +1,13 @@
+        !COMPILER-GENERATED INTERFACE MODULE: Mon Aug  9 10:12:09 2021
+        ! This source file is for reference only and may not completely
+        ! represent the generated interface used by the compiler.
+        MODULE FPIBTA__genmod
+          INTERFACE 
+            SUBROUTINE FPIBTA(MA,MB,MC,MD)
+              INTEGER(KIND=4), INTENT(IN) :: MA
+              INTEGER(KIND=4), INTENT(IN) :: MB
+              INTEGER(KIND=4), INTENT(IN) :: MC
+              INTEGER(KIND=4), INTENT(INOUT) :: MD
+            END SUBROUTINE FPIBTA
+          END INTERFACE 
+        END MODULE FPIBTA__genmod

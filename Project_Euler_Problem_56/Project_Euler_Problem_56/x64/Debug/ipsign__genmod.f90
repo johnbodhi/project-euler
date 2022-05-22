@@ -1,0 +1,12 @@
+        !COMPILER-GENERATED INTERFACE MODULE: Mon Aug  9 10:11:45 2021
+        ! This source file is for reference only and may not completely
+        ! represent the generated interface used by the compiler.
+        MODULE IPSIGN__genmod
+          INTERFACE 
+            SUBROUTINE IPSIGN(MA,MB,MC)
+              INTEGER(KIND=4), INTENT(IN) :: MA
+              INTEGER(KIND=4), INTENT(IN) :: MB
+              INTEGER(KIND=4), INTENT(INOUT) :: MC
+            END SUBROUTINE IPSIGN
+          END INTERFACE 
+        END MODULE IPSIGN__genmod
