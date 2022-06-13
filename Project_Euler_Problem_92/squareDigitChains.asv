@@ -1,0 +1,59 @@
+clc; close all; clear all;
+
+L = 10000000; 
+
+A = numbers( L );
+
+ii = 0;   
+
+for i = L-1:-1:1
+
+    while( ii < 1 )
+
+
+    end
+    
+
+
+    
+    M = double( floor( log10( A( i ) ) + 1 ) ); 
+    
+    R = A( i ); 
+    
+    for j = 1:M
+        D( j ) = R - floor( R / 10 ) * 10;
+        R = floor( R / 10 );
+        O( j ) = D( j )^2;
+    end
+    X = sum( O );
+    
+    F = numComponents( X );
+    
+    S = sum( F );
+
+    if( ii == 89 )
+        ii = ii + 1;
+    end
+
+
+
+    
+    
+
+end
+
+function [ F ] = numComponents( X )
+
+    M = double( floor( log10( X ) + 1 ) ); R = X; 
+    
+    for j = 1:M
+        F( j ) = R - floor( R / 10 ) * 10;
+        R = floor( R / 10 );
+    end
+
+end
+
+
+
+
+
