@@ -1,0 +1,9 @@
+﻿  Project Euler Problem 125.cpp
+C:\Users\johnm\Project Euler\C++\Project_Euler_Problem_125\Project Euler Problem 125\Project Euler Problem 125\Project Euler Problem 125.cpp(13,16): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\johnm\Project Euler\C++\Project_Euler_Problem_125\Project Euler Problem 125\Project Euler Problem 125\Project Euler Problem 125.cpp(26,12): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  Generating code
+  1 of 23 functions ( 4.3%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  Project Euler Problem 125.vcxproj -> C:\Users\johnm\Project Euler\C++\Project_Euler_Problem_125\Project Euler Problem 125\Release\Project Euler Problem 125.exe

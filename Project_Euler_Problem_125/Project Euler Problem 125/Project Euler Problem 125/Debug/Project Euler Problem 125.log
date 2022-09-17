@@ -1,0 +1,4 @@
+﻿  Project Euler Problem 125.cpp
+C:\Users\johnm\Project Euler\C++\Project_Euler_Problem_125\Project Euler Problem 125\Project Euler Problem 125\Project Euler Problem 125.cpp(13,16): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\johnm\Project Euler\C++\Project_Euler_Problem_125\Project Euler Problem 125\Project Euler Problem 125\Project Euler Problem 125.cpp(26,12): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  Project Euler Problem 125.vcxproj -> C:\Users\johnm\Project Euler\C++\Project_Euler_Problem_125\Project Euler Problem 125\Debug\Project Euler Problem 125.exe
