@@ -7,8 +7,9 @@ int main() {
 
 	palindromicSums sum1;
 	
+	sum1.setSup(1e8);
 	sum1.getSup();
-	sum1.getSum(1e3);
+	sum1.getSum();
 
 	auto stop = high_resolution_clock::now();
 	auto duration = duration_cast<microseconds>(stop - start);

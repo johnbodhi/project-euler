@@ -15,8 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Project Euler Problem 125.cpp">
+    <ClCompile Include="palindromicSums.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="palindromicSumsMain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="palindromicSums.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

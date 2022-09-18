@@ -15,15 +15,7 @@ class palindromicSums
 {
 private:
 
-	const long int supremum;
-
-	int M, R, K;
-
-	int D[10], E[10];
-
-	long long int S = 0, SS = 0;
-
-	int ii = 0, jj = 0;
+	long int supremum;
 
 public:
 
@@ -32,8 +24,11 @@ public:
 	palindromicSums(const palindromicSums& gub);
 	~palindromicSums();
 
-	long long int getSum(int sup);
-
+	long int setSup(long int sup);
 	long int getSup() const;
+
+	long long int getSum();
+
+	
 };
 #endif

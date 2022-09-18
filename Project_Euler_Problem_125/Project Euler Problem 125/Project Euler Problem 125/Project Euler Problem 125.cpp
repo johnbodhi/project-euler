@@ -10,7 +10,7 @@ auto start = high_resolution_clock::now();
 
 int main() {
 
-	const int K = 1e3, W = 10;
+	const int K = 10e8, W = 10;
 
 	int D[W], E[W];
 
@@ -43,13 +43,13 @@ int main() {
 
 		if (ii == M) {
 
-			for (int kk = 1; kk < floor(sqrt(i)); kk++) {
+			for (int kk = 1; kk < ceil(sqrt(i)); kk++) {
 
-				for (long long int s = kk; s <= floor(sqrt(i)); s++) {
+				for (long long int r = kk; r <= ceil(sqrt(i)); r++) {
 
-					S += s * s; 
+					S += r * r; 
 
-					if (S == i && jj >= 1) {
+					if ( S == i && jj >= 1 ) {
 
 						SS += i;
 						

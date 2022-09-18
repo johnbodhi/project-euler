@@ -1,12 +1,12 @@
 #include <iostream>
-#include <cassert>
+#include <math.h>
 
 #include "palindromicSums.h"
 
 using namespace std;
 
-palindromicSums::palindromicSums(long int sup) 
-	:supremum(sup)
+palindromicSums::palindromicSums(long int sup ) 
+	: supremum(sup)
 {
 }
 
@@ -24,16 +24,33 @@ palindromicSums::~palindromicSums()
 {
 }
 
+long int palindromicSums::setSup(long int sup)
+{
+	supremum = sup;
+
+	return 0;
+}
+
 long int palindromicSums::getSup() const
 {
+	std::cout << "The current supremum is: " << supremum << std::endl;
+
 	return supremum;
 }
 
-long long int palindromicSums::getSum(int sup)
+long long int palindromicSums::getSum()
 {
-	K = sup;
+	long int K = supremum;
 
-	for (int i = 1; i < K; i++) {
+	const int U = 9, V = 2;
+
+	int D[U], E[U];
+
+	int M = 0, R = 0, ii = 0, jj = 0, zz = 0;
+
+	long long int A[V], SS = 0;
+
+	for (long long int i = 1; i < K; i++) {
 
 		M = floor(log10(i) + 1);
 
@@ -58,35 +75,43 @@ long long int palindromicSums::getSum(int sup)
 
 		if (ii == M) {
 
-			for (int kk = 1; kk < i; kk++) {
+			for (long long int kk = 1; kk < ceil(sqrt(i)); kk++) {
 
-				for (long long int s = kk; s <= i; s++) {
+				for (long long int r = kk; r <= ceil(sqrt(i)); r++) {
 
-					S += s * s;
+					A[0] += (r * r);
 
-					if (S == i && jj >= 1) {
+					if (A[0] == i && jj > 0) {
 
-						SS += i;
+						if ( A[1] != A[0] ) {
 
-						S = 0; jj = 0;
+							SS += i; A[1] = A[0];
+						}
+						else {
 
-						break;
+							break;
+						}
+
+						A[0] = 0; jj = 0;
+
+						zz++;
 					}
-					else if (S > i) {
+					else if (A[0] > i) {
 
-						S = 0; jj = 0;
+						A[0] = 0; jj = 0;
 
 						break;
 					}
 					jj++;
 				}
-				S = 0;
 			}
 		}
 		ii = 0; jj = 0;
 	}
 
-	std::cout << "SS = " << SS << std::endl;
+	std::cout << zz << " SS = " << SS << std::endl;
+
+	return 0;
 }
 
 
