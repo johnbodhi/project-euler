@@ -6,7 +6,7 @@ clear all; close all; clc; tic
  
 % A = [ 3 0 0 0; 7 4 0 0; 2 4 6 0; 8 5 9 3 ]; 
 A = readmatrix("triangle_small.xlsx"); 
-% A = csvread("triangle_large.csv"); 
+%A = csvread("triangle_large.csv"); 
 
 % N = size(A,1); M = size(A,2);
 
@@ -25,6 +25,7 @@ A = readmatrix("triangle_small.xlsx");
 A = A'; 
 
 A = cat( 2, A, zeros( size( A, 1 ), 1 ) ); 
+A = cat( 1, A, zeros( 1, size( A, 2 ) ) ); 
 
 N = size(A,1); M = size(A,2);
 
