@@ -24,7 +24,9 @@ A = readmatrix("triangle_small.xlsx");
 
 A = A'; 
 
-A = cat( 2, A, zeros( size( A, 1 ), 1 ) ); N = size(A,1); M = size(A,2);
+A = cat( 2, A, zeros( size( A, 1 ), 1 ) ); 
+
+N = size(A,1); M = size(A,2);
 
 I = zeros( N, M );
 
@@ -74,18 +76,16 @@ while( ii <= size( K,1) )
         else
             [ U( 1, 1 ), ~, ~ ] = find( I( :, j ) == L( 1, j - 1 ) );
             [ U( 1, 2 ), ~, ~ ] = find( I( :, j ) == L( 1, j - 1 ) + 1 );
-            U(1,3) = U(1,1);
+            U(1,3) = U(1,2);
         end
 
         if( A( U( 1, 1 ), j ) >= A( U( 1, 2 ), j ) )   
 
-            RR( 1, 1 ) = A( U( 1, 1 ), j );
-            
+            RR( 1, 1 ) = A( U( 1, 1 ), j );            
             L( 1, j ) = I( U( 1, 1 ), j );
         elseif ( A( U( 1, 2 ), j ) >= A( U( 1, 1 ), j ) )
             
-            RR( 2, 1 ) = A( U( 1, 2 ), j );
-            
+            RR( 2, 1 ) = A( U( 1, 2 ), j );            
             L( 1, j ) = I( U( 1, 2 ), j );
         end
 
@@ -98,6 +98,7 @@ while( ii <= size( K,1) )
         else
         
             R( ii, 1 ) = R( ii, 1 ) + RR( 2, 1 ); 
+            RR( 2, 1 ) = 0;
         end
 
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
