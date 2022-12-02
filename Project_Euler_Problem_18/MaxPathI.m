@@ -8,8 +8,6 @@ clear all; close all; clc; tic
 A = readmatrix("triangle_small.xlsx"); 
 % A = csvread("triangle_large.csv"); 
 
-% N = size(A,1); M = size(A,2);
-
 % N = 10; M = N; A = zeros( N, M);
 
 % for j = 1:M
