@@ -4,8 +4,8 @@ clear all; close all; clc; tic
 % size to find a path from the top to bottom which yields a maximum sum for
 % any lowwr trianglular matrix containing random numbers...
 
-%A = [ 3 0 0 0; 7 4 0 0; 2 4 6 0; 8 5 9 3 ]; 
-A = readmatrix("triangle_small.xlsx"); 
+A = [ 3 0 0 0; 7 4 0 0; 2 4 6 0; 8 5 9 3 ]; 
+% A = readmatrix("triangle_small.xlsx"); 
 %A = csvread("triangle_large.csv"); 
 
 % N = 200; M = N;
@@ -323,12 +323,12 @@ for s = 1:1:size( Z, 1 )
             % Store convergence accuumulator to break process when no
             % increment occurs.
 
-%             RR( 1 ) = rr;
-%             RR = circshift( RR, 1, 2 );
-% 
-%             if( RR( 1 ) == RR( 2 ) )
-%                 break;
-%             end
+            RR( 1 ) = rr;
+            RR = circshift( RR, 1, 2 );
+
+            if( RR( 1 ) == RR( 2 ) )
+                break;
+            end
 
         end
     end
