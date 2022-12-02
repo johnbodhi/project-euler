@@ -108,5 +108,4 @@ while( ii <= size( K,1) )
     
     ii = ii + 1; L = zeros( 1, M ); 
 end
-
 toc
