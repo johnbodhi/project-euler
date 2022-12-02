@@ -4,17 +4,18 @@ clear all; close all; clc; tic
 % size to find a path from the top to bottom which yields a maximum sum for
 % any lower trianglular matrix containing random numbers...
  
-% A = [ 3 0 0 0; 7 4 0 0; 2 4 6 0; 8 5 9 3 ]; 
+% A = [ 3 0 0 0; 7 4 0 0; 2 4 6 0; 8 5 9 3 ];
 A = readmatrix("triangle_small.xlsx"); 
 % A = csvread("triangle_large.csv"); 
 
 % N = size(A,1); M = size(A,2);
 
-% N = 200; M = N;
-% 
+% N = 10; M = N; A = zeros( N, M);
+
 % for j = 1:M
 %     for i = 1:N
-%         if( i < j || i == j)
+% 
+%         if( i < j )
 %             A( i, j ) = randi( [ 10,99 ] );
 %         end
 %     end
@@ -23,9 +24,6 @@ A = readmatrix("triangle_small.xlsx");
 % Transpose matrix A to march through natrually.
 
 A = A'; 
-
-A = cat( 2, A, zeros( size( A, 1 ), 1 ) ); 
-A = cat( 1, A, zeros( 1, size( A, 2 ) ) ); 
 
 N = size(A,1); M = size(A,2);
 
@@ -71,11 +69,10 @@ while( ii <= size( K,1) )
    
     U = 0;
 
-    for j = size(K,2)+1:1:M - 1
+    for j = size(K,2)+1:1:M
 
         [ U( 1, 1 ), ~, ~ ] = find( I( :, j ) == L( 1, j - 1 ) );
         [ U( 1, 2 ), ~, ~ ] = find( I( :, j ) == L( 1, j - 1 ) + 1 );
-        [ U( 1, 3 ), ~, ~ ] = find( I( :, j + 1 ) == L( 1, j - 1 ) + 2 );
 
         if( A( U( 1, 1 ), j ) >= A( U( 1, 2 ), j ) )   
 
@@ -87,7 +84,6 @@ while( ii <= size( K,1) )
             L( 1, j ) = I( U( 1, 2 ), j );
         end
 
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
         if( RR( 1, 1 ) > RR( 2, 1 ) )
         
@@ -99,68 +95,7 @@ while( ii <= size( K,1) )
             RR( 2, 1 ) = 0;
         end
 
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-        if( A( U( 1, 1 ), j + 1 ) >= A( U( 1, 2 ), j + 1 ) &&...
-                A( U( 1, 1 ), j + 1 ) >= A( U( 1, 3 ), j + 1 ) &&...
-                L( 1, j ) == I( U( 1, 1 ), j + 1 ) )
-
-            RR( 1, 1 ) = A( U( 1, 1 ), j + 1);            
-            L( 1, j + 1) = I( U( 1, 1 ), j + 1);
-        elseif ( A( U( 1, 1 ), j + 1 ) >= A( U( 1, 2 ), j + 1 ) &&...
-                A( U( 1, 1 ), j + 1 ) >= A( U( 1, 3 ), j + 1 ) &&...
-                L( 1, j ) == I( U( 1, 1 ), j + 1 ) + 1 )
-        
-            RR( 1, 1 ) = A( U( 1, 1 ), j + 1);            
-            L( 1, j + 1) = I( U( 1, 1 ), j + 1);
-        elseif ( A( U( 1, 2 ), j + 1 ) >= A( U( 1, 1 ), j + 1 ) &&...
-                A( U( 1, 2 ), j + 1 ) >= A( U( 1, 3 ), j + 1 ) &&...
-                L( 1, j ) == I( U( 1, 2 ), j + 1 ) )
-
-            RR( 2, 1 ) = A( U( 1, 2 ), j + 1);            
-            L( 1, j + 1 ) = I( U( 1, 2 ), j + 1);
-        elseif( A( U( 1, 2 ), j + 1 ) >= A( U( 1, 1 ), j + 1 ) &&...
-                A( U( 1, 2 ), j + 1 ) >= A( U( 1, 3 ), j + 1 ) &&...
-                L( 1, j ) == I( U( 1, 2 ), j + 1 ) + 1 )
-        
-            RR( 2, 1 ) = A( U( 1, 2 ), j + 1);            
-            L( 1, j + 1 ) = I( U( 1, 2 ), j + 1);
-        elseif ( A( U( 1, 3 ), j + 1 ) >= A( U( 1, 1 ), j + 1 ) &&...
-                A( U( 1, 3 ), j + 1 ) >= A( U( 1, 2 ), j + 1 ) &&...
-                L( 1, j ) == I( U( 1, 3 ), j + 1 ) )
-            
-            RR( 3, 1 ) = A( U( 1, 3 ), j + 1);            
-            L( 1, j + 1) = I( U( 1, 3 ), j + 1);         
-        elseif( A( U( 1, 3 ), j + 1 ) >= A( U( 1, 1 ), j + 1 ) &&...
-                A( U( 1, 3 ), j + 1 ) >= A( U( 1, 2 ), j + 1 ) &&...
-                L( 1, j ) == I( U( 1, 3 ), j + 1 ) + 1 )
-        
-            RR( 3, 1 ) = A( U( 1, 3 ), j + 1);            
-            L( 1, j + 1) = I( U( 1, 3 ), j + 1);         
-        end           
-
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-        if( RR( 1, 1 ) > RR( 2, 1 ) &&...
-                RR( 1, 1 ) > RR( 3, 1 ) )
-        
-            R( ii, 1 ) = R( ii, 1 ) + RR( 1, 1 ); 
-            RR( 1, 1 ) = 0;
-        elseif( RR( 2, 1 ) > RR( 1, 1 ) &&...
-                RR( 2, 1 ) > RR( 3, 1 ) ) 
-        
-            R( ii, 1 ) = R( ii, 1 ) + RR( 2, 1 ); 
-            RR( 2, 1 ) = 0;
-        elseif( RR( 3, 1 ) > RR( 1, 1 ) &&...
-                RR( 3, 1 ) > RR( 2, 1 )  )
-
-            R( ii, 1 ) = R( ii, 1 ) + RR( 3, 1 ); 
-            RR( 3, 1 ) = 0;
-        end
-
     end  
-
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     B( 1, 2 ) = R( ii, 1 );
         
