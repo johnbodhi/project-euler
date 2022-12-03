@@ -5,7 +5,8 @@ clear all; close all; clc; tic
 % any lower trianglular matrix containing random numbers...
  
 % A = [ 3 0 0 0; 7 4 0 0; 2 4 6 0; 8 5 9 3 ];
-A = readmatrix("triangle_small.csv"); 
+
+% A = readmatrix("triangle_small.csv"); 
 % A = csvread("triangle_large.csv"); 
 
 % N = 15; M = N; 
@@ -21,7 +22,7 @@ A = readmatrix("triangle_small.csv");
 %     end
 % end
 
-% Transpose matrix A to march through naturally.
+% Transpose matrix A to march through natrually.
 
 A = A'; 
 
@@ -43,6 +44,10 @@ for j = 1:1:M
     end
 end
 
+% K = [ 1 1 1 1; 1 1 1 2; 1 1 2 2; 1 2 2 2; 1 2 2 3; 1 2 3 3 ];
+
+% K = [ 1 1 1; 1 1 2; 1 2 2; 1 2 3 ]; 
+
 K = [ 1 1; 1 2 ]; 
 
 L = zeros( size( K, 1 ), M ); 
@@ -51,11 +56,12 @@ B = zeros( 1, 2 ); U = zeros( 1, 2 );
 
 R = zeros( size( K,1 ), 1 ); RR = zeros( size( K, 1 ), 1 );
 
+ii = 1;
+
 for i = 1:1:size(K,1)
     L( i, 1 ) = I( 1, 1 );
 end
 
-ii = 1;
 while( ii <= size( K,1) )    
     
     L( ii, 1:size(K,2) ) = K( ii, 1:size(K,2) );   
