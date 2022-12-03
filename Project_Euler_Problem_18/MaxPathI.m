@@ -5,15 +5,19 @@ clear all; close all; clc; tic
 % any lower trianglular matrix containing random numbers...
  
 % A = [ 3 0 0 0; 7 4 0 0; 2 4 6 0; 8 5 9 3 ];
-A = readmatrix("triangle_small.xlsx"); 
+A = [ 3 0 0 0 0 0 0; 7 4 0 0 0 0 0; 2 4 6 0 0 0 0; 8 5 9 3 0 0 0; 0 0 0 1 0 0 0; 0 0 0 0 1 0 0; 0 0 0 0 0 1 0 ];
+
+% A = readmatrix("triangle_small.csv"); 
 % A = csvread("triangle_large.csv"); 
 
-% N = 10; M = N; A = zeros( N, M);
+% N = 15; M = N; 
+
+% A = zeros( N, M);
 
 % for j = 1:M
 %     for i = 1:N
-% 
-%         if( i < j )
+%         if( i <= j )
+%             % A( i, j ) = 1;
 %             A( i, j ) = randi( [ 10,99 ] );
 %         end
 %     end
@@ -28,8 +32,9 @@ N = size(A,1); M = size(A,2);
 I = zeros( N, M );
 
 for j = 1:1:M
-
-    [ A( :, j ), I( :, j ) ] = sort( A( :, j ), 'descend' );
+    for i = 1:1:N
+        I( i, j ) = i;
+    end
 end
 
 for j = 1:1:M
@@ -45,9 +50,9 @@ L = zeros( 1, M ); L( 1, 1 ) = I( 1, 1 );
 
 % K = [ 1 1 1 1; 1 1 1 2; 1 1 2 2; 1 2 2 2; 1 2 2 3; 1 2 3 3 ];
 
-K = [ 1 1 1; 1 1 2; 1 2 2; 1 2 3 ]; 
+% K = [ 1 1 1; 1 1 2; 1 2 2; 1 2 3 ]; 
 
-% K = [ 1 1; 1 2 ]; 
+K = [ 1 1; 1 2 ]; 
 
 B = zeros( 1, 2 ); U = zeros( 1, 2 );
 
@@ -82,7 +87,6 @@ while( ii <= size( K,1) )
             L( 1, j ) = I( U( 1, 2 ), j );
         end
 
-
         if( RR( 1, 1 ) > RR( 2, 1 ) )
         
             R( ii, 1 ) = R( ii, 1 ) + RR( 1, 1 ); 
@@ -106,4 +110,5 @@ while( ii <= size( K,1) )
     
     ii = ii + 1; L = zeros( 1, M ); 
 end
+
 toc
