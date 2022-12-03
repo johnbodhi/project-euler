@@ -5,9 +5,9 @@ clear all; close all; clc; tic
 % any lower trianglular matrix containing random numbers...
  
 % A = [ 3 0 0 0; 7 4 0 0; 2 4 6 0; 8 5 9 3 ];
-A = [ 3 0 0 0 0 0 0; 7 4 0 0 0 0 0; 2 4 6 0 0 0 0; 8 5 9 3 0 0 0; 0 0 0 1 0 0 0; 0 0 0 0 1 0 0; 0 0 0 0 0 1 0 ];
+% A = [ 3 0 0 0 0 0 0; 7 4 0 0 0 0 0; 2 4 6 0 0 0 0; 8 5 9 3 0 0 0; 0 0 0 1 0 0 0; 0 0 0 0 1 0 0; 0 0 0 0 0 1 0 ];
 
-% A = readmatrix("triangle_small.csv"); 
+A = readmatrix("triangle_small.csv"); 
 % A = csvread("triangle_large.csv"); 
 
 % N = 15; M = N; 
