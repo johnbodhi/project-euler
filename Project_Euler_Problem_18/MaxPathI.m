@@ -5,20 +5,20 @@ clear all; close all; clc; tic
 % any lower trianglular matrix containing random numbers...
  
 % A = [ 3 0 0 0; 7 4 0 0; 2 4 6 0; 8 5 9 3 ];
-% A = [ 3 0 0 0 0 0 0; 7 4 0 0 0 0 0; 2 4 6 0 0 0 0; 8 5 9 3 0 0 0; 0 0 0 1 0 0 0; 0 0 0 0 1 0 0; 0 0 0 0 0 1 0 ];
+% A = [ 3 0 0 0 0 0 0; 7 4 0 0 0 0 0; 2 4 6 0 0 0 0; 8 5 9 3 0 0 0; 5 2 3 1 8 0 0; 3 2 6 7 1 6 0; 4 6 8 9 5 1 0 ];
 
 A = readmatrix("triangle_small.csv"); 
 % A = csvread("triangle_large.csv"); 
 
 % N = 15; M = N; 
-
+% 
 % A = zeros( N, M);
-
+% 
 % for j = 1:M
 %     for i = 1:N
 %         if( i <= j )
 %             % A( i, j ) = 1;
-%             A( i, j ) = randi( [ 10,99 ] );
+%             % A( i, j ) = randi( [ 1,10 ] );
 %         end
 %     end
 % end
@@ -40,13 +40,10 @@ end
 for j = 1:1:M
     for i = 1:1:N
         if( i > j )
-
             I( i, j ) = 0;
         end
     end
 end
-
-L = zeros( 1, M ); L( 1, 1 ) = I( 1, 1 );
 
 % K = [ 1 1 1 1; 1 1 1 2; 1 1 2 2; 1 2 2 2; 1 2 2 3; 1 2 3 3 ];
 
@@ -54,19 +51,25 @@ L = zeros( 1, M ); L( 1, 1 ) = I( 1, 1 );
 
 K = [ 1 1; 1 2 ]; 
 
+L = zeros( size( K, 1 ), M ); 
+
 B = zeros( 1, 2 ); U = zeros( 1, 2 );
 
-R = zeros( size( K,1), 1 ); RR = zeros( 3, 1 );
+R = zeros( size( K,1 ), 1 ); RR = zeros( size( K, 1 ), 1 );
 
 ii = 1;
 
+for i = 1:1:size(K,1)
+    L( i, 1 ) = I( 1, 1 );
+end
+
 while( ii <= size( K,1) )    
     
-    L( 1, 1:size(K,2) ) = K( ii, 1:size(K,2) );   
+    L( ii, 1:size(K,2) ) = K( ii, 1:size(K,2) );   
 
     for j = 1:1:size( K, 2 )
 
-        [ U( 1, 1 ), ~, ~ ] = find( I( :, j ) == L( 1, j ) );
+        [ U( 1, 1 ), ~, ~ ] = find( I( :, j ) == L( ii, j ) );
         R( ii, 1 ) = R( ii, 1 ) + A( U( 1, 1 ), j );        
     end
    
@@ -74,17 +77,17 @@ while( ii <= size( K,1) )
 
     for j = size(K,2)+1:1:M
 
-        [ U( 1, 1 ), ~, ~ ] = find( I( :, j ) == L( 1, j - 1 ) );
-        [ U( 1, 2 ), ~, ~ ] = find( I( :, j ) == L( 1, j - 1 ) + 1 );
+        [ U( 1, 1 ), ~, ~ ] = find( I( :, j ) == L( ii, j - 1 ) );
+        [ U( 1, 2 ), ~, ~ ] = find( I( :, j ) == L( ii, j - 1 ) + 1 );
 
         if( A( U( 1, 1 ), j ) >= A( U( 1, 2 ), j ) )   
 
             RR( 1, 1 ) = A( U( 1, 1 ), j );            
-            L( 1, j ) = I( U( 1, 1 ), j );
+            L( ii, j ) = I( U( 1, 1 ), j );
         elseif ( A( U( 1, 2 ), j ) >= A( U( 1, 1 ), j ) )
             
             RR( 2, 1 ) = A( U( 1, 2 ), j );            
-            L( 1, j ) = I( U( 1, 2 ), j );
+            L( ii, j ) = I( U( 1, 2 ), j );
         end
 
         if( RR( 1, 1 ) > RR( 2, 1 ) )
@@ -102,13 +105,14 @@ while( ii <= size( K,1) )
     B( 1, 2 ) = R( ii, 1 );
         
     if( B( 1, 2 ) > B( 1, 1 ) )
+
         B = circshift( B, -1, 2 ); 
         B( 1, 2 ) = 0;
     else        
         B( 1, 2 ) = 0;
     end      
     
-    ii = ii + 1; L = zeros( 1, M ); 
+    ii = ii + 1; % L = zeros( ii, M ); 
 end
 
 toc
