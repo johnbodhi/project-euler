@@ -112,7 +112,6 @@ while( ii <= size( K,1) )
         B( 1, 2 ) = 0;
     end      
     
-    ii = ii + 1; % L = zeros( ii, M ); 
+    ii = ii + 1;
 end
-
 toc
