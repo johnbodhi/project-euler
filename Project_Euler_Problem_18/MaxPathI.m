@@ -1,10 +1,10 @@
 clear all; close all; clc; tic
 
-% We can read in a triangle froma file, or generate a triangle of arbitrary
+% We can read in a triangle from a file, or generate a triangle of arbitrary
 % size to find a path from the top to bottom which yields a maximum sum for
 % any lower trianglular matrix containing random numbers...
  
-% A = [ 3 0 0 0; 7 4 0 0; 2 4 6 0; 8 5 9 3 ];
+% A = [ 3 0 0 0 0 0; 7 4 0 0 0 0; 2 4 6 0 0 0; 8 5 9 3 0 0; 0 0 1 1 0 0; 0 0 1 2 3 0 ];
 A = readmatrix("triangle_small.csv"); 
 % A = csvread("triangle_large.csv"); 
 
@@ -22,6 +22,9 @@ A = readmatrix("triangle_small.csv");
 % end
 
 % Transpose matrix A to march through naturally.
+
+A = cat( 1, A, zeros( 1, size( A, 1 ) ) );
+A = cat( 2, A, zeros( size( A, 1 ), 1 ) );
 
 A = A'; 
 
@@ -68,18 +71,23 @@ while( ii <= size( K,1) )
    
     U = 0;
 
-    for j = size(K,2)+1:1:M
+    for j = size(K,2)+1:1:M - 1
 
         [ U( 1, 1 ), ~, ~ ] = find( I( :, j ) == L( ii, j - 1 ) );
         [ U( 1, 2 ), ~, ~ ] = find( I( :, j ) == L( ii, j - 1 ) + 1 );
+        % [ U( 1, 3 ), ~, ~ ] = find( I( :, j + 1 ) == L( ii, j - 1 ) + 2 );
 
-        if( A( U( 1, 1 ), j ) >= A( U( 1, 2 ), j ) )   
+        if( A( U( 1, 1 ), j ) >= A( U( 1, 2 ), j ) && A( U( 1, 1 ), j + 1 ) >= A( U( 1, 2 ), j + 1 ) )   
 
             RR( 1, 1 ) = A( U( 1, 1 ), j );            
             L( ii, j ) = I( U( 1, 1 ), j );
-        elseif ( A( U( 1, 2 ), j ) >= A( U( 1, 1 ), j ) )
+        elseif ( A( U( 1, 2 ), j ) >= A( U( 1, 1 ), j ) && A( U( 1, 2 ), j + 1 ) >= A( U( 1, 1 ), j + 1 ) )
             
             RR( 2, 1 ) = A( U( 1, 2 ), j );            
+            L( ii, j ) = I( U( 1, 1 ), j );
+        elseif ( A( U( 1, 2 ), j ) >= A( U( 1, 1 ), j ) && A( U( 1, 3 ), j + 1 ) >= A( U( 1, 2 ), j + 1 ) ) 
+
+            RR( 2, 1 ) = A( U( 1, 3 ), j );            
             L( ii, j ) = I( U( 1, 2 ), j );
         end
 
@@ -92,7 +100,6 @@ while( ii <= size( K,1) )
             R( ii, 1 ) = R( ii, 1 ) + RR( 2, 1 ); 
             RR( 2, 1 ) = 0;
         end
-
     end  
 
     B( 1, 2 ) = R( ii, 1 );
@@ -101,10 +108,11 @@ while( ii <= size( K,1) )
 
         B = circshift( B, -1, 2 ); 
         B( 1, 2 ) = 0;
-    else        
+    else
         B( 1, 2 ) = 0;
     end      
     
     ii = ii + 1;
 end
 toc
+
