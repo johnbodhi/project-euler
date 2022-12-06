@@ -4,8 +4,8 @@ clear all; close all; clc; tic
 % size to find a path from the top to bottom which yields a maximum sum for
 % any lower trianglular matrix containing random numbers...
  
-% A = [ 3 0 0 0 0 0; 7 4 0 0 0 0; 2 4 6 0 0 0; 8 5 9 3 0 0; 0 0 1 1 0 0; 0 0 1 2 3 0 ];
-A = readmatrix("triangle_small.csv"); 
+A = [ 3 0 0 0; 7 4 0 0; 2 4 6 0; 8 5 9 3] ;
+%  A = readmatrix("triangle_small.csv"); 
 % A = csvread("triangle_large.csv"); 
 
 % N = 15; M = N; 
@@ -50,7 +50,7 @@ K = [ 1 1; 1 2 ];
 
 % K = [ 1 1 1; 1 1 2; 1 2 2; 1 2 3 ];
 
-% K = [ 1 1 1 1; 1 1 1 2; 1 2 2 2; 1 2 2 3; 1 2 3 3 ];
+% K = [ 1 1 1 1; 1 1 1 2; 1 2 2 2; 1 1 2 3 ; 1 2 2 3; 1 2 3 3 ];
 
 L = zeros( size( K, 1 ), M ); 
 
@@ -63,7 +63,7 @@ for i = 1:1:size(K,1)
 end
 
 ii = 1;
-while( ii <= size( K,1) )    
+while( ii <= size( K,1) )     
     
     L( ii, 1:size(K,2) ) = K( ii, 1:size(K,2) );   
 
@@ -144,4 +144,11 @@ while( ii <= size( K,1) )
     ii = ii + 1;
 end
 toc
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% We can also generate a pyramid to accomplish the same task in three
+% dimensions...
+
+
 
