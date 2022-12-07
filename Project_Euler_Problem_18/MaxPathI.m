@@ -36,7 +36,7 @@ for j = 1:1:size(A,2)
     end
 end
 
-N = 111111111; M = 123456789; ii = 1;
+N = 11111; M = 12345; ii = 1;
 for i = N:1:M
     S(ii,1) = i; ii = ii + 1;
 end
@@ -44,7 +44,7 @@ end
 D = zeros(1,floor(log10(M-N)+1));
 
 ii = 1; uu = 0; vv = 1;
-for i = 1:1:(M-N)
+for i = 1:1:(M-N+1)
 
     R = S(i,1);
 
@@ -81,7 +81,7 @@ FF = flip(FF,2);
 
 K = FF;
 
-L = zeros( size( K, 1 ), size(A,2) ); 
+L = zeros( size( K, 1 ),size(A,2) ); 
 
 ii = 1;
 while( ii <= size( K,1) )     
@@ -95,8 +95,7 @@ while( ii <= size( K,1) )
         
         if( A( U( 1, 1 ), j ) >= A( U( 1, 2 ), j ) )     
              
-            L( ii, j ) = I( U( 1, 1 ), j ); 
-           
+            L( ii, j ) = I( U( 1, 1 ), j );           
         elseif ( A( U( 1, 2 ), j ) >= A( U( 1, 1 ), j ) ) 
           
             L( ii, j ) = I( U( 1, 2 ), j );    
