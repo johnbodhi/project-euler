@@ -41,7 +41,7 @@ for j = 1:1:size(A,2)
     end
 end
 
-N = 11111111; M = 12345678;
+N = 111111111; M = 123456789;
 Z = floor(log10(M)+1);
 
 S = zeros(M-N,1); ii = 1;
@@ -75,7 +75,8 @@ for i = 1:1:size(S,1)
      
     jj = 2; uu = 0;
     while( jj <= size(F,2) )
-              
+        
+        
         if( F(ii-1,jj) == F(ii-1,jj-1) || F(ii-1,jj) == F(ii-1,jj-1) - 1 )
             uu = uu + 1;
         end
