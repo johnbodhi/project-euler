@@ -4,11 +4,11 @@ clear all; close all; clc; tic
 % size to find a path from the top to bottom which yields a maximum sum for
 % any lower trianglular matrix containing random numbers...
  
-% A = [ 3 0 0 0; 7 4 0 0; 2 4 6 0; 8 5 9 3 ];
-A = readmatrix("triangle_small.csv"); 
+A = [ 3 0 0 0; 7 4 0 0; 2 4 6 0; 8 5 9 3] ;
+%  A = readmatrix("triangle_small.csv"); 
 % A = csvread("triangle_large.csv"); 
 
-% N = 1000; M = N; 
+% N = 15; M = N; 
 % 
 % A = zeros( N, M);
 % 
@@ -16,111 +16,139 @@ A = readmatrix("triangle_small.csv");
 %     for i = 1:N
 %         if( i <= j )
 %             % A( i, j ) = 1;
-%             A( ii, j ) = randi( [ 1,99 ] );
+%             % A( i, j ) = randi( [ 1,10 ] );
 %         end
 %     end
 % end
 
 % Transpose matrix A to march through naturally.
 
+A = cat( 1, A, zeros( 1, size( A, 1 ) ) );
+A = cat( 2, A, zeros( size( A, 1 ), 1 ) );
+
 A = A'; 
 
-I = zeros(size(A,1), size(A,2));
+N = size(A,1); M = size(A,2);
 
-for j = 1:1:size(A,2)
-    for i = 1:1:size(A,1)
+I = zeros( N, M );
+
+for j = 1:1:M
+    for i = 1:1:N
         I( i, j ) = i;
     end
 end
 
-for j = 1:1:size(A,2)
-    for i = 1:1:size(A,1)
+for j = 1:1:M
+    for i = 1:1:N
         if( i > j )
             I( i, j ) = 0;
         end
     end
 end
 
-N = 11111111; M = 12345678;
-Z = floor(log10(M)+1);
+K = [ 1 1; 1 2 ]; 
 
-S = zeros(M-N,1); ii = 1;
-for i = N:1:M
-    S(ii,1) = i;ii = ii + 1;
+% K = [ 1 1 1; 1 1 2; 1 2 2; 1 2 3 ];
+
+% K = [ 1 1 1 1; 1 1 1 2; 1 2 2 2; 1 1 2 3 ; 1 2 2 3; 1 2 3 3 ];
+
+L = zeros( size( K, 1 ), M ); 
+
+B = zeros( 1, 2 ); U = zeros( 1, 2 );
+
+R = zeros( size( K,1 ), 1 ); RR = zeros( size( K, 1 ), 1 );
+
+for i = 1:1:size(K,1)
+    L( i, 1 ) = I( 1, 1 );
 end
-
-D = zeros(size(S,1),Z); 
-F = zeros(1, Z); FF = zeros(1, Z);
-
-ii = 1; vv = 1;
-for i = 1:1:size(S,1)
-
-    M = floor(log10(S(i))+1); R = S(i,1);
-    
-    for j = 1:1:M      
-    
-        D(i,j) = R - floor(R / 10) * 10;
-
-        D(i,j) = floor(D(i,j));
-    
-        R = R / 10;
-    end    
-
-     X = size( find( D(i,:) ), 2 );
-    
-     if( X == size(D,2) )
-        
-        F(ii,:) = D(i,:); ii = ii + 1;
-     end    
-     
-    jj = 2; uu = 0;
-    while( jj <= size(F,2) )
-              
-        if( F(ii-1,jj) == F(ii-1,jj-1) || F(ii-1,jj) == F(ii-1,jj-1) - 1 )
-            uu = uu + 1;
-        end
-        jj = jj + 1;
-    end  
-
-    if(uu == size(F,2)-1)
-        FF(vv,:) = F(ii-1,:); 
-        vv = vv + 1;
-    end    
-end
-FF = flip(FF,2);
-
-K = FF;
-
-L = zeros( size( K, 1 ), size(A,2) ); U = zeros( 1, 2 );
 
 ii = 1;
-while( ii <= size(K,1) )    
-        
-    L( ii, 1:size(K,2) ) = K( ii, 1:size(K,2) );
+while( ii <= size( K,1) )     
+    
+    L( ii, 1:size(K,2) ) = K( ii, 1:size(K,2) );   
 
-    for j = size(K,2)+1:1:size(A,2)
+    for j = 1:1:size( K, 2 )
+
+        [ U( 1, 1 ), ~, ~ ] = find( I( :, j ) == L( ii, j ) );
+        R( ii, 1 ) = R( ii, 1 ) + A( U( 1, 1 ), j );        
+    end
+   
+    U = 0;
+
+    for j = size(K,2)+1:1:M - 1
 
         [ U( 1, 1 ), ~, ~ ] = find( I( :, j ) == L( ii, j - 1 ) );
         [ U( 1, 2 ), ~, ~ ] = find( I( :, j ) == L( ii, j - 1 ) + 1 );
+        [ U( 1, 3 ), ~, ~ ] = find( I( :, j + 1 ) == L( ii, j - 1 ) + 2 );
 
         if( A( U( 1, 1 ), j ) >= A( U( 1, 2 ), j ) )   
-                            
-            L( ii, j ) = I( U( 1, 1 ), j );           
+           
+            V( 1, 1 ) = A( U( 1, 1 ), j ) + A( U( 1, 1 ), j + 1 );
+            V( 1, 2 ) = A( U( 1, 1 ), j ) + A( U( 1, 2 ), j + 1 );
+            
+            if( V( 1, 1 ) > V( 1, 2 ) )
+
+                RR( 1, 1 ) = V( 1, 1 );            
+                L( ii, j ) = I( U( 1, 1 ), j );     
+
+                V( 1, 1 ) = 0; V( 1, 2 ) = 0;
+            else
+
+                 RR( 1, 1 ) = V( 1, 2 );            
+                 L( ii, j ) = I( U( 1, 1 ), j );  
+
+                 V( 1, 1 ) = 0; V( 1, 2 ) = 0;
+            end            
+            
         elseif ( A( U( 1, 2 ), j ) >= A( U( 1, 1 ), j ) ) 
 
-            L( ii, j ) = I( U( 1, 2 ), j );             
-        end        
-    end    
+            V( 1, 1 ) = A( U( 1, 2 ), j ) + A( U( 1, 2 ), j + 1 );
+            V( 1, 2 ) = A( U( 1, 2 ), j ) + A( U( 1, 3 ), j + 1 );
+            
+            if( V( 1, 1 ) > V( 1, 2 ) )
 
+                RR( 1, 2 ) = V( 1, 1 );            
+                L( ii, j ) = I( U( 1, 2 ), j );    
+
+                V( 1, 1 ) = 0; V( 1, 2 ) = 0;
+            else
+
+                 RR( 1, 2 ) = V( 1, 2 );            
+                 L( ii, j ) = I( U( 1, 2 ), j ); 
+
+                 V( 1, 1 ) = 0; V( 1, 2 ) = 0;
+            end
+        end
+
+        if( RR( 1, 1 ) > RR( 2, 1 ) )
+        
+            R( ii, 1 ) = R( ii, 1 ) + RR( 1, 1 ); 
+            RR( 1, 1 ) = 0;
+        else
+        
+            R( ii, 1 ) = R( ii, 1 ) + RR( 2, 1 ); 
+            RR( 2, 1 ) = 0;
+        end
+    end  
+
+    B( 1, 2 ) = R( ii, 1 );
+        
+    if( B( 1, 2 ) > B( 1, 1 ) )
+
+        B = circshift( B, -1, 2 ); 
+        B( 1, 2 ) = 0;
+    else
+        B( 1, 2 ) = 0;
+    end      
+    
     ii = ii + 1;
 end
-    
-R = zeros(size(K,1),1);
-for j = 1:1:size(K,1)
-    for i = 1:1:size(L,2)
-    
-        R(j,1) = R(j,1) + A(L(j,i),i);
-    end
-end
-B = max(R);
 toc
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% We can also generate a pyramid to accomplish the same task in three
+% dimensions...
+
+
+
