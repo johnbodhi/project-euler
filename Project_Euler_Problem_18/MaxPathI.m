@@ -36,7 +36,7 @@ for j = 1:1:size(A,2)
     end
 end
 
-N = 11; M = 12; ii = 1;
+N = 1111; M = 1234; ii = 1;
 for i = N:1:M
     S(ii,1) = i; ii = ii + 1;
 end
