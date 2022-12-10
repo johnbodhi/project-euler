@@ -36,7 +36,7 @@ for j = 1:1:size(A,2)
     end
 end
 
-N = 111111111; M = 123456789;
+N = 111111111111111; M = 123456789876543;
 
 ii = 1; uu = 0;
 for i = N:1:M
@@ -74,13 +74,9 @@ for i = N:1:M
 end
 FF = flip(FF,2);
 
-K = FF; 
-
-toc
+K = FF;
 
 % E = sum(diag(flip(pascal(15),1)));
-
-L = zeros( size( K, 1 ), size(A,2) ); 
 
 ii = 1;
 while( ii <= size( K,1) )     
@@ -110,16 +106,4 @@ for i = 1:1:size(L,1)
         RR(i,1) = RR(i,1) + A(L(i,j),j);
     end
 end
-B = max(RR);
-toc
-
-
-
-
-for i = 1:1:size(D,1)
-    for j = 1:1:size(D,2)        
-        if( j > 9 )   
-            D(i,j) = j;
-        end
-    end
-end
+B = max(RR); toc
