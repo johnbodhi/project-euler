@@ -76,7 +76,7 @@ FF = flip(FF,2);
 
 K = FF; 
 
-toc
+
 
 % E = sum(diag(flip(pascal(15),1)));
 
