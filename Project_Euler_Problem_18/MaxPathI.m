@@ -9,9 +9,9 @@ A = readmatrix("triangle_small.csv");
 % A = csvread("triangle_large.csv"); 
 
 % N = 15; M = N; 
-% 
+
 % A = zeros( N, M);
-% 
+
 % for j = 1:M
 %     for i = 1:N
 %         if( i <= j )
@@ -36,9 +36,13 @@ for j = 1:1:size(A,2)
     end
 end
 
-N = 111111111111111; M = 123456789876543;
+N = 1111111111; M = 1234567899;
 
-ii = 1; uu = 0;
+D = zeros(1,floor(log10(M)+1));
+
+% FF = zeros(sum(diag(flip(pascal(10),1))),1);
+
+ii = 1; vv = 0; uu = 0;
 for i = N:1:M
 
     R = i;
@@ -47,7 +51,7 @@ for i = N:1:M
             
         D(1,j) = R - floor( R / 10 ) * 10;
 
-        R = floor(R / 10); 
+        R = floor( R / 10 );
     end
 
     X = size(find(D(1,:)),2);
@@ -72,14 +76,20 @@ for i = N:1:M
         uu = 0;       
     end   
 end
+
+for j = 1:1:size(FF,2)
+    Q(1,j) = j;
+end
+FF = cat(1,FF,Q);
+
 FF = flip(FF,2);
 
 K = FF;
 
-% E = sum(diag(flip(pascal(15),1)));
+L = zeros(size(K,1),size(A,2));
 
 ii = 1;
-while( ii <= size( K,1) )     
+while( ii <= size(K,1) )     
     
     L( ii, 1:size(K,2) ) = K( ii, 1:size(K,2) );   
 
