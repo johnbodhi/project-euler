@@ -5,8 +5,8 @@ clear all; close all; clc; tic
 % any lower trianglular matrix containing random numbers...
  
 % A = [ 3 0 0 0; 7 4 0 0; 2 4 6 0; 8 5 9 3];
-% A = readmatrix("triangle_small.csv"); 
-A = csvread("triangle_large.csv"); 
+A = readmatrix("triangle_small.csv"); 
+% A = csvread("triangle_large.csv"); 
 
 % N = 15; M = N; 
 
@@ -36,7 +36,7 @@ for j = 1:1:size(A,2)
     end
 end
 
-N = 1111111111; M = 1234567899;
+N = 11111; M = 12345;
 
 D = zeros(1,floor(log10(M)+1));
 
@@ -76,11 +76,6 @@ for i = N:1:M
         uu = 0;       
     end   
 end
-
-for j = size(FF,2):-1:1
-    Q(1,j) = j;
-end
-FF = cat(1,FF,Q);
 
 FF = flip(FF,2);
 

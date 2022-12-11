@@ -5,8 +5,8 @@ clear all; close all; clc; tic
 % any lower trianglular matrix containing random numbers...
  
 % A = [ 3 0 0 0; 7 4 0 0; 2 4 6 0; 8 5 9 3];
-% A = readmatrix("triangle_small.csv"); 
-A = csvread("triangle_large.csv"); 
+A = readmatrix("triangle_small.csv"); 
+% A = csvread("triangle_large.csv"); 
 
 % N = 15; M = N; 
 
@@ -36,11 +36,9 @@ for j = 1:1:size(A,2)
     end
 end
 
-N = 1111111111; M = 1234567899;
+N = 1111; M = 12345;
 
 D = zeros(1,floor(log10(M)+1));
-
-% FF = zeros(sum(diag(flip(pascal(10),1))),1);
 
 ii = 1; vv = 0; uu = 0;
 for i = N:1:M
@@ -76,44 +74,6 @@ for i = N:1:M
         uu = 0;       
     end   
 end
-
-for j = size(FF,2):-1:1
-    Q(1,j) = j;
-end
-FF = cat(1,FF,Q);
-
 FF = flip(FF,2);
 
 K = FF;
-
-L = zeros(size(K,1),size(A,2));
-
-ii = 1;
-while( ii <= size(K,1) )     
-    
-    L( ii, 1:size(K,2) ) = K( ii, 1:size(K,2) );   
-
-    for j = size(K,2)+1:1:size(A,2)
-
-        [ U( 1, 1 ), ~, ~ ] = find( I( :, j ) == L( ii, j - 1 ) );
-        [ U( 1, 2 ), ~, ~ ] = find( I( :, j ) == L( ii, j - 1 ) + 1 );
-        
-        if( A( U( 1, 1 ), j ) >= A( U( 1, 2 ), j ) )     
-             
-            L( ii, j ) = I( U( 1, 1 ), j );           
-        elseif ( A( U( 1, 2 ), j ) >= A( U( 1, 1 ), j ) ) 
-          
-            L( ii, j ) = I( U( 1, 2 ), j );    
-        end
-    end    
-    ii = ii + 1;
-end
-
-RR = zeros(size(L,1),1);
-for i = 1:1:size(L,1)
-    for j = 1:1:size(L,2)
-        
-        RR(i,1) = RR(i,1) + A(L(i,j),j);
-    end
-end
-B = max(RR); toc
