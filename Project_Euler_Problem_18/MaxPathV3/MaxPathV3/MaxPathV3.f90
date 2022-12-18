@@ -2,7 +2,7 @@ program MaxPathV3
     use ifport
     implicit none
 
-    integer, parameter      :: N = 15, M = 15
+    integer, parameter      :: X = 15, N = X, M = X
     integer                 :: i, j, temp, ii, jj, uu = 0, kk = 1,S = 0
     integer, dimension(N,M) :: A
     integer, dimension(N)   :: V
