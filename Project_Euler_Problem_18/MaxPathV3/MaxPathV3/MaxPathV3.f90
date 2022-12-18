@@ -111,6 +111,42 @@ program MaxPathV3
         S = 0;        
     enddo
     
+    ! Accumulate while limit...
+    do j = 1,size(V)-2,1
+        do i = 1,size(V)-j,1        
+            kk = kk + 1;        
+        enddo
+    enddo
+    
+    ! Gamma...    
+    jj = 1; uu = 1; ii = 0;
+    do while( uu .le. kk )
+    
+        ii = ii + 1;        
+        V(ii) = V(ii) + 1; 
+        
+        do j = 1,M,1        
+            S = S + A(V(j),j); 
+        enddo   
+        
+        B(2) = S;
+        
+        if( B(2) > B(1) ) then
+        
+            B(1) = S; B(2) = 0        
+        else        
+            B(2) = 0        
+        endif   
+        
+        if( ii .eq. size(V)-jj ) then
+            ii = 0;
+            jj = jj + 1;      
+        endif
+        
+        uu = uu + 1;
+        S = 0;        
+    enddo    
+    
     ! Print maximum path...
     print*, B(1)
         
