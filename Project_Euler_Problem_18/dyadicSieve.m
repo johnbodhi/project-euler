@@ -36,7 +36,7 @@ for j = 1:1:size(A,2)
     end
 end
 
-N = 1111111111; M = 1234567899;
+N = 1111; M = 12345;
 
 D = zeros(1,floor(log10(M)+1));
 
@@ -76,4 +76,4 @@ for i = N:1:M
 end
 FF = flip(FF,2);
 
-K = FF;
+K = FF; toc

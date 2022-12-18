@@ -1,6 +1,7 @@
-clear all;
+clear all; close all; clc;
 
-A = readmatrix("triangle_small.csv"); 
+% A = readmatrix("triangle_small.csv"); 
+A = readmatrix("triangle_large.csv"); 
 
 B = zeros(1,1);
 ii = 1;

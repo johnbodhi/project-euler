@@ -36,50 +36,49 @@ for j = 1:1:size(A,2)
     end
 end
 
-N = 11111; M = 12345;
-
-D = zeros(1,floor(log10(M)+1));
+% N = 1111111111; M = 1234567899;
+% 
+% D = zeros(1,floor(log10(M)+1));
 
 % FF = zeros(sum(diag(flip(pascal(10),1))),1);
 
-ii = 1; vv = 0; uu = 0;
-for i = N:1:M
+% ii = 1; vv = 0; uu = 0;
+% for i = N:1:M
+% 
+%     R = i;
+% 
+%     for j = 1:1:floor(log10(R)+1)
+%             
+%         D(1,j) = R - floor( R / 10 ) * 10;
+% 
+%         R = floor( R / 10 );
+%     end
+% 
+%     X = size(find(D(1,:)),2);
+% 
+%     if( X == size(D,2) )
+%         
+%         F(1,:) = D(1,:);
+%        
+%         jj = 2;
+%         while( jj <= size(D,2) )
+%     
+%             if( F(1,jj) == F(1,jj-1) || F(1,jj) == F(1,jj-1) - 1 )
+%                 uu = uu + 1;
+%             end
+%             jj = jj + 1;
+%         end        
+% 
+%         if( uu == size(D,2) - 1 )
+%             FF(ii,:) = F(1,:); 
+%             ii = ii + 1;
+%         end
+%         uu = 0;       
+%     end   
+% end
+% FF = flip(FF,2);
 
-    R = i;
-
-    for j = 1:1:floor(log10(R)+1)
-            
-        D(1,j) = R - floor( R / 10 ) * 10;
-
-        R = floor( R / 10 );
-    end
-
-    X = size(find(D(1,:)),2);
-
-    if( X == size(D,2) )
-        
-        F(1,:) = D(1,:);
-       
-        jj = 2;
-        while( jj <= size(D,2) )
-    
-            if( F(1,jj) == F(1,jj-1) || F(1,jj) == F(1,jj-1) - 1 )
-                uu = uu + 1;
-            end
-            jj = jj + 1;
-        end        
-
-        if( uu == size(D,2) - 1 )
-            FF(ii,:) = F(1,:); 
-            ii = ii + 1;
-        end
-        uu = 0;       
-    end   
-end
-
-FF = flip(FF,2);
-
-K = FF;
+K = readmatrix('allPaths10.csv');
 
 L = zeros(size(K,1),size(A,2));
 

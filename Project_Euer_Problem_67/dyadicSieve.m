@@ -76,4 +76,4 @@ for i = N:1:M
 end
 FF = flip(FF,2);
 
-K = FF;
+K = FF; toc
