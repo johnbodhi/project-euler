@@ -1,7 +1,19 @@
 clear all; close all; clc;
 
-% A = readmatrix("triangle_small.csv"); 
-A = readmatrix("triangle_large.csv"); 
+A = readmatrix("triangle_small.csv"); 
+% A = readmatrix("triangle_large.csv"); 
+
+% N = 15; M = N; 
+% A = zeros( N, M);
+
+% for j = 1:M
+%     for i = 1:N
+%         if( i <= j )
+%             % A( i, j ) = 1;
+%             % A( i, j ) = randi( [ 1,10 ] );
+%         end
+%     end
+% end
 
 B = zeros(1,1);
 ii = 1;

@@ -76,4 +76,6 @@ for i = N:1:M
 end
 FF = flip(FF,2);
 
+writematrix(FF,'allPaths.csv');
+
 K = FF; toc
