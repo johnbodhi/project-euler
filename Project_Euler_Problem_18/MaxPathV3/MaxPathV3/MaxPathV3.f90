@@ -3,8 +3,8 @@ program MaxPathV3
     implicit none
 
     integer, parameter      :: X = 15, N = X, M = X
-    integer                 :: i, j, temp, ii, jj, xx, uu, kk, S = 0
-    integer, dimension(N,M) :: A
+    integer                 :: i, j, ii, jj, xx, uu, kk, S = 0
+    integer, dimension(N,M) :: A, C1, C2
     integer, dimension(N)   :: V
     integer, dimension(2)   :: B
     real                    :: t,t_(2),t1,t2,ta(2)
@@ -13,41 +13,44 @@ program MaxPathV3
 
     open( unit = 1, file = 'triangle_small.txt', action = 'read', blank = 'zero', status = 'old')
     !open( unit = 1, file = 'triangle_large.txt', action = 'read', blank = 'zero', status = 'old')
-
+    
     ! Pre-allocate solution array...
     do i = 1,2,1
         B(i) = 0;    
-    enddo
+    enddo   
     
     ! Read in lower triangular matrix...
     do j = 1,M,1
-        do i = 1,N,1        
-            read(1,*) A(i,j)          
+        do i = 1,N,1    
+            read(1,*) C1(i,j) 
+            print*, C1(i,j)
         enddo    
         ! Populate initial state...
         V(j) = 1;
     enddo
+    pause
     
     ! Transpose...
-    do j = 1,M,1
-        do i = 1,N,1        
-            A(j,i) = A(i,j)          
+    do i = 1,N,1
+        do j = 1,M,1
+            C2(i,j) = C1(i,j);
+            print*, C2(i,j)
         enddo
     enddo
+    pause
     
     ! Flip...
-    do j = 1,M,1
-        do i = 1,N,1            
-            temp = A(i,M-j+1);
-            A(i,M-j+1) = A(i,j);
-            A(i,j) = temp;
+    do i = 1,N,1
+        do j = 1,M,1            
+            A(i,M-j+1) = C2(i,j);
+            print*, A(i,M-j+1)
         enddo
-        V(j) = 1;
-    enddo            
+    enddo    
+    pause
     
     ! Accumulate while limit...
     kk = 0;
-    do j = 1,size(V)-2,1
+    do j = 1,size(V)-1,1
         do i = 1,size(V)-j,1        
             kk = kk + 1;        
         enddo
@@ -60,9 +63,17 @@ program MaxPathV3
     jj = 1; uu = 1; xx = 1; ii = 0;
     do while( uu .le. kk )
     
+        !print*, uu
+        
         ii = ii + 1;  
         
-        V(ii) = V(ii) + 1; 
+        if( uu .le. kk ) then
+
+            V(ii) = V(ii) + 1; 
+        else
+            
+            V(ii) = V(ii) - 1; 
+        endif      
     
         do j = 1,M,1  
             
@@ -78,6 +89,12 @@ program MaxPathV3
             
             B(2) = 0        
         endif   
+        
+        !do i = 1,size(V),1
+        !    
+        !    print*, V(i)
+        !enddo    
+        !pause
         
         if( ii .eq. size(V)-jj ) then            
             if( jj .eq. size(V)-1 ) then
@@ -95,7 +112,7 @@ program MaxPathV3
                 ii = 0;
                 jj = jj + 1;            
             end if           
-        endif
+        endif      
         
         uu = uu + 1; 
         S = 0;        
