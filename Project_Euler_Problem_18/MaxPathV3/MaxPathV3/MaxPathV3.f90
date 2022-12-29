@@ -3,7 +3,7 @@ program MaxPathV3
     implicit none
 
     integer, parameter      :: X = 15, N = X, M = X
-    integer                 :: i, j, ii, jj, xx, uu, kk, S = 0
+    integer                 :: i, j, ii, jj, kk, xx, uu, S = 0
     integer, dimension(N,M) :: A, C1, C2
     integer, dimension(N)   :: V
     integer, dimension(2)   :: B
@@ -23,30 +23,30 @@ program MaxPathV3
     do j = 1,M,1
         do i = 1,N,1    
             read(1,*) C1(i,j) 
-            print*, C1(i,j)
+            !print*, C1(i,j)
         enddo    
         ! Populate initial state...
         V(j) = 1;
     enddo
-    pause
+    !pause
     
     ! Transpose...
     do i = 1,N,1
         do j = 1,M,1
             C2(i,j) = C1(i,j);
-            print*, C2(i,j)
+            !print*, C2(i,j)
         enddo
     enddo
-    pause
+    !pause
     
     ! Flip...
     do i = 1,N,1
         do j = 1,M,1            
             A(i,M-j+1) = C2(i,j);
-            print*, A(i,M-j+1)
+            !print*, A(i,M-j+1)
         enddo
     enddo    
-    pause
+    !pause
     
     ! Accumulate while limit...
     kk = 0;
@@ -56,6 +56,7 @@ program MaxPathV3
         enddo
     enddo
     kk = kk*(X-1);
+    !pause
     
     ! Find the rest of the sums...
     
@@ -66,14 +67,8 @@ program MaxPathV3
         !print*, uu
         
         ii = ii + 1;  
-        
-        if( uu .le. kk ) then
 
-            V(ii) = V(ii) + 1; 
-        else
-            
-            V(ii) = V(ii) - 1; 
-        endif      
+        V(ii) = V(ii) + 1;            
     
         do j = 1,M,1  
             
@@ -84,7 +79,7 @@ program MaxPathV3
         
         if( B(2) > B(1) ) then
         
-            B(1) = S; B(2) = 0        
+            B(1) = S; B(2) = 0;        
         else  
             
             B(2) = 0        
@@ -115,7 +110,9 @@ program MaxPathV3
         endif      
         
         uu = uu + 1; 
-        S = 0;        
+        S = 0;  
+        
+        if( jj .ge. size(V) ) exit
     enddo
     
     ! Print maximum path...    
