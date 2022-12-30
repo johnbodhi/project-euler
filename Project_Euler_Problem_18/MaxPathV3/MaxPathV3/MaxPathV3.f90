@@ -2,7 +2,7 @@ program MaxPathV3
     use ifport
     implicit none
 
-    integer, parameter      :: X = 15, N = X, M = X
+    integer, parameter      :: X = 4, N = X, M = X
     integer                 :: i, j, ii, jj, kk, xx, uu, S = 0
     integer, dimension(N,M) :: A, C1, C2
     integer, dimension(N)   :: V
@@ -11,8 +11,8 @@ program MaxPathV3
 
     call CPU_TIME(t1); t = etime(t_)
 
-    !open( unit = 1, file = 'triangle_very_small.txt', action = 'read', blank = 'zero', status = 'old')
-    open( unit = 1, file = 'triangle_small.txt', action = 'read', blank = 'zero', status = 'old')
+    open( unit = 1, file = 'triangle_very_small.txt', action = 'read', blank = 'zero', status = 'old')
+    !open( unit = 1, file = 'triangle_small.txt', action = 'read', blank = 'zero', status = 'old')
     !open( unit = 1, file = 'triangle_large.txt', action = 'read', blank = 'zero', status = 'old')
     
     ! Pre-allocate solution array...
@@ -59,8 +59,8 @@ program MaxPathV3
     do while( uu .le. kk )
         
         ii = ii + 1;
-        
-        V(ii) = V(ii) + 1; 
+            
+        V(ii) = V(ii) + 1;     
         
         do j = 1,M,1    
             S = S + A(V(j),j);  
@@ -79,11 +79,11 @@ program MaxPathV3
         if( ii .eq. N-jj ) then            
             if( jj .eq. N-1 ) then
                 
-                xx = xx + 1;
+                xx = xx + 1;                   
                 do j = 1,M,1
                 
                     V(j) = 1;
-                enddo     
+                enddo                 
                 
                 ii = 0;
                 jj = xx;            
@@ -92,19 +92,19 @@ program MaxPathV3
                 ii = 0;
                 jj = jj + 1;            
             end if           
-        endif    
+        endif        
         
         uu = uu + 1; 
-        S = 0;  
+        S = 0;
         
-        if( jj .ge. M ) exit
+        !if( jj .ge. M ) exit
     enddo
     
     ! Print maximum path...    
     print*, B(1)
         
     print*," "
-    write(*,*) 'Program has used',t, 'seconds of CPU time.'
+    write(*,*) 'Program has used', t, 'seconds of CPU time.'
     write(*,*) 'User Time: ',t_(1),' System Time: ',t_(2)
 
     call CPU_TIME(t2)
