@@ -50,5 +50,6 @@
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath=".\MaxPathV3.f90"/>
 		<File RelativePath=".\triangle_large.txt"/>
-		<File RelativePath=".\triangle_small.txt"/></Filter></Files>
+		<File RelativePath=".\triangle_small.txt"/>
+		<File RelativePath=".\triangle_very_small.txt"/></Filter></Files>
 	<Globals/></VisualStudioProject>

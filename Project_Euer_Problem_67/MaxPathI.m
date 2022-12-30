@@ -111,8 +111,3 @@ for i = 1:1:size(L,1)
     end
 end
 B = max(RR); toc
-
-
-
-
-

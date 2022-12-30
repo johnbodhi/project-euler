@@ -11,6 +11,7 @@ program MaxPathV3
 
     call CPU_TIME(t1); t = etime(t_)
 
+    !open( unit = 1, file = 'triangle_very_small.txt', action = 'read', blank = 'zero', status = 'old')
     open( unit = 1, file = 'triangle_small.txt', action = 'read', blank = 'zero', status = 'old')
     !open( unit = 1, file = 'triangle_large.txt', action = 'read', blank = 'zero', status = 'old')
     
@@ -23,76 +24,60 @@ program MaxPathV3
     do j = 1,M,1
         do i = 1,N,1    
             read(1,*) C1(i,j) 
-            !print*, C1(i,j)
         enddo    
         ! Populate initial state...
         V(j) = 1;
     enddo
-    !pause
     
     ! Transpose...
     do i = 1,N,1
         do j = 1,M,1
-            C2(i,j) = C1(i,j);
-            !print*, C2(i,j)
+            C2(i,j) = C1(j,i);
         enddo
     enddo
-    !pause
     
     ! Flip...
     do i = 1,N,1
         do j = 1,M,1            
             A(i,M-j+1) = C2(i,j);
-            !print*, A(i,M-j+1)
         enddo
     enddo    
-    !pause
     
     ! Accumulate while limit...
     kk = 0;
-    do j = 1,size(V)-1,1
-        do i = 1,size(V)-j,1        
+    do j = 1,M-1,1
+        do i = 1,N-j,1        
             kk = kk + 1;        
         enddo
     enddo
     kk = kk*(X-1);
-    !pause
-    
+ 
     ! Find the rest of the sums...
     
     ! Alpha...
-    jj = 1; uu = 1; xx = 1; ii = 0;
+    jj = 1; uu = 1; xx = 0; ii = 0;
     do while( uu .le. kk )
-    
-        !print*, uu
         
-        ii = ii + 1;  
-
-        V(ii) = V(ii) + 1;            
-    
-        do j = 1,M,1  
-            
+        ii = ii + 1;
+        
+        V(ii) = V(ii) + 1; 
+        
+        do j = 1,M,1    
             S = S + A(V(j),j);  
-        enddo  
+        enddo
         
         B(2) = S;
         
-        if( B(2) > B(1) ) then
+        if( B(2) .gt. B(1) ) then
         
             B(1) = S; B(2) = 0;        
         else  
             
-            B(2) = 0        
-        endif   
+            B(2) = 0;        
+        endif       
         
-        !do i = 1,size(V),1
-        !    
-        !    print*, V(i)
-        !enddo    
-        !pause
-        
-        if( ii .eq. size(V)-jj ) then            
-            if( jj .eq. size(V)-1 ) then
+        if( ii .eq. N-jj ) then            
+            if( jj .eq. N-1 ) then
                 
                 xx = xx + 1;
                 do j = 1,M,1
@@ -107,12 +92,12 @@ program MaxPathV3
                 ii = 0;
                 jj = jj + 1;            
             end if           
-        endif      
+        endif    
         
         uu = uu + 1; 
         S = 0;  
         
-        if( jj .ge. size(V) ) exit
+        if( jj .ge. M ) exit
     enddo
     
     ! Print maximum path...    
