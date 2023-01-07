@@ -2,17 +2,19 @@ program MaxPathV3
     use ifport
     implicit none
 
-    integer, parameter      :: X = 4, N = X, M = X
-    integer                 :: i, j, ii, jj, kk, xx, uu, S = 0
-    integer, dimension(N,M) :: A, C1, C2
+    integer, parameter      :: X = 15, N = X, M = X
+    integer                 :: i, j
+    integer                 :: ii, jj, kk, xx, uu
+    integer                 :: S = 0
+    integer, dimension(N,M) :: A, R, T
     integer, dimension(N)   :: V
     integer, dimension(2)   :: B
-    real                    :: t,t_(2),t1,t2,ta(2)
+    !real                    :: t,t_(2),t1,t2,ta(2)
 
-    call CPU_TIME(t1); t = etime(t_)
+    !call CPU_TIME(t1); t = etime(t_);
 
-    open( unit = 1, file = 'triangle_very_small.txt', action = 'read', blank = 'zero', status = 'old')
-    !open( unit = 1, file = 'triangle_small.txt', action = 'read', blank = 'zero', status = 'old')
+    !open( unit = 1, file = 'triangle_very_small.txt', action = 'read', blank = 'zero', status = 'old')
+    open( unit = 1, file = 'triangle_small.txt', action = 'read', blank = 'zero', status = 'old')
     !open( unit = 1, file = 'triangle_large.txt', action = 'read', blank = 'zero', status = 'old')
     
     ! Pre-allocate solution array...
@@ -23,7 +25,7 @@ program MaxPathV3
     ! Read in lower triangular matrix...
     do j = 1,M,1
         do i = 1,N,1    
-            read(1,*) C1(i,j) 
+            read(1,*) R(i,j) 
         enddo    
         ! Populate initial state...
         V(j) = 1;
@@ -32,14 +34,14 @@ program MaxPathV3
     ! Transpose...
     do i = 1,N,1
         do j = 1,M,1
-            C2(i,j) = C1(j,i);
+            T(i,j) = R(j,i);
         enddo
     enddo
     
     ! Flip...
     do i = 1,N,1
         do j = 1,M,1            
-            A(i,M-j+1) = C2(i,j);
+            A(i,M-j+1) = T(i,j);
         enddo
     enddo    
     
@@ -103,12 +105,12 @@ program MaxPathV3
     ! Print maximum path...    
     print*, B(1)
         
-    print*," "
-    write(*,*) 'Program has used', t, 'seconds of CPU time.'
-    write(*,*) 'User Time: ',t_(1),' System Time: ',t_(2)
-
-    call CPU_TIME(t2)
-    write(*,*) 'Program has used', t2,'seconds.'
+    !print*," "
+    !write(*,*) 'Program has used', t, 'seconds of CPU time.'
+    !write(*,*) 'User Time: ',t_(1),' System Time: ',t_(2)
+    !
+    !call CPU_TIME(t2)
+    !write(*,*) 'Program has used', t2,'seconds.'
     pause
 
 end program MaxPathV3
