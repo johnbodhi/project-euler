@@ -4,16 +4,13 @@ implicit none
 
 integer                                              :: i,j,k = 1,l = 1,o = 1,p = 1,N,M,adjacency,Z
 parameter(N = 20,M = 20,adjacency = 4)
-real                                                 :: w,ta(2)
 integer, dimension(N,M)                              :: A
 integer, dimension(((N-adjacency+1)**4) * adjacency) :: B
 integer, dimension((N-adjacency+1)*N)                :: C,D,E,F
 integer, dimension(4)                                :: G
-real                                                 :: t,t_(2),elapsed_time,t1,t2
+real                                                 :: t,t_(2),elapsed_time,t1,t2,ta(2)
 
 call CPU_TIME(t1); t = etime(t_)
-
-w = etime(ta)
 
 open(1,file = "array.txt")
 read(1,*) ((A(i,j), j = 1,M), i = 1,N)
