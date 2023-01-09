@@ -57,16 +57,15 @@ program MaxPathV3
     ! Find the rest of the sums...
     
     ! Alpha...
-    jj = 1; uu = 1; xx = 0; ii = 0;
+    
+    jj = 1; uu = 1; xx = 1; ii = 0;
     do while( uu .le. kk )
-        
-        ii = ii + 1;
-            
-        V(ii) = V(ii) + 1;     
         
         do j = 1,M,1    
             S = S + A(V(j),j);  
-        enddo
+            !print*, V(j)
+        enddo   
+        !pause
         
         B(2) = S;
         
@@ -76,7 +75,7 @@ program MaxPathV3
         else  
             
             B(2) = 0;        
-        endif       
+        endif              
         
         if( ii .eq. N-jj ) then            
             if( jj .eq. N-1 ) then
@@ -94,13 +93,18 @@ program MaxPathV3
                 ii = 0;
                 jj = jj + 1;            
             end if           
-        endif        
+        endif   
         
-        uu = uu + 1; 
-        S = 0;
+        if( jj .ge. M ) exit
         
-        !if( jj .ge. M ) exit
+        ii = ii + 1;
+            
+        V(ii) = V(ii) + 1;
+        
+        uu = uu + 1; S = 0;
     enddo
+    
+    !print*, uu
     
     ! Print maximum path...    
     print*, B(1)
