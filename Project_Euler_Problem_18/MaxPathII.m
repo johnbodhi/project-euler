@@ -7,24 +7,24 @@ clear all; close all; clc; tic
 % A = [ 3 0 0 0; 7 4 0 0; 2 4 6 0; 8 5 9 3 ]; 
 A = readmatrix("triangle_small.csv"); 
 % A = csvread("triangle_large.csv"); 
-
+ 
 N = size(A,1); M = size(A,2);
 
-% N = 50; M = N;
+% N = 1000; M = N;
 % for j = 1:M
 %     for i = 1:N
 %         if( i < j || i == j)
+% 
 %             A( i, j ) = randi( [ 10,99 ] );
-%             B( i, j ) = i;
 %         end
 %     end
 % end
+% A = A';
 
 % Flip matrix A to take take advantage of symmetry.
 
 AS = zeros(size(A,1),size(A,2));
-
-for i = 1:1:size(A,2)
+for i = 1:1:size(A,1)
 
     AS(i,1:i) = flip(A(i,1:i),2);
 end
@@ -109,21 +109,30 @@ else
 end
 D = flip(D,2); R = flip(R,2);
 
+R = circshift(R,1,1);
+
 % Find all legal paths through the Trellis.
 
 Z = diag( flip( pascal( size( A, 1 ) ), 2 ) ); % Number of paths through the triangle from each bottom index.
 
-% for i = 1:1:isze(Z,1)
-% 
-%     while( X <= Z(i,1) )
-% 
-%         B = permn([0 1], N, k);
-% 
-% 
-% 
-%     end
-% 
-% end
+ii = 0; jj = 0;
+
+for i = 1:1:size(Z,1)
+
+    while( X <= Z(i,1) )
+
+        B = permn([0 1], N, k);
+
+        for j = 1:1:size(B,2)
+
+            
+
+
+        end
+
+    end
+
+end
 
 
 
