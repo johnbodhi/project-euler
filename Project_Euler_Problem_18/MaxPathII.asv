@@ -5,21 +5,21 @@ clear all; close all; clc; tic
 % any lowwr trianglular matrix containing random numbers...
 
 % A = [ 3 0 0 0; 7 4 0 0; 2 4 6 0; 8 5 9 3 ]; 
-% A = readmatrix("triangle_small.csv"); 
+A = readmatrix("triangle_small.csv"); 
 % A = csvread("triangle_large.csv"); 
  
-% N = size(A,1); M = size(A,2);
+N = size(A,1); M = size(A,2);
 
-N = 50; M = N;
-for j = 1:M
-    for i = 1:N
-        if( i < j || i == j)
-
-            A( i, j ) = randi( [ 10,99 ] );
-        end
-    end
-end
-A = A';
+% N = 1000; M = N;
+% for j = 1:M
+%     for i = 1:N
+%         if( i < j || i == j)
+% 
+%             A( i, j ) = randi( [ 10,99 ] );
+%         end
+%     end
+% end
+% A = A';
 
 % Flip matrix A to take take advantage of symmetry.
 
@@ -109,21 +109,74 @@ else
 end
 D = flip(D,2); R = flip(R,2);
 
+R = circshift(R,1,1);
+
 % Find all legal paths through the Trellis.
 
 Z = diag( flip( pascal( size( A, 1 ) ), 2 ) ); % Number of paths through the triangle from each bottom index.
 
-% for i = 1:1:size(Z,1)
-% 
-%     while( X <= Z(i,1) )
-% 
-%         B = permn([0 1], N, k);
-% 
-% 
-% 
-%     end
-% 
-% end
+SS = zeros(1,2);
+
+for i = 1:1:size(Z,1)
+    
+    for k = 1:1:size(R,1)
+
+        if( R( k, 1 ) )
+            ii = k;
+            break;
+        end
+    end    
+    jj = 1;
+
+    kk = 1; qq = 1; 
+    
+    S(1,1) = R(ii,jj); qq = 1;
+    while( X <= Z(i,1) )
+
+        B = permn([0 1], N, kk);
+
+        for j = 1:1:size(B,2)
+            
+            if( R(ii,jj) && B(1,j) == 0 )
+
+                jj = jj + 1;  
+                        
+                S = S + R(ii,jj); qq = qq + 1;              
+            elseif( R(ii,jj) && B(1,jj) == 1 )
+
+                ii = ii + 1; 
+
+                S = S + R(ii,jj); qq = qq + 1;             
+            elseif( ~R(ii,jj) )
+
+                kk = kk + 1; 
+                break;
+            end
+        end
+
+        if( qq == N )
+
+            X  = X + 1;
+
+            kk = kk + 1;
+
+            qq = 1;
+            
+            SS(1,1) = S(1,1); S = 0;
+            
+            if( SS( 1 ) < SS( 2 ) )
+
+                SS( 1 ) = 0;
+            elseif( SS( 1 ) > SS( 2 ) )
+
+                SS( 2 ) = 0; 
+                SS = circshift( SS, 1, 2 );
+            end
+        end
+
+    end
+end
+Z = max(S);
 
 
 

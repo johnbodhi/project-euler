@@ -115,24 +115,68 @@ R = circshift(R,1,1);
 
 Z = diag( flip( pascal( size( A, 1 ) ), 2 ) ); % Number of paths through the triangle from each bottom index.
 
-ii = 0; jj = 0;
+SS = zeros(1,2);
 
 for i = 1:1:size(Z,1)
+    
+    for k = 1:1:size(R,1)
 
-    while( X <= Z(i,1) )
+        if( R( k, 1 ) )
+            ii = k;
+            break;
+        end
+    end    
+    jj = 1;
 
-        B = permn([0 1], N, k);
+    kk = 1; 
+    
+    S(1,1) = R(ii,jj); qq = 1;
+    while( X < Z(i,1) )
+
+        B = permn([0 1], N, kk);
 
         for j = 1:1:size(B,2)
-
             
+            if( R(ii,jj) && B(1,j) == 0 )
 
+                jj = jj + 1;  
+                        
+                S = S + R(ii,jj); qq = qq + 1;              
+            elseif( R(ii,jj) && B(1,j) == 1 )
 
+                ii = ii + 1; jj = jj + 1;
+
+                S = S + R(ii,jj); qq = qq + 1;             
+            elseif( ~R(ii,jj) )
+
+                kk = kk + 1; 
+                break;
+            end
+        end
+
+        if( qq == N )
+
+            X  = X + 1;
+
+            kk = kk + 1;
+
+            qq = 1;
+            
+            SS(1,1) = S(1,1); S = 0;
+            
+            if( SS( 1 ) < SS( 2 ) )
+
+                SS( 1 ) = 0;
+            elseif( SS( 1 ) > SS( 2 ) )
+
+                SS( 2 ) = 0; 
+                SS = circshift( SS, 1, 2 );
+            end
         end
 
     end
-
 end
+Z = max(S);
 
 
 
