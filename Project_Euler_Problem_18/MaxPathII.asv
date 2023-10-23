@@ -5,8 +5,8 @@ clear all; close all; clc; tic
 % any lowwr trianglular matrix containing random numbers...
 
 % A = [ 3 0 0 0; 7 4 0 0; 2 4 6 0; 8 5 9 3 ]; 
-A = readmatrix("triangle_small.csv"); 
-% A = csvread("triangle_large.csv"); 
+% A = readmatrix("triangle_small.csv"); 
+A = csvread("triangle_large.csv"); 
  
 N = size(A,1); M = size(A,2);
 
@@ -128,10 +128,10 @@ for i = 1:1:size(Z,1)
     end    
     jj = 1;
 
-    kk = 1; qq = 1; 
+    kk = 1; 
     
     S(1,1) = R(ii,jj); qq = 1;
-    while( X <= Z(i,1) )
+    while( X < Z(i,1) )
 
         B = permn([0 1], N, kk);
 
@@ -142,9 +142,9 @@ for i = 1:1:size(Z,1)
                 jj = jj + 1;  
                         
                 S = S + R(ii,jj); qq = qq + 1;              
-            elseif( R(ii,jj) && B(1,jj) == 1 )
+            elseif( R(ii,jj) && B(1,j) == 1 )
 
-                ii = ii + 1; 
+                ii = ii + 1; jj = jj + 1;
 
                 S = S + R(ii,jj); qq = qq + 1;             
             elseif( ~R(ii,jj) )
