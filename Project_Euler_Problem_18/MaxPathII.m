@@ -122,38 +122,48 @@ for i = 1:1:size(Z,1)
     for k = 1:1:size(R,1)
 
         if( R( k, 1, i ) )
-            ii = k;
+            ii_ = k;
             break;
         end
     end    
-    jj = 1;
-
-    kk = 1; 
+    ii = ii_; jj = 1;    
 
     X  = 0;
     
-    S(1,1) = R(ii,jj); qq = 0;
+    S(1,1) = R(ii,jj,i); 
+    
+    kk = 1; qq = 1;
     while( X < Z(i,1) )
 
         B = permn([0 1], N, kk);
 
         for j = 1:1:size(B,2)
-            
-            if( R(ii,jj) && B(1,j) == 0 )
 
-                jj = jj + 1;  
-                        
-                S = S + R(ii,jj); qq = qq + 1;              
-            elseif( R(ii,jj) && B(1,j) == 1 )
-
-                ii = ii + 1; jj = jj + 1;
-
-                S = S + R(ii,jj); qq = qq + 1;             
-            elseif( ~R(ii,jj) )
+            if( R(ii,jj,i) == 0 )
 
                 kk = kk + 1; 
+
                 break;
             end
+            
+            if( R(ii,jj,i) && B(1,j) == 0 )
+
+                if( jj < N )
+
+                    jj = jj + 1; 
+                end
+                        
+                S = S + R(ii,jj,i); qq = qq + 1;              
+            elseif( R(ii,jj,i) && B(1,j) == 1 )
+
+                if( ii > 1 && jj < N )
+
+                     ii = ii - 1; 
+                     jj = jj + 1;
+                end               
+
+                S = S + R(ii,jj,i); qq = qq + 1;             
+            end     
             
         end
 
@@ -175,6 +185,7 @@ for i = 1:1:size(Z,1)
                 SS( 2 ) = 0; 
                 SS = circshift( SS, 1, 2 );
             end
+
         end
 
     end
