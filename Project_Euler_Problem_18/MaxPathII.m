@@ -139,6 +139,9 @@ for i = 1:1:N
     qq = qq + 1; pp = 0; kk = 1;
 end
 
+% We need to utilize symmetry once again by re-using the 
+% first half of the binaries.
+
 if( mod(N,2) ~= 0 )
 
     C_ = flip(V_(:,:,1:floor(N/2)),3);
@@ -150,6 +153,9 @@ else
 
     V = cat(3,V_(:,:,1:floor(N/2)),C_);    
 end
+
+% This routine will march through every directive give by the binary
+% streams, and add all corresponding elements in the tree.
 
 SS = zeros(1,2);
 
@@ -167,7 +173,7 @@ for kk = 1:1:size(Z,1)
     S = R(ii,jj,kk);
 
     for j = 1:1:Z(kk)
-
+        
         for i = 1:1:size(V,1)
     
             if( ~V(i,j,kk) )
