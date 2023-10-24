@@ -115,7 +115,6 @@ R = circshift(R,1,1);
 
 Z = diag( flip( pascal( size( A, 1 ) ), 2 ) ); % Number of paths through the triangle from each bottom index.
 
-
 % We need to find all binary combinations below M-1. These are the all the
 % paths specified by the opposite diagonal of Pascal's matrix.
 
@@ -138,83 +137,60 @@ for i = 1:1:N
 end
 
 
-
-
-
-
 SS = zeros(1,2);
 
-for i = 1:1:size(Z,1)
+for kk = 1:1:size(Z,1)
     
     for k = 1:1:size(R,1)
 
         if( R( k, 1, i ) )
             ii_ = k;
             break;
-        end
+        end        
     end    
-    ii = ii_; jj = 1;    
+    ii = ii_; jj = 1;
     
-    S(1,1) = R(ii,jj,i); 
+    S = R(ii,jj,i);
+
+    for j = 1:1:Z(kk)
+
+        for i = 1:1:size(V,1)
     
-    X = 0; kk = 1;
-    while( X < Z(i,1) )
-
-        B = permn([0 1], N, kk);
-
-        for j = 1:1:size(B,2)
-
-            if( R(ii,jj,i) == 0 )
-
-                kk = kk + 1; 
-
-                break;
-            end
-            
-            if( R(ii,jj,i) && B(1,j) == 0 )
-
+            if( ~V(i,j) )
+        
                 if( jj < N )
-
+        
                     jj = jj + 1; 
-
-                    S = S + R(ii,jj,i);                    
+        
+                    S = S + R(ii,jj,kk);                    
                 end                        
                              
-            elseif( R(ii,jj,i) && B(1,j) == 1 )
-
+            elseif( V(i,j) )
+        
                 if( ii > 1 && jj < N )
-
+        
                      ii = ii - 1; 
                      jj = jj + 1;
                      
-                     S = S + R(ii,jj,i);                     
+                     S = S + R(ii,jj,kk);                     
                 end
-
-            end     
-            
-        end
-
-        if( R(ii,jj,i) == A(1,1) )
-
-            X = X + 1;
-            
-            SS(1,1) = S(1,1); S = 0;
-            
-            if( SS( 1 ) < SS( 2 ) )
-
-                SS( 1 ) = 0;
-            elseif( SS( 1 ) > SS( 2 ) )
-
-                SS( 2 ) = 0; 
-                SS = circshift( SS, 1, 2 );
+        
             end
 
         end
 
-        kk = kk + 1;
-
+        SS(1,1) = S;
+    
+        if( SS( 1 ) < SS( 2 ) )
+    
+            SS( 1 ) = 0;
+        elseif( SS( 1 ) > SS( 2 ) )
+    
+            SS( 2 ) = 0; 
+            SS = circshift( SS, 1, 2 );
+        end
         ii = ii_; jj = 1; S = 0;
     end
 
 end
-Z = max(S); toc;
+H = max(SS); toc;
