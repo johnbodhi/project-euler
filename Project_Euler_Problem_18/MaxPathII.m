@@ -88,6 +88,7 @@ for k = 1:size(D,3)
             if( D( i, j, k ) )
 
                 RA( i, j, k ) = A( D( i, j, k ), j );
+
                 RS( i, j, k ) = AS( D( i, j, k ), j );
             end            
         end
@@ -101,10 +102,12 @@ end
 if( mod(N,2) ~= 0 )
 
     R = cat(3,RA(:,:,1:floor(N/2)+1),RS(:,:,1:floor(N/2)));
+
     R(:,:,floor(N/2)+2:N) = flip(R(:,:,floor(N/2)+2:N),3);
 else
 
     R = cat(3,RA(:,:,1:floor(N/2)),RS(:,:,1:floor(N/2)));
+
     R(:,:,floor(N/2)+1:N) = flip(R(:,:,floor(N/2)+1:N),3);
 end
 D = flip(D,2); R = flip(R,2);
@@ -129,13 +132,24 @@ for i = 1:1:N
     
             pp = pp + 1;
 
-            V(:,pp,i) = B;
+            V_(:,pp,i) = B;
         end
         kk = kk + 1;
     end
     qq = qq + 1; pp = 0; kk = 1;
 end
 
+if( mod(N,2) ~= 0 )
+
+    C_ = flip(V_(:,:,1:floor(N/2)),3);
+
+    V = cat(3,V_(:,:,1:floor(N/2)+1),C_);    
+else
+
+    C_ = flip(V_(:,:,1:floor(N/2)),3);
+
+    V = cat(3,V_(:,:,1:floor(N/2)),C_);    
+end
 
 SS = zeros(1,2);
 
@@ -143,34 +157,38 @@ for kk = 1:1:size(Z,1)
     
     for k = 1:1:size(R,1)
 
-        if( R( k, 1, i ) )
+        if( R( k, 1, kk ) )
             ii_ = k;
             break;
         end        
     end    
     ii = ii_; jj = 1;
     
-    S = R(ii,jj,i);
+    S = R(ii,jj,kk);
 
     for j = 1:1:Z(kk)
 
         for i = 1:1:size(V,1)
     
-            if( ~V(i,j) )
+            if( ~V(i,j,kk) )
         
-                if( jj < N )
+                if( jj <= N - 1 )
         
                     jj = jj + 1; 
+
+                    % R(ii,jj,kk)
         
                     S = S + R(ii,jj,kk);                    
                 end                        
                              
-            elseif( V(i,j) )
+            elseif( V(i,j,kk) )
         
-                if( ii > 1 && jj < N )
+                if( ii > N - M + 1 && jj <= N - 1 )
         
                      ii = ii - 1; 
                      jj = jj + 1;
+
+                     % R(ii,jj,kk)
                      
                      S = S + R(ii,jj,kk);                     
                 end
@@ -189,7 +207,9 @@ for kk = 1:1:size(Z,1)
             SS( 2 ) = 0; 
             SS = circshift( SS, 1, 2 );
         end
-        ii = ii_; jj = 1; S = 0;
+        ii = ii_; jj = 1; 
+        
+        S = R(ii,jj,kk);
     end
 
 end
