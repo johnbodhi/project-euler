@@ -10,7 +10,7 @@ A = readmatrix("triangle_small.csv");
  
 N = size(A,1); M = size(A,2);
 
-% N = 1000; M = N;
+% N = 50; M = N;
 % for j = 1:M
 %     for i = 1:N
 %         if( i < j || i == j)
@@ -127,12 +127,10 @@ for i = 1:1:size(Z,1)
         end
     end    
     ii = ii_; jj = 1;    
-
-    X  = 0;
     
     S(1,1) = R(ii,jj,i); 
     
-    kk = 1; qq = 1;
+    X = 0; kk = 1;
     while( X < Z(i,1) )
 
         B = permn([0 1], N, kk);
@@ -151,29 +149,27 @@ for i = 1:1:size(Z,1)
                 if( jj < N )
 
                     jj = jj + 1; 
-                end
-                        
-                S = S + R(ii,jj,i); qq = qq + 1;              
+
+                    S = S + R(ii,jj,i);                    
+                end                        
+                             
             elseif( R(ii,jj,i) && B(1,j) == 1 )
 
                 if( ii > 1 && jj < N )
 
                      ii = ii - 1; 
                      jj = jj + 1;
-                end               
+                     
+                     S = S + R(ii,jj,i);                     
+                end
 
-                S = S + R(ii,jj,i); qq = qq + 1;             
             end     
             
         end
 
-        if( qq == N )
+        if( R(ii,jj,i) == A(1,1) )
 
-            X  = X + 1;
-
-            kk = kk + 1;
-
-            qq = 1;
+            X = X + 1;
             
             SS(1,1) = S(1,1); S = 0;
             
@@ -188,22 +184,10 @@ for i = 1:1:size(Z,1)
 
         end
 
+        kk = kk + 1;
+
+        ii = ii_; jj = 1; S = 0;
     end
 
 end
-Z = max(S);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Z = max(S); toc;
