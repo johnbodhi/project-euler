@@ -124,17 +124,17 @@ for i = 1:1:N
 
     while( pp < Z(i,1) )
 
-        B = permn([0 1],M-1,kk);
+        B = permn([0 1],N,kk);
 
         if( sum( B, 2 ) == qq )
     
             pp = pp + 1;
 
-            V(:,pp,i) = B;
+            V(:,pp) = B;
         end
         kk = kk + 1;
     end
-    qq = qq + 1; pp = 0; kk = 1;
+    qq = qq + 1; pp = 1;
 end
 
 
