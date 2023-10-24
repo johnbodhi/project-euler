@@ -4,13 +4,13 @@ clear all; close all; clc; tic
 % size to find a path from the top to bottom which yields a maximum sum for
 % any lowwr trianglular matrix containing random numbers...
 
-%A = [ 3 0 0 0; 7 4 0 0; 2 4 6 0; 8 5 9 3 ]; 
+% A = [ 3 0 0 0; 7 4 0 0; 2 4 6 0; 8 5 9 3 ]; 
 A = readmatrix("triangle_small.csv"); 
 % A = csvread("triangle_large.csv"); 
  
 N = size(A,1); M = size(A,2);
 
-% N = 50; M = N;
+% N = 20; M = N;
 % for j = 1:M
 %     for i = 1:N
 %         if( i < j || i == j)
