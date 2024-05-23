@@ -1,27 +1,26 @@
 clear all; close all; clc; tic
 
-% We can read in a triangle froma file, or generate a triangle of arbitrary
-% size to find a path from the top to bottom which yields a maximum sum for
-% any lowwr trianglular matrix containing random numbers...
-
 A = [ 3 0 0 0; 7 4 0 0; 2 4 6 0; 8 5 9 3 ]; 
 A = readmatrix("triangle_small.csv"); 
 A = csvread("triangle_large.csv"); 
  
 N = size(A,1); M = size(A,2);
 
-% N = 20; M = N;
-% for j = 1:M
-%     for i = 1:N
-%         if( i < j || i == j)
-% 
-%             A( i, j ) = randi( [ 10,99 ] );
-%         end
-%     end
-% end
-% A = A';
+%{
+N = 10; M = N; % Maximal for N odd...
+for j = 1:M
+    for i = 1:N
+         if( i < j || i == j)
+ 
+            A( i, j ) = randi( [ 1, 100 ] )/100;
+            % A( i, j ) = 0;
+         end
+     end
+end
+A = A';
+%}
 
-% Flip matrix A to take take advantage of symmetry.
+% Flip matrix A to take advantage of symmetry.
 
 AS = zeros(size(A,1),size(A,2));
 for i = 1:1:size(A,1)
@@ -95,7 +94,7 @@ for k = 1:size(D,3)
     end
 end
 
-% We want to march through the first half of the triangle, and it's
+% We want to march through the first half of the tree, and it's
 % reflection to minimize the search for eigenvectors that define the 
 % paths through the dyadic tree.
 
@@ -146,29 +145,46 @@ if( mod(N,2) ~= 0 )
 
     C_ = flip(V_(:,:,1:floor(N/2)),3);
 
-    V = cat(3,V_(:,:,1:floor(N/2)+1),C_);    
+    V  = cat(3,V_(:,:,1:floor(N/2)+1),C_);    
 else
 
     C_ = flip(V_(:,:,1:floor(N/2)),3);
 
-    V = cat(3,V_(:,:,1:floor(N/2)),C_);    
+    V  = cat(3,V_(:,:,1:floor(N/2)),C_);    
 end
 
-% This routine will march through every directive give by the binary
+% This routine will march through every directive given by the binary
 % streams, and add all corresponding elements in the tree.
 
 SS = zeros(1,2);
 
+RF = flip(R,2);
+
+UP = 0; DOWN = 1;
+
+DIRECTION = [UP DOWN]; % [ Toward the vertex. Toward the edge. ]
+
 for kk = 1:1:size(Z,1)
     
-    for k = 1:1:size(R,1)
-
-        if( R( k, 1, kk ) )
-            ii_ = k;
-            break;
-        end        
-    end    
-    ii = ii_; jj = 1;
+    if( DIRECTION(1,1) )
+        
+        for k = 1:1:size(R,1)
+        
+            if( R( k, 1, kk ) )
+                
+                ii_ = k;
+                break;
+            end
+        end
+        ii = ii_; jj = 1; % Bottom-to-top...
+    
+    elseif( DIRECTION(1,2) )
+        
+        R = RF; ii_ = 2;
+        
+        ii = ii_; jj = 1; % Top-to-bottom...
+     
+    end
     
     S = R(ii,jj,kk);
 
@@ -181,20 +197,32 @@ for kk = 1:1:size(Z,1)
                 if( jj <= N - 1 )
         
                     jj = jj + 1; 
-        
-                    S = S + R(ii,jj,kk);                    
-                end                        
-                             
+                    
+                    S = S + R(ii,jj,kk);  
+                    
+                end           
+           
             elseif( V(i,j,kk) )
+        
         
                 if( ii > N - M + 1 && jj <= N - 1 )
         
-                     ii = ii - 1; 
-                     jj = jj + 1;
-                     
-                     S = S + R(ii,jj,kk);                     
+                    if( DIRECTION(1,1) )
+                        
+                        ii = ii - 1; 
+                        
+                    elseif( DIRECTION(1,2) )
+                        
+                        ii = ii + 1;
+                        
+                    end
+                    
+                    jj = jj + 1;    
+                    
+                    S = S + R(ii,jj,kk); 
+                   
                 end
-        
+                
             end
 
         end
