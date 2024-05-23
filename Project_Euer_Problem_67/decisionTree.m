@@ -160,11 +160,11 @@ SS = zeros(1,2);
 
 RF = flip(R,2);
 
-UP = 0; DOWN = 1;
+UP = 1; DOWN = 0;
 
 DIRECTION = [UP DOWN]; % [ Toward the vertex. Toward the edge. ]
 
-for kk = 1:1:size(Z,1)
+for kk = 1:1:size(Z,2)
     
     if( DIRECTION(1,1) )
         
