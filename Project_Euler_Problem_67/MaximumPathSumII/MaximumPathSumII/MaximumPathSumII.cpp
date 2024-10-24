@@ -21,24 +21,15 @@ int main()
     std::mt19937 mt(rd());
     std::uniform_real_distribution<double> dist(0.0, 255.0);
 
-   
 	for (int i = 1; i <= N; i++) {
+
 		for (int j = 1; j <= M; j++) {
 
 			if (j == 1 || i == j) {
 
 				A[i - 1][j - 1] = 1;
 			}
-			else {
-
-				A[i - 1][j - 1] = 0;
-			}
-		}
-	}
-
-	for (int i = 2; i <= N; i++) {
-		for (int j = 2; j <= M; j++) {
-			if (i >= j) {
+			else if (i >= j) {
 
 				A[i - 1][j - 1] = A[i - 2][j - 2] + A[i - 2][j - 1];
 			}
@@ -46,30 +37,17 @@ int main()
 
 				A[i - 1][j - 1] = 0;
 			}
-		}
-	}
 
-	for (int i = 1; i <= N; i++) {
-
-		if (i == N) {
-
-			std::cout << "n = " << i << " | ";
 		}
 
 		for (int j = 1; j <= M; j++) {
 
 			if (i == N) {
 
-				std::cout << A[i - 1][j - 1] << std::endl;;
+				std::cout << A[N - 1][j - 1] << std::endl;
 			}
 		}
 	}
-	std::cout << "\n";
-
-
-
-
-
 
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(stop - start);
