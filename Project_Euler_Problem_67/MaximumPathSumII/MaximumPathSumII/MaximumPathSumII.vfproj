@@ -55,10 +55,10 @@
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath=".\MaximumPathSumII.f90"/>
-		<File RelativePath=".\triangle_large.csv"/>
 		<File RelativePath=".\triangle_large.txt"/>
-		<File RelativePath=".\triangle_small.csv"/>
-		<File RelativePath=".\triangle_small.txt"/></Filter>
+		<File RelativePath=".\triangle_small.txt"/>
+		<File RelativePath=".\triangle_tiny.txt"/>
+		<File RelativePath=".\write.txt"/></Filter>
 	</Files>
 	<Globals/>
 </VisualStudioProject>

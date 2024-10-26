@@ -1,10 +1,19 @@
 clear all; close all; clc; tic
 
-A = [ 3 0 0 0; 7 4 0 0; 2 4 6 0; 8 5 9 3 ]; 
-A = readmatrix("triangle_small.csv"); 
+% A = csvread("triangle_tiny.csv");
+% A = csvread("triangle_small.csv"); 
 A = csvread("triangle_large.csv"); 
- 
+
 N = size(A,1); M = size(A,2);
+
+ii = 1;
+for j = 1:1:M
+    for i = 1:1:N
+
+        RF(ii) = A(i,j); ii = ii + 1;
+    end
+end
+RF = RF';
 
 %{
 N = 10; M = N; % Maximal for N odd...
