@@ -1,33 +1,35 @@
 clear all; close all; clc; tic
 
+A = [ 3 7 2 8; 0 4 4 5; 0 0 6 9; 0 0 0 3 ]; A = A';
+
 % A = csvread("triangle_tiny.csv");
 % A = csvread("triangle_small.csv"); 
-A = csvread("triangle_large.csv"); 
+% A = csvread("triangle_large.csv"); 
 
 N = size(A,1); M = size(A,2);
 
-ii = 1;
-for j = 1:1:M
-    for i = 1:1:N
+% Vectorize matrix for Fortran...
 
-        RF(ii) = A(i,j); ii = ii + 1;
-    end
-end
-RF = RF';
+% ii = 1;
+% for j = 1:1:M
+%     for i = 1:1:N
+% 
+%         RF(ii) = A(i,j); ii = ii + 1;
+%     end
+% end
+% RF = RF';
 
-%{
-N = 10; M = N; % Maximal for N odd...
-for j = 1:M
-    for i = 1:N
-         if( i < j || i == j)
- 
-            A( i, j ) = randi( [ 1, 100 ] )/100;
-            % A( i, j ) = 0;
-         end
-     end
-end
-A = A';
-%}
+% N = 4; M = N; % Maximal for N odd...
+% for j = 1:M
+%     for i = 1:N
+%          if( i < j || i == j)
+% 
+%             A( i, j ) = randi( [ 1, 100 ] )/100;
+%             % A( i, j ) = 0;
+%          end
+%      end
+% end
+% A = A';
 
 % Flip matrix A to take advantage of symmetry.
 
@@ -44,7 +46,7 @@ AS = AS';
 
 % Generate 3-D storage of all branch subspaces within decision constraint. 
 
-D = zeros( size(A,1), size(A,2), size(A,1) ); kk = 1;
+D = zeros( size(A,1), size(A,2), size(A,1) );
 
 for k = size( D, 3 ):-1:1
     for j = 1:1:size( D, 2 )
@@ -52,10 +54,10 @@ for k = size( D, 3 ):-1:1
             
             if( k == size(D,3) )
                 cc = 0;
-                for j = 1:size(D,2)
-                    for i = 1:size(D,1)
-                        if( i == j )
-                            D( k - cc, j, k ) = k - cc;
+                for jj = 1:size(D,2)
+                    for ii = 1:size(D,1)
+                        if( ii == jj )
+                            D( k - cc, jj, k ) = k - cc;
                             cc = cc + 1;
                         end
                     end
@@ -89,7 +91,7 @@ end
 % Re-assign all true values in matrix A associated with the Trellis 
 % indexes to matrix R.
 
-D = flip(D,2);
+ D = flip(D,2);
 for k = 1:size(D,3)
     for j = 1:size(D,2)
         for i = 1:size(D,1)
@@ -169,7 +171,7 @@ SS = zeros(1,2);
 
 RF = flip(R,2);
 
-UP = 1; DOWN = 0;
+UP = 0; DOWN = 1;
 
 DIRECTION = [UP DOWN]; % [ Toward the vertex. Toward the edge. ]
 

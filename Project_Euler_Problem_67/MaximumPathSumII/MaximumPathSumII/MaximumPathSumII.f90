@@ -5,9 +5,9 @@ implicit none
 real                                 :: t,t_(2),t1,t2
 
 
-integer, parameter                   :: N = 4, M = N
+integer, parameter                   :: N = 5, M = N
 
-real                                 :: NN = N, MM = M
+real                                 :: NN = N-1, MM = M-1
 
 
 integer                              :: i, j, k
@@ -19,229 +19,224 @@ integer                              :: cc, dd, hh
 real                                 :: p, pp, qq, rr
 
 
-real                                 :: H, S
-
 integer                              :: L
 
-real,    dimension(N*M)              :: RF
-
-integer, dimension(N)                :: V
+real                                 :: H, S
 
 
-real,    dimension(N)                :: B, Z, SS
+real,    dimension((N-1)*(M-1))      :: RF
 
-real,    dimension(N,M)              :: Q, A, AS
+integer, dimension(N-1)              :: V
 
-real,    dimension(N,M,N)            :: D, R, RA, RS
+
+
+integer, dimension(N-1,M-1,N-1)      :: D
+
+real,    dimension(N-1)              :: B, Z, SS
+
+real,    dimension(N-1,M-1)          :: Q, A, AS
+
+real,    dimension(N-1,M-1,N-1)      :: R, RA, RS
 
 
 call CPU_TIME(t1); t = etime(t_);
 
 
-open(10, file = 'triangle_tiny.txt' , status = 'old', access = 'sequential', action = 'read' );
-open(20, file = 'triangle_small.txt', status = 'old', access = 'sequential', action = 'read' );
-open(30, file = 'triangle_large.txt', status = 'old', access = 'sequential', action = 'read' );
+! Open and allocate our files to memory.
 
-open(40, file = 'write.txt', status = 'old', access = 'sequential', action = 'readwrite' );
+open(10, file = 'triangle_tiny.txt' , status = 'old', access = 'sequential', action = 'read' );
+!open(20, file = 'triangle_small.txt', status = 'old', access = 'sequential', action = 'read' );
+!open(30, file = 'triangle_large.txt', status = 'old', access = 'sequential', action = 'read' );
+
+! Open a practice / verification file to write into.
+
+open(20, file = 'write.txt', status = 'old', access = 'sequential', action = 'readwrite' );
+
+! Read the vectors into an array.
 
 read(10,*) RF
 !read(20,*) RF
 !read(30,*) RF
-!read(40,*) RF
+
+
+! Transform the vector into a matrix.
 
 ii = 1;
-do j = 1,M,1
-    do i = 1,N,1
+do j = 1,M-1,1
+    do i = 1,N-1,1
 
-        A(i,j) = RF(ii); ii = ii + 1;
+        A(i,j) = RF(ii); 
         
-        ! write(40,*) A(i,j)
-        ! print*, A(i,j)
-    enddo   
-    ! write(40,*) A(:,j)
-    ! print*, A(:,j)
+        ii = ii + 1;        
+    enddo 
 enddo 
 
-pause
+! Column-wise symmetric flip...
 
-!! Transpose matrix A to march through natrually.
-!
-!A(:,:)  = transpose(A(:,:));
-!
-!AS(:,:) = transpose(AS(:,:));
-!
-!! Generate 3-D storage of all branch subspaces within decision constraint. 
-!
-!do k = N,1,-1
-!    do j = 1,M
-!        do i = 1,N         
-!            
-!            if( k .eq. N ) then
-!                cc = 0;
-!                do jj = 1,M
-!                    do ii = 1,N
-!                        
-!                        if( ii .eq. jj ) then
-!                            D(k-cc,j,k ) = k-cc;
-!                            cc = cc + 1;
-!                        endif
-!                        
-!                    enddo
-!                enddo
-!
-!            elseif( k .lt. M .or. k .gt. 1 ) then
-!
-!                hh = M - k + 1; 
-!                dd = 1;
-!                
-!                do p = k,1,-1
-!                    
-!                    D(p,dd:hh,k) = p;
-!                    dd = dd + 1;
-!                    hh = hh + 1; 
-!                enddo             
-!
-!            elseif( k .eq. 1 ) then
-!                    
-!                do jj = 1,M
-!                    do ii = 1,N
-!                        
-!                        if( ii .eq. N ) then
-!                            
-!                            D(N,j,k) = k;
-!                        endif
-!                        
-!                    enddo
-!                enddo
-!                
-!            endif
-!            
-!        enddo
-!    enddo
-!enddo
-!
-!
-!
-!! Re-assign all true values in matrix A associated with the Trellis 
-!! indexes to matrix R.
-!
-!do k = 1,N
-!    do i = 1,N
-!        do j = 1,M
-!        
-!            L = D(i,N-j+1,k)
-!
-!            D(i,N-j+1,k) = D(i,j,k);
-!        
-!            D(i,j,k) = L;
-!        
-!        enddo
-!    enddo
-!enddo
-!
-!
-!do k = 1,N
-!    do j = 1,M
-!        do i = 1,N
-!            
-!            if( D(i,j,k) .gt. 0 ) then
-!
-!
-!                RA(i,j,k) = A(D(i,j,k),j);
-!
-!                RS(i,j,k) = AS(D(i,j,k),j);
-!                
-!            endif 
-!            
-!        enddo
-!    enddo
-!enddo
-!
-!! We want to march through the first half of the tree, and it's
-!! reflection to minimize the search for eigenvectors that define the 
-!! paths through the dyadic tree.
-!
-!if( mod(N,2) ) then
+AS = A; jj = 1;
+
+do i = N-1,1,-1
+    
+    if ( i .gt. 2 ) then
+    
+        do j = i,floor(NN/2)+1,-1
+            
+            L = AS(i,j);
+            
+            AS(i,j) = AS(i,jj);
+            
+            AS(i,jj) = L; jj = jj + 1;
+            
+        enddo
+        jj = 1;
+    
+    else 
+        
+        do j = i,floor(NN/2),-1
+            
+            L = AS(i,j);
+            
+            AS(i,j) = AS(i,jj);
+            
+            AS(i,jj) = L; jj = jj + 1;
+            
+        enddo
+        
+        jj = 1;        
+    endif
+    
+enddo
+
+! Transpose matrix A to march through natrually.
+
+A(:,:)  = transpose(A(:,:));
+
+AS(:,:) = transpose(AS(:,:));
+
+! Generate 3-D storage of all branch subspaces within decision constraint. 
+
+do k = N-1,1,-1
+    do j = 1,M-1
+        do i = 1,N-1       
+            
+            if( k .eq. N-1 ) then
+                cc = 0;
+                do jj = 1,M-1
+                    do ii = 1,N-1
+                        
+                        if( ii .eq. jj ) then
+                            D(k-cc,jj,k ) = k-cc;
+                            cc = cc + 1;
+                        endif
+                        
+                    enddo
+                enddo
+
+            elseif( k .lt. M-1 .or. k .gt. 1 ) then
+
+                hh = M - 1 - k + 1; 
+                dd = 1;
+                
+                do p = k,1,-1
+                    
+                    D(p,dd:hh,k) = p;
+                    dd = dd + 1;
+                    hh = hh + 1; 
+                enddo             
+
+            elseif( k .eq. 1 ) then
+                    
+                do jj = 1,M-1
+                    do ii = 1,N-1
+                        
+                        if( ii .eq. N-1 ) then
+                            
+                            D(N-1,j,k) = k;
+                        endif
+                        
+                    enddo
+                enddo
+                
+            endif
+            
+        enddo
+    enddo
+enddo
+
+! Re-assign all true values in matrix A associated with the Trellis 
+! indexes to matrix R.
+
+! Row-wise asymmetric flip...
+
+do k = 1,N-1
+    jj = 1;
+    do i = N-1,1,-1
+        do j = N-1,floor(NN/2)+1,-1
+            
+            L = D(i,j,k);
+            
+            D(i,j,k) = D(i,jj,k);
+            
+            D(i,jj,k) = L; jj = jj + 1;
+            
+        enddo
+        jj = 1;
+    enddo
+enddo
+
+do k = 1,N-1
+    do j = 1,M-1
+        do i = 1,N-1
+            
+            if( D(i,j,k) .gt. 0 ) then
+
+                RA(i,j,k) = A(D(i,j,k),j);
+
+                RS(i,j,k) = AS(D(i,j,k),j);
+                
+            endif 
+            
+        enddo
+    enddo
+enddo
+
+! We want to march through the first half of the tree, and it's
+! reflection to minimize the search for eigenvectors that define the 
+! paths through the dyadic tree.
+
+R(:,:,1:floor(NN/2))    = RA(:,:,1:floor(NN/2));
+R(:,:,floor(NN/2)+1:NN) = RS(:,:,1:floor(NN/2));
+
+!if( mod(NN,2.0) .ne. 0.0 ) then
 !    
-!    do i = 1,N
-!        do j = 1,M
-!            do k = 1,floor(NN/2)+1
-!                
-!                R(i,j,k) = RA(i,j,k);
-!                    
-!            enddo
-!        enddo
-!    enddo
-!    
-!    do i = 1,N
-!        do j = 1,M
-!            do k = 1,floor(NN/2)
-!                
-!                R(i,j,k+floor(NN/2)+1) = RS(i,j,k);
-!                    
-!            enddo
-!        enddo
-!    enddo
-!    
-!    do i = 1,N
-!        do j = 1,M
-!            do k = floor(NN/2)+2,N
-!                    
-!                L = R(i,j,N-k+1);
 !
-!                R(i,j,N-k+1) = R(i,j,k);
-!        
-!                R(i,j,k) = L;
-!                
-!            enddo        
-!        enddo
-!    enddo    
 !    
 !else
 !
-!    do i = 1,N
-!        do j = 1,M
-!            do k = 1,floor(NN/2)
-!                
-!                R(i,j,k) = RA(i,j,k);
-!                 
-!            enddo
-!        enddo
-!    enddo
 !    
-!    do i = 1,N
-!        do j = 1,M
-!            do k = 1,floor(NN/2)
-!                
-!                R(i,j,k+floor(NN/2)+1) = RS(i,j,k);
-!                    
-!            enddo
-!        enddo
-!    enddo
 !    
-!    do i = 1,N
-!        do j = 1,M
-!            do k = floor(NN/2)+1,N
-!               
-!                L = R(i,j,N-k+1);
-!
-!                R(i,j,N-k+1) = R(i,j,k);
-!        
-!                R(i,j,k) = L;
-!                    
-!            enddo        
-!        enddo
-!    enddo       
 !    
 !endif
-!    
-!do k = 1,N
-!    do i = 1,N
-!        do j = 1,M
-!        
-!            L = D(i,j,N-k+1);
 !
-!            D(i,j,N-k+1) = D(i,j,k);
+!do k = 1,N-1
+!    do j = 1,M-1
+!        do i = 1,N-1
+!    
+!            write(20,*) R(i,j,k)
+!            
+!        enddo
+!    enddo
+!enddo
+!
+!pause
+
+!do k = 1,N-1
+!    do i = 1,N-1
+!        do j = 1,M-1
+!        
+!            L = D(i,j,N-1-k+1);
+!
+!            D(i,j,N-1-k+1) = D(i,j,k);
 !        
 !            D(i,j,k) = L;
 !            
@@ -249,13 +244,13 @@ pause
 !    enddo
 !enddo
 !
-!do k = 1,N
-!    do i = 1,N
-!        do j = 1,M
+!do k = 1,N-1
+!    do i = 1,N-1
+!        do j = 1,M-1
 !        
-!            L = R(i,j,N-k+1);
+!            L = R(i,j,N-1-k+1);
 !
-!            R(i,j,N-k+1) = R(i,j,k);
+!            R(i,j,N-1-k+1) = R(i,j,k);
 !        
 !            R(i,j,k) = L;
 !        
@@ -263,32 +258,33 @@ pause
 !    enddo
 !enddo
 !
-!do i = 1,N-1
-!    do j = 1,M
+!do k = 1,N-1
+!    do j = 1,M-1    
 !        
-!        if ( i .le. 1 ) then
-!       
-!            K = A(N-i+1,j);
+!        L = R(N-1,j,k)
 !        
-!            A(N-i+1,j) = A(i,j);
+!        do i = 1,N-1
 !            
-!        elseif ( i .gt. 1 ) then
+!            if ( i .lt. N-1 ) then
 !        
-!            K = A(i+1,j);
+!                R(N-1-i+1,j,k) = R(N-1-i,j,k);
 !            
-!            A(i+1,j) = A(i,j);
+!            elseif ( i .eq. N-1 ) then
+!                
+!               R(N-1-i+1,j,k) = L;
 !            
-!            A(i,j) = K;            
-!            
-!        endif
+!            endif
 !        
-!    enddo
+!        enddo        
+!    enddo    
 !enddo
 !
-!! Pascal...
-!
-!do i = 2,N           
-!    do j = 2,M        
+!pause
+
+! Pascal...
+
+!do i = 2,N         
+!    do j = 2,M       
 !        if( j .eq. 2 .or. i .eq. j ) then
 !            
 !            Q(i-1,j-1) = 1;  
@@ -306,9 +302,12 @@ pause
 !enddo
 !Z(:) = Q(N-1,1:M-1);
 !
+!pause
+
 !ii = 1;
 !do i = L-1,1,-1
 !    
+!
 !    B(ii) = -i; ii = ii + 1;
 !enddo
 !
@@ -434,6 +433,8 @@ pause
 
 close(10);
 close(20);
+close(30);
+close(40);
 
 print*," "
 write(*,*) 'Program has used',t, 'seconds of CPU time.'
