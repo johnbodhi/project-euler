@@ -209,15 +209,43 @@ if( mod(NN,2.0) .ne. 0.0 ) then
     R(:,:,1:floor(NN/2)+1)  = RA(:,:,1:floor(NN/2)+1);
     R(:,:,floor(NN/2)+2:NN) = RS(:,:,1:floor(NN/2));
     
+    kk = floor(N/2)+1;
+    do k = N,-1,floor(N/2)+1
+        do i = N,-1,1
+            do j = N,-1,1
     
-    
+                L = R(i,j,k);
+                
+                R(i,j,k) = R(i,j,kk);
+                
+                R(i,j,kk) = L; 
+             
+            enddo        
+        enddo
+        kk = kk + 1;
+    enddo
+     
 else
 
     R(:,:,1:floor(NN/2))    = RA(:,:,1:floor(NN/2));
     R(:,:,floor(NN/2)+1:NN) = RS(:,:,1:floor(NN/2));
     
+    kk = floor(N/2)+1;
+    do k = N,-1,floor(N/2)+1
+        do i = N,-1,1
+            do j = N,-1,1
     
-    
+                L = R(i,j,k);
+                
+                R(i,j,k) = R(i,j,kk);
+                
+                R(i,j,kk) = L; 
+             
+            enddo        
+        enddo
+        kk = kk + 1;
+    enddo
+      
 endif
 
 do k = 1,N-1
@@ -233,33 +261,42 @@ enddo
 pause
 
 !do k = 1,N-1
-!    do i = 1,N-1
-!        do j = 1,M-1
+!    
+!    jj = 1;
+!    do i = N-1,1,-1
+!        do j = N-1,floor(NN/2)+1,-1
 !        
-!            L = D(i,j,N-1-k+1);
-!
-!            D(i,j,N-1-k+1) = D(i,j,k);
+!            L = D(i,j,k);
 !        
-!            D(i,j,k) = L;
-!            
+!            D(i,j,k) = D(i,jj,k);
+!        
+!            D(i,jj,k) = L; jj = jj + 1;
+!        
 !        enddo
+!        jj = 1;
+!        
 !    enddo
 !enddo
 !
 !do k = 1,N-1
-!    do i = 1,N-1
-!        do j = 1,M-1
+!    
+!    jj = 1;
+!    do i = N-1,1,-1
+!        do j = N-1,floor(NN/2)+1,-1
 !        
-!            L = R(i,j,N-1-k+1);
-!
-!            R(i,j,N-1-k+1) = R(i,j,k);
+!            L = R(i,j,k);
 !        
-!            R(i,j,k) = L;
+!            R(i,j,k) = R(i,jj,k);
+!        
+!            R(i,jj,k) = L; jj = jj + 1;
 !        
 !        enddo
+!        jj = 1;
+!        
 !    enddo
 !enddo
-!
+
+ 
 !do k = 1,N-1
 !    do j = 1,M-1    
 !        
@@ -318,21 +355,24 @@ pause
 !    B(i) = 2**B(i);
 !enddo
 !
-!! March forward through the Trellises per binary directive....
 !
-!do k = 1,N
-!    do i = 1,N
-!        do j = 1,M
-!        
-!            L = R(i,j,N-k+1);
-!
-!            R(i,j,N-k+1) = R(i,j,k);
-!        
-!            R(i,j,k) = L;
-!        
-!        enddo
-!    enddo
-!enddo
+!do k = 1,N-1
+!       
+!       jj = 1;
+!       do i = N-1,1,-1
+!           do j = N-1,floor(NN/2)+1,-1
+!           
+!               L = R(i,j,k);
+!           
+!               R(i,j,k) = R(i,jj,k);
+!           
+!               R(i,jj,k) = L; jj = jj + 1;
+!           
+!           enddo
+!           jj = 1;
+!           
+!       enddo
+!   enddo
 !
 !qq = 0; pp = 0; rr = 1;
 !
@@ -376,7 +416,7 @@ pause
 !                    
 !                    do p = 1,N
 !    
-!                        if( .not. V(i) ) then
+!                        if( V(i) .eq. 0 ) then
 !        
 !                            if( jj .le. N - 1 ) then
 !        
@@ -386,7 +426,7 @@ pause
 !                    
 !                            endif          
 !           
-!                        elseif( V(i) ) then
+!                        elseif( V(i) .eq. 1 ) then
 !        
 !                            if( ii .gt. N - M + 1 .and. jj .le. N - 1 ) then
 !                        
@@ -406,8 +446,8 @@ pause
 !    
 !                    if( SS(1) < SS(2) ) then
 !    
-!                        SS(1) =  SS(2);
-!                        SS(2) =  0;
+!                        SS(1) = SS(2);
+!                        SS(2) = 0;
 !
 !                    elseif( SS(1) > SS(2) ) then
 !    
