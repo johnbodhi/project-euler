@@ -204,31 +204,33 @@ enddo
 ! reflection to minimize the search for eigenvectors that define the 
 ! paths through the dyadic tree.
 
-R(:,:,1:floor(NN/2))    = RA(:,:,1:floor(NN/2));
-R(:,:,floor(NN/2)+1:NN) = RS(:,:,1:floor(NN/2));
+if( mod(NN,2.0) .ne. 0.0 ) then
+    
+    R(:,:,1:floor(NN/2)+1)  = RA(:,:,1:floor(NN/2)+1);
+    R(:,:,floor(NN/2)+2:NN) = RS(:,:,1:floor(NN/2));
+    
+    
+    
+else
 
-!if( mod(NN,2.0) .ne. 0.0 ) then
-!    
-!
-!    
-!else
-!
-!    
-!    
-!    
-!endif
-!
-!do k = 1,N-1
-!    do j = 1,M-1
-!        do i = 1,N-1
-!    
-!            write(20,*) R(i,j,k)
-!            
-!        enddo
-!    enddo
-!enddo
-!
-!pause
+    R(:,:,1:floor(NN/2))    = RA(:,:,1:floor(NN/2));
+    R(:,:,floor(NN/2)+1:NN) = RS(:,:,1:floor(NN/2));
+    
+    
+    
+endif
+
+do k = 1,N-1
+    do j = 1,M-1
+        do i = 1,N-1
+    
+            write(20,*) R(i,j,k)
+            
+        enddo
+    enddo
+enddo
+
+pause
 
 !do k = 1,N-1
 !    do i = 1,N-1
