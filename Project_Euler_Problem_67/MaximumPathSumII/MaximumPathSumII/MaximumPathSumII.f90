@@ -281,9 +281,8 @@ enddo
 !        enddo        
 !    enddo    
 !enddo
-!
-!pause
 
+!pause
 
 
 ! Pascal...
