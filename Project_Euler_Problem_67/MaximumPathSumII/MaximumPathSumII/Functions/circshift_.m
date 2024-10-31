@@ -9,21 +9,21 @@ N = size(A,1); M = size(A,2);
 for k = 1:1:N
     for j = 1:1:M    
         
-        L = R(N-1,j,k);
+        L = A(N,j,k);
         
         for i = 1:1:N
             
             if ( i < N )
         
-                R(N-1-i+1,j,k) = R(N-1-i,j,k);
+                A(i,j,k) = A(i,j,k);
             
-            elseif ( i == ...
-                    N )
+            elseif ( i == N )
                 
-               R(N-1-i+1,j,k) = L;
+               A(i,j,k) = L;
             
-            end
+            end 
+
+        end 
         
-        end       
     end    
 end
