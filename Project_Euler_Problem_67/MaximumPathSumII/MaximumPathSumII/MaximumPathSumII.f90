@@ -202,10 +202,6 @@ do k = 1,N-1
     enddo
 enddo
 
-! We want to march through the first half of the tree, and it's
-! reflection to minimize the search for eigenvectors that define the 
-! paths through the dyadic tree.
-
 if( mod(NN,2.0) .ne. 0.0 ) then
     
     R(:,:,1:floor(NN/2)+1)  = RA(:,:,1:floor(NN/2)+1);
@@ -287,7 +283,6 @@ enddo
 !enddo
 !
 !pause
-
 
 
 

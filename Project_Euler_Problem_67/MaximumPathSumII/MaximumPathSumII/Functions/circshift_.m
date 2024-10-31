@@ -1,6 +1,9 @@
 clc; clear all; close all;
 
-A = [ 1 0 0 0; 2 3 0 0; 4 5 6 0; 7 8 9 10 ];
+A = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_tiny.csv");
+% A = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_small.csv"); 
+% A = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_large.csv"); 
 
-N = size(A,1); M = size(A,2); 
+N = size(A,1); M = size(A,2);
+
 
