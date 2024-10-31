@@ -6,12 +6,12 @@ A = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_E
 
 N = size(A,1); M = size(A,2);
 
-for k = 1:1:N
-    for j = 1:1:M    
+for k = N:-1:1
+    for j = M:-1:1    
         
         L = A(N,j,k);
         
-        for i = 1:1:N
+        for i = N:-1:1
             
             if ( i < N )
         
@@ -24,6 +24,6 @@ for k = 1:1:N
             end 
 
         end 
-        
+
     end    
 end
