@@ -263,24 +263,6 @@ do k = 1,N-1
     enddo
 enddo
 
-do k = 1,N-1
-    
-    jj = 1;
-    do i = N-1,1,-1
-        do j = N-1,floor(NN/2)+1,-1
-        
-            L = R(i,j,k);
-        
-            R(i,j,k) = R(i,jj,k);
-        
-            R(i,jj,k) = L; jj = jj + 1;
-        
-        enddo
-        jj = 1;
-        
-    enddo
-enddo
-
 ! Downward circular shift...
  
 !do k = 1,N-1

@@ -1,10 +1,8 @@
 clear all; close all; clc; tic
 
-A = [ 3 7 2 8; 0 4 4 5; 0 0 6 9; 0 0 0 3 ]; A = A';
-
-% A = csvread("triangle_tiny.csv");
-% A = csvread("triangle_small.csv"); 
-% A = csvread("triangle_large.csv"); 
+% A = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_tiny.csv");
+A = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_small.csv"); 
+% A = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_large.csv"); 
 
 N = size(A,1); M = size(A,2);
 
@@ -120,7 +118,7 @@ else
 
     R(:,:,floor(N/2)+1:N) = flip(R(:,:,floor(N/2)+1:N),3);
 end
-D = flip(D,2); R = flip(R,2);
+D = flip(D,2);
 
 R = circshift(R,1,1);
 
@@ -169,15 +167,17 @@ end
 
 SS = zeros(1,2);
 
-RF = flip(R,2);
-
 UP = 0; DOWN = 1;
+
+RD = flip(R,2);
 
 DIRECTION = [UP DOWN]; % [ Toward the vertex. Toward the edge. ]
 
 for kk = 1:1:size(Z,1)
     
     if( DIRECTION(1,1) )
+
+        R = RD;
         
         for k = 1:1:size(R,1)
         
@@ -191,7 +191,9 @@ for kk = 1:1:size(Z,1)
     
     elseif( DIRECTION(1,2) )
         
-        R = RF; ii_ = 2;
+        % R = RF; 
+        
+        ii_ = 2;
         
         ii = ii_; jj = 1; % Top-to-bottom...
      
