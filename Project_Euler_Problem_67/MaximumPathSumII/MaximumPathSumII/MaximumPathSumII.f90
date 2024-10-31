@@ -16,6 +16,8 @@ integer                              :: ii, jj, kk
 
 integer                              :: cc, dd, hh
 
+integer                              :: INF, SUP
+
 real                                 :: p, pp, qq, rr
 
 
@@ -209,56 +211,39 @@ if( mod(NN,2.0) .ne. 0.0 ) then
     R(:,:,1:floor(NN/2)+1)  = RA(:,:,1:floor(NN/2)+1);
     R(:,:,floor(NN/2)+2:NN) = RS(:,:,1:floor(NN/2));
     
-    kk = floor(N/2)+1;
-    do k = N,-1,floor(N/2)+1
-        do i = N,-1,1
-            do j = N,-1,1
+    kk  = floor(NN/2) + 2;
     
-                L = R(i,j,k);
-                
-                R(i,j,k) = R(i,j,kk);
-                
-                R(i,j,kk) = L; 
-             
-            enddo        
-        enddo
-        kk = kk + 1;
-    enddo
-     
+    SUP = (NN - floor(floor(NN/2) / 2 )) / 2;
+    
+    INF = floor(NN/2) + SUP;
+      
 else
 
     R(:,:,1:floor(NN/2))    = RA(:,:,1:floor(NN/2));
     R(:,:,floor(NN/2)+1:NN) = RS(:,:,1:floor(NN/2));
     
-    kk = floor(N/2)+1;
-    do k = N,-1,floor(N/2)+1
-        do i = N,-1,1
-            do j = N,-1,1
+    kk = floor(O/2) + 1;
     
-                L = R(i,j,k);
-                
-                R(i,j,k) = R(i,j,kk);
-                
-                R(i,j,kk) = L; 
-             
-            enddo        
-        enddo
-        kk = kk + 1;
-    enddo
+    SUP = floor((NN - floor(floor(NN/2) / 2 )) / 2);
+    
+    INF = floor(NN/2) + SUP;
       
 endif
 
-do k = 1,N-1
-    do j = 1,M-1
-        do i = 1,N-1
+do k = N-1:-1:INF    
+    do j = M-1:-1:1
+        do i = N-1:-1:1
     
-            write(20,*) R(i,j,k)
+            L = R(i,j,k);
+
+            R(i,j,k) = R(i,j,kk);
+
+            R(i,j,kk) = L; 
             
         enddo
     enddo
+    kk = kk + 1;    
 enddo
-
-pause
 
 !do k = 1,N-1
 !    
@@ -296,6 +281,7 @@ pause
 !    enddo
 !enddo
 
+! Downward circular shift...
  
 !do k = 1,N-1
 !    do j = 1,M-1    
