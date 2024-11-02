@@ -21,7 +21,7 @@ integer                              :: INF, SUP
 real                                 :: p, pp, qq, rr
 
 
-integer                              :: L
+integer                              :: L, LN, L1
 
 real                                 :: H, S
 
@@ -52,16 +52,13 @@ open(10, file = 'triangle_tiny.txt' , status = 'old', access = 'sequential', act
 
 ! Open a practice / verification file to write into.
 
-open(20, file = 'write.txt', status = 'old', access = 'sequential', action = 'readwrite' );
+open(40, file = 'write.txt', status = 'old', access = 'sequential', action = 'readwrite' );
 
 ! Read the vectors into an array.
 
 read(10,*) RF
 !read(20,*) RF
 !read(30,*) RF
-
-
-! Transform the vector into a matrix.
 
 ii = 1;
 do j = 1,M-1,1
@@ -73,10 +70,7 @@ do j = 1,M-1,1
     enddo 
 enddo 
 
-! Column-wise symmetric flip...
-
 AS = A; jj = 1;
-
 do i = N-1,1,-1
     
     if ( i .gt. 2 ) then
@@ -109,13 +103,9 @@ do i = N-1,1,-1
     
 enddo
 
-! Transpose matrix A to march through natrually.
-
 A(:,:)  = transpose(A(:,:));
 
 AS(:,:) = transpose(AS(:,:));
-
-! Generate 3-D storage of all branch subspaces within decision constraint. 
 
 do k = N-1,1,-1
     do j = 1,M-1
@@ -165,9 +155,6 @@ do k = N-1,1,-1
     enddo
 enddo
 
-! Re-assign all true values in matrix A associated with the Trellis 
-! indexes to matrix R.
-
 ! Row-wise asymmetric flip...
 
 do k = 1,N-1
@@ -204,31 +191,31 @@ enddo
 
 if( mod(NN,2.0) .ne. 0.0 ) then
     
-    R(:,:,1:floor(NN/2)+1)  = RA(:,:,1:floor(NN/2)+1);
-    R(:,:,floor(NN/2)+2:NN) = RS(:,:,1:floor(NN/2));
+    R(:,:,1:floor(NN/2.0)+1)  = RA(:,:,1:floor(NN/2.0)+1);
+    R(:,:,floor(NN/2.0)+2:NN) = RS(:,:,1:floor(NN/2.0));
     
-    kk  = floor(NN/2) + 2;
+    kk  = floor(NN/2.0) + 2;
     
-    SUP = (NN - floor(floor(NN/2) / 2 )) / 2;
+    SUP = (NN - floor(floor(NN/2.0) / 2.0 )) / 2.0;
     
-    INF = floor(NN/2) + SUP;
+    INF = floor(NN/2.0) + SUP;
       
 else
 
-    R(:,:,1:floor(NN/2))    = RA(:,:,1:floor(NN/2));
-    R(:,:,floor(NN/2)+1:NN) = RS(:,:,1:floor(NN/2));
+    R(:,:,1:floor(NN/2.0))    = RA(:,:,1:floor(NN/2.0));
+    R(:,:,floor(NN/2.0)+1:NN) = RS(:,:,1:floor(NN/2.0));
     
-    kk = floor(O/2) + 1;
+    kk = floor(NN/2.0) + 1;
     
-    SUP = floor((NN - floor(floor(NN/2) / 2 )) / 2);
+    SUP = floor((NN - floor(floor(NN/2.0) / 2.0 )) / 2.0);
     
-    INF = floor(NN/2) + SUP;
+    INF = floor(NN/2.0) + SUP;
       
 endif
 
-do k = N-1:-1:INF    
-    do j = M-1:-1:1
-        do i = N-1:-1:1
+do k = N-1,INF,-1    
+    do j = M-1,-1,1
+        do i = N-1,-1,1
     
             L = R(i,j,k);
 
@@ -245,7 +232,7 @@ do k = 1,N-1
     
     jj = 1;
     do i = N-1,1,-1
-        do j = N-1,floor(NN/2)+1,-1
+        do j = N-1,floor(NN/2.0)+1,-1
         
             L = D(i,j,k);
         
@@ -258,32 +245,29 @@ do k = 1,N-1
         
     enddo
 enddo
-
-! Downward circular shift...
  
-!do k = 1,N-1
-!    do j = 1,M-1    
-!        
-!        L = R(N-1,j,k)
-!        
-!        do i = 1,N-1
-!            
-!            if ( i .lt. N-1 ) then
-!        
-!                R(N-1-i+1,j,k) = R(N-1-i,j,k);
-!            
-!            elseif ( i .eq. N-1 ) then
-!                
-!               R(N-1-i+1,j,k) = L;
-!            
-!            endif
-!        
-!        enddo        
-!    enddo    
-!enddo
-
-!pause
-
+do k = 1,N-1
+    do j = 1,M-1    
+        
+        L1 = R(1,j,k)
+        LN = R(N-1,j,k)
+        
+        do i = N-1,1,-1
+            
+            if ( i .lt. N-1 .and. i .gt. 1 ) then
+        
+                R(i,j,k) = R(i,j,k);
+            
+            elseif ( i .eq. 1 ) then
+                
+               R(i,j,k)   = LN;
+               R(i+1,j,k) = L1
+            
+            endif
+        
+        enddo        
+    enddo    
+enddo
 
 ! Pascal...
 
@@ -305,13 +289,10 @@ enddo
 !    enddo     
 !enddo
 !Z(:) = Q(N-1,1:M-1);
-!
-!pause
 
 !ii = 1;
 !do i = L-1,1,-1
 !    
-!
 !    B(ii) = -i; ii = ii + 1;
 !enddo
 !
@@ -319,26 +300,25 @@ enddo
 !
 !    B(i) = 2**B(i);
 !enddo
-!
-!
-!do k = 1,N-1
-!       
-!       jj = 1;
-!       do i = N-1,1,-1
-!           do j = N-1,floor(NN/2)+1,-1
-!           
-!               L = R(i,j,k);
-!           
-!               R(i,j,k) = R(i,jj,k);
-!           
-!               R(i,jj,k) = L; jj = jj + 1;
-!           
-!           enddo
-!           jj = 1;
-!           
-!       enddo
-!   enddo
-!
+
+do k = 1,N-1
+       
+    jj = 1;
+    do i = N-1,1,-1
+        do j = N-1,floor(NN/2)+1,-1
+           
+            L = R(i,j,k);
+           
+            R(i,j,k) = R(i,jj,k);
+           
+            R(i,jj,k) = L; jj = jj + 1;
+           
+        enddo
+        jj = 1;
+           
+    enddo
+enddo
+
 !qq = 0; pp = 0; rr = 1;
 !
 !do j = 1,N-1

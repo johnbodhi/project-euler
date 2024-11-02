@@ -1,4 +1,4 @@
-sclc; clear all; close all;
+clc; clear all; close all;
 
 A = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_tiny.csv");
 % A = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_small.csv"); 
@@ -6,24 +6,38 @@ A = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_E
 
 N = size(A,1); M = size(A,2);
 
-for k = N:-1:1
-    for j = M:-1:1    
-        
-        L = A(N,j,k);
-        
-        for i = N:-1:1
+A(:,:,2) = A(:,:,1);
+for k = 2:1:N
+
+    A(:,:,k) = A(:,:,1); 
+end
+
+O = size(A,3); 
+
+R = 4;
+
+for l = 1:1:R
+    for k = 1:1:O
+        for j = 1:1:M
             
-            if ( i < N )
-        
-                A(i,j,k) = A(i,j,k);
+            L1 = A(1,j,k);
+            LN = A(N,j,k);
+         
+            for i = N:-1:1
+
+                if ( i < N && i > 1 )
             
-            elseif ( i == N )
+                    A(i+1,j,k) = A(i,j,k);
                 
-               A(i,j,k) = L;
-            
-            end 
+                elseif ( i == 1 )
+                    
+                   A(i,j,k)   = LN;
 
-        end 
-
-    end    
+                   A(i+1,j,k) = L1;
+                
+                end 
+    
+            end
+        end
+    end
 end
