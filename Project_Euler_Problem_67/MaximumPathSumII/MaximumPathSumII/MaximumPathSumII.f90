@@ -7,6 +7,8 @@ real                                 :: t,t_(2),t1,t2
 
 integer, parameter                   :: N = 5, M = N
 
+integer, parameter                   :: LL = 4
+
 real                                 :: NN = N-1, MM = M-1
 
 
@@ -23,7 +25,9 @@ real                                 :: p, pp, qq, rr
 
 integer                              :: L, LN, L1
 
-real                                 :: H, S
+integer                              :: H
+
+real                                 :: S
 
 
 real,    dimension((N-1)*(M-1))      :: RF
@@ -34,11 +38,13 @@ integer, dimension(N-1)              :: V
 
 integer, dimension(N-1,M-1,N-1)      :: D
 
-real,    dimension(N-1)              :: B, Z, SS
+real,    dimension(N-1)              :: B, Z
 
 real,    dimension(N-1,M-1)          :: Q, A, AS
 
 real,    dimension(N-1,M-1,N-1)      :: R, RA, RS
+
+real,    dimension(2)                :: SS
 
 
 call CPU_TIME(t1); t = etime(t_);
@@ -229,24 +235,6 @@ do k = N-1,INF,-1
 enddo
 
 do k = 1,N-1
-    
-    jj = 1;
-    do i = N-1,1,-1
-        do j = N-1,floor(NN/2.0)+1,-1
-        
-            L = D(i,j,k);
-        
-            D(i,j,k) = D(i,jj,k);
-        
-            D(i,jj,k) = L; jj = jj + 1;
-        
-        enddo
-        jj = 1;
-        
-    enddo
-enddo
- 
-do k = 1,N-1
     do j = 1,M-1    
         
         L1 = R(1,j,k)
@@ -270,169 +258,154 @@ do k = 1,N-1
 enddo
 
 do k = 1,N-1
-    do j = 1,M-1
-        do i = 1,N-1
-            
-            write(40,*) R(i,j,k)
-            
+    
+    jj = 1;
+    do i = N-1,1,-1
+        do j = N-1,floor(NN/2.0)+1,-1
+        
+            L = D(i,j,k);
+        
+            D(i,j,k) = D(i,jj,k);
+        
+            D(i,jj,k) = L; jj = jj + 1;
+        
         enddo
+        jj = 1;
+        
     enddo
 enddo
 
+do i = 2,N         
+    do j = 2,M       
+        if( j .eq. 2 .or. i .eq. j ) then
+            
+            Q(i-1,j-1) = 1;  
+            
+        elseif( i .ge. j ) then
+            
+            Q(i-1,j-1) = Q(i-2,j-2) + Q(i-2,j-1);      
+            
+        else
+            
+            Q(i-1,j-1) = 0;            
+            
+        endif        
+    enddo     
+enddo
+Z(:) = Q(N-1,1:M-1);
 
-! Pascal...
+ii = 1;
+do i = LL,1,-1
+    
+    B(ii) = -i; ii = ii + 1;    
+enddo
 
-!do i = 2,N         
-!    do j = 2,M       
-!        if( j .eq. 2 .or. i .eq. j ) then
-!            
-!            Q(i-1,j-1) = 1;  
-!            
-!        elseif( i .ge. j ) then
-!            
-!            Q(i-1,j-1) = Q(i-2,j-2) + Q(i-2,j-1);      
-!            
-!        else
-!            
-!            Q(i-1,j-1) = 0;            
-!            
-!        endif        
-!    enddo     
-!enddo
-!Z(:) = Q(N-1,1:M-1);
+do i = 1,LL
 
-!ii = 1;
-!do i = L-1,1,-1
-!    
-!    B(ii) = -i; ii = ii + 1;
-!enddo
-!
-!do i = 1,L
-!
-!    B(i) = 2**B(i);
-!enddo
+    B(i) = 2**B(i);
+enddo
 
-!do k = 1,N-1
-!       
-!    jj = 1;
-!    do i = N-1,1,-1
-!        do j = N-1,floor(NN/2)+1,-1
-!           
-!            L = R(i,j,k);
-!           
-!            R(i,j,k) = R(i,jj,k);
-!           
-!            R(i,jj,k) = L; jj = jj + 1;
-!           
-!        enddo
-!        jj = 1;
-!           
-!    enddo
-!enddo
+qq = 0; pp = 0; rr = 1;
 
-!qq = 0; pp = 0; rr = 1;
-!
-!do j = 1,N-1
-!
-!    do while( rr < Z(j) )
-!    
-!        S = rr + 0.5;
-!    
-!        do i = 1,L-1
-!        
-!            V(i) = floor(S * B(i));
-!        
-!            V(i) = ( V(i) - floor( V(i) / 2.0 ) * 2.0 ) + 1.0;
-!        
-!            if( V(i) .le. 1 ) then
-!            
-!                V(i) = 0;
-!            
-!            elseif ( V(i) .gt. 1 ) then
-!            
-!                V(i) = 1;
-!            
-!            endif
-!            
-!        enddo
-!        
-!        if ( sum(V(:)) .eq. qq ) then
-!            
-!            pp = pp + 1;
-!            
-!            ! We need to put the entire tree algorithm before the storage of astronomical numbers...
-!            
-!            do kk = 1,N
-!        
-!                ii = 2; jj = 1; ! Top-to-bottom...
-!    
-!                S = R(ii,jj,kk);
-!
-!                do k = 1,Z(kk)
-!                    
-!                    do p = 1,N
-!    
-!                        if( V(i) .eq. 0 ) then
-!        
-!                            if( jj .le. N - 1 ) then
-!        
-!                                jj = jj + 1; 
-!                    
-!                                S = S + R(ii,jj,kk);  
-!                    
-!                            endif          
-!           
-!                        elseif( V(i) .eq. 1 ) then
-!        
-!                            if( ii .gt. N - M + 1 .and. jj .le. N - 1 ) then
-!                        
-!                                ii = ii + 1;
-!                    
-!                                jj = jj + 1;    
-!                    
-!                                S = S + R(ii,jj,kk); 
-!                   
-!                            endif
-!                            
-!                        endif
-!            
-!                    enddo
-!
-!                    SS(1) = S;
-!    
-!                    if( SS(1) < SS(2) ) then
-!    
-!                        SS(1) = SS(2);
-!                        SS(2) = 0;
-!
-!                    elseif( SS(1) > SS(2) ) then
-!    
-!                        SS(2) =  0; 
-!                        
-!                    endif     
-!                    
-!                enddo
-!                ii = 2; jj = 1; 
-!                
-!                S = R(ii,jj,kk);            
-!                
-!            enddo
-!
-!        endif
-!        rr = rr + 1;
-!    
-!    enddo
-!    
-!    qq = qq + 1; pp = 0; rr = 1;
-!enddo
-!H = maxval(SS(:));
+do j = 1,N-1
 
-!print*, H
+    do while( rr < Z(j) )
+    
+        S = rr + 0.5;
+    
+        do i = 1,LL
+        
+            V(i) = floor(S * B(i));
+        
+            V(i) = ( V(i) - floor( V(i) / 2.0 ) * 2.0 ) + 1.0;
+        
+            if( V(i) .le. 1 ) then
+            
+                V(i) = 0;
+            
+            elseif ( V(i) .gt. 1 ) then
+            
+                V(i) = 1;
+            
+            endif
+            
+        enddo
+        
+        if ( sum(V(:)) .eq. qq ) then
+            
+            pp = pp + 1;
+            
+            do kk = 1,N-1
+        
+                ii = 2; jj = 1;
+    
+                S = R(ii,jj,kk);
+
+                do k = 1,Z(kk)
+                    
+                    do p = 1,N-1
+    
+                        if( V(p) .eq. 0 ) then
+        
+                            if( jj .le. N - 1 ) then
+        
+                                jj = jj + 1; 
+                    
+                                S = S + R(ii,jj,kk);  
+                    
+                            endif          
+           
+                        elseif( V(p) .eq. 1 ) then
+        
+                            if( ii .gt. N - M + 1 .and. jj .le. N - 1 ) then
+                        
+                                ii = ii + 1;
+                    
+                                jj = jj + 1;    
+                    
+                                S = S + R(ii,jj,kk); 
+                   
+                            endif
+                            
+                        endif
+            
+                    enddo
+
+                    SS(2) = S;
+    
+                    if( SS(1) < SS(2) ) then
+    
+                        SS(1) = SS(2);
+                        SS(2) = 0;
+
+                    elseif( SS(1) > SS(2) ) then
+    
+                        SS(2) =  0; 
+                        
+                    endif     
+                    
+                enddo
+                ii = 2; jj = 1; 
+                
+                S = R(ii,jj,kk);            
+                
+            enddo
+
+        endif
+        rr = rr + 1;
+    
+    enddo
+    
+    qq = qq + 1; pp = 0; rr = 1;
+enddo
+H = maxval(SS(:));
+
+print*, H
 
 close(10);
-close(20);
-close(30);
-close(40);
+!close(20);
+!close(30);
+!close(40);
 
 print*," "
 write(*,*) 'Program has used',t, 'seconds of CPU time.'
