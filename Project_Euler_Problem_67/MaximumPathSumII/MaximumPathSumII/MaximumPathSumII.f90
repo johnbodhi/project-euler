@@ -5,7 +5,7 @@ implicit none
 real                                 :: t,t_(2),t1,t2
 
 
-integer, parameter                   :: N = 16, M = N
+integer, parameter                   :: N = 101, M = N
 
 integer, parameter                   :: LL = N - 2
 
@@ -55,18 +55,18 @@ call CPU_TIME(t1); t = etime(t_);
 ! Open and allocate our files to memory.
 
 !open(10, file = 'triangle_tiny.txt' , status = 'old', access = 'sequential', action = 'read' );
-open(20, file = 'triangle_small.txt', status = 'old', access = 'sequential', action = 'read' );
-!open(30, file = 'triangle_large.txt', status = 'old', access = 'sequential', action = 'read' );
+!open(20, file = 'triangle_small.txt', status = 'old', access = 'sequential', action = 'read' );
+open(30, file = 'triangle_large.txt', status = 'old', access = 'sequential', action = 'read' );
 
 ! Open a practice / verification file to write into.
 
-open(40, file = 'write.txt', status = 'old', access = 'sequential', action = 'readwrite' );
+! open(40, file = 'write.txt', status = 'old', access = 'sequential', action = 'readwrite' );
 
 ! Read the vectors into an array.
 
 !read(10,*) RF
-read(20,*) RF
-!read(30,*) RF
+!read(20,*) RF
+read(30,*) RF
 
 ii = 1;
 do j = 1,M-1,1
@@ -306,7 +306,7 @@ do i = 1,LL,1
 enddo
 
 
-qq = 0; pp = 0; rr = 1;
+qq = 0; pp = 0; rr = 2;
 
 do j = 1,ceiling(NN/2.0),1
 
@@ -378,8 +378,6 @@ do j = 1,ceiling(NN/2.0),1
             
                         SS(1) = SS(2);
                         SS(2) = 0;
-                        
-                        print*, V
             
                     elseif( SS(1) > SS(2) ) then
             
@@ -395,11 +393,11 @@ do j = 1,ceiling(NN/2.0),1
             enddo
 
         endif
-        rr = rr + 1;
+        rr = rr + 2;
     
     enddo
     
-    qq = qq + 1; pp = 0; rr = 1;
+    qq = qq + 1; pp = 0; rr = 2;
 enddo
 H = maxval(SS(:));
 
