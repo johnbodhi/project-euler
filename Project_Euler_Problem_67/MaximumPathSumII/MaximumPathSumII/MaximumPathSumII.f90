@@ -5,7 +5,7 @@ implicit none
 real                                 :: t,t_(2),t1,t2
 
 
-integer, parameter                   :: N = 5, M = N
+integer, parameter                   :: N = 16, M = N
 
 integer, parameter                   :: LL = N - 2
 
@@ -32,13 +32,15 @@ real                                 :: S
 
 real,    dimension((N-1)*(M-1))      :: RF
 
-integer, dimension(LL)               :: V
+integer, dimension(LL)               :: V, X
 
 
 
 integer, dimension(N-1,M-1,N-1)      :: D
 
-real,    dimension(N-1)              :: B, Z
+real,    dimension(N-1)              :: Z
+
+real,    dimension(LL)               :: B
 
 real,    dimension(N-1,M-1)          :: Q, A, AS
 
@@ -52,8 +54,8 @@ call CPU_TIME(t1); t = etime(t_);
 
 ! Open and allocate our files to memory.
 
-open(10, file = 'triangle_tiny.txt' , status = 'old', access = 'sequential', action = 'read' );
-!open(20, file = 'triangle_small.txt', status = 'old', access = 'sequential', action = 'read' );
+!open(10, file = 'triangle_tiny.txt' , status = 'old', access = 'sequential', action = 'read' );
+open(20, file = 'triangle_small.txt', status = 'old', access = 'sequential', action = 'read' );
 !open(30, file = 'triangle_large.txt', status = 'old', access = 'sequential', action = 'read' );
 
 ! Open a practice / verification file to write into.
@@ -62,8 +64,8 @@ open(40, file = 'write.txt', status = 'old', access = 'sequential', action = 're
 
 ! Read the vectors into an array.
 
-read(10,*) RF
-!read(20,*) RF
+!read(10,*) RF
+read(20,*) RF
 !read(30,*) RF
 
 ii = 1;
@@ -160,8 +162,6 @@ do k = N-1,1,-1
         enddo
     enddo
 enddo
-
-! Row-wise asymmetric flip...
 
 do k = 1,N-1
     jj = 1;
@@ -300,14 +300,15 @@ do i = LL,1,-1
     B(ii) = -i; ii = ii + 1;    
 enddo
 
-do i = 1,LL
+do i = 1,LL,1
 
     B(i) = 2**B(i);
 enddo
 
+
 qq = 0; pp = 0; rr = 1;
 
-do j = 1,ceiling(NN/2.0)
+do j = 1,ceiling(NN/2.0),1
 
     do while( pp < Z(j) )
     
@@ -335,69 +336,63 @@ do j = 1,ceiling(NN/2.0)
             
             pp = pp + 1;
             
-            print*, rr
+            do kk = 1,N-1
+                
+                ii = 2; jj = 1;
+                
+                S = R(ii,jj,kk);
+                
+                do k = 1,Z(kk)
+                    
+                    do p = 1,LL
             
-            print*, " "
+                        if( V(p) .eq. 0 ) then
             
-            print*, V
+                            if( jj .le. N - 2 ) then
             
-            pause
+                                jj = jj + 1; 
+                    
+                                S = S + R(ii,jj,kk);  
+                    
+                            endif          
             
-            !do kk = 1,N-1
-            !    
-            !    ii = 2; jj = 1;
-            !    
-            !    S = R(ii,jj,kk);
-            !    
-            !    do k = 1,Z(kk)
-            !        
-            !        do p = 1,LL
-            !
-            !            if( V(p) .eq. 0 ) then
-            !
-            !                if( jj .le. N - 2 ) then
-            !
-            !                    jj = jj + 1; 
-            !        
-            !                    S = S + R(ii,jj,kk);  
-            !        
-            !                endif          
-            !
-            !            elseif( V(p) .eq. 1 ) then
-            !
-            !                if( ii .gt. N - M + 1 .and. jj .le. N - 2 ) then
-            !            
-            !                    ii = ii + 1;
-            !        
-            !                    jj = jj + 1;    
-            !        
-            !                    S = S + R(ii,jj,kk); 
-            !       
-            !                endif
-            !                
-            !            endif
-            !
-            !        enddo
-            !
-            !        SS(2) = S;
-            !
-            !        if( SS(1) < SS(2) ) then
-            !
-            !            SS(1) = SS(2);
-            !            SS(2) = 0;
-            !
-            !        elseif( SS(1) > SS(2) ) then
-            !
-            !            SS(2) =  0; 
-            !            
-            !        endif 
-            !        
-            !    enddo
-            !    ii = 2; jj = 1; 
-            !    
-            !    S = R(ii,jj,kk);            
-            !    
-            !enddo
+                        elseif( V(p) .eq. 1 ) then
+            
+                            if( ii .gt. N - M + 1 .and. jj .le. N - 2 ) then
+                        
+                                ii = ii + 1;
+                    
+                                jj = jj + 1;    
+                    
+                                S = S + R(ii,jj,kk); 
+                   
+                            endif
+                            
+                        endif
+            
+                    enddo
+            
+                    SS(2) = S;
+            
+                    if( SS(1) < SS(2) ) then
+            
+                        SS(1) = SS(2);
+                        SS(2) = 0;
+                        
+                        print*, V
+            
+                    elseif( SS(1) > SS(2) ) then
+            
+                        SS(2) =  0; 
+                        
+                    endif 
+                    
+                enddo
+                ii = 2; jj = 1; 
+                
+                S = R(ii,jj,kk);            
+                
+            enddo
 
         endif
         rr = rr + 1;
@@ -410,8 +405,8 @@ H = maxval(SS(:));
 
 print*, H
 
-close(10);
-!close(20);
+!close(10);
+close(20);
 !close(30);
 !close(40);
 
