@@ -17,7 +17,7 @@ N = size(A,1); M = size(A,2);
 % end
 % RF = RF';
 
-% N = 4; M = N; % Maximal for N odd...
+% N = 10; M = N; % Maximal for N odd...
 % for j = 1:M
 %     for i = 1:N
 %          if( i < j || i == j)
@@ -130,7 +130,8 @@ Z = diag( flip( pascal( size( A, 1 ) ), 2 ) ); % Number of paths through the tri
 % paths specified by the opposite diagonal of Pascal's matrix.
 
 qq = 0; pp = 0; kk = 1;
-for i = 1:1:N
+
+for i = 1:1:ceil(N/2)
 
     while( pp < Z(i,1) )
 
@@ -140,7 +141,9 @@ for i = 1:1:N
     
             pp = pp + 1;
 
-            V_(:,pp,i) = B;
+            V_(1:M-1,pp,i) = B;
+
+            V_(M,pp,i) = kk;
         end
         kk = kk + 1;
     end

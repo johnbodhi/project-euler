@@ -7,7 +7,7 @@ real                                 :: t,t_(2),t1,t2
 
 integer, parameter                   :: N = 5, M = N
 
-integer, parameter                   :: LL = 4
+integer, parameter                   :: LL = N - 2
 
 real                                 :: NN = N-1, MM = M-1
 
@@ -32,7 +32,7 @@ real                                 :: S
 
 real,    dimension((N-1)*(M-1))      :: RF
 
-integer, dimension(N-1)              :: V
+integer, dimension(LL)               :: V
 
 
 
@@ -307,9 +307,9 @@ enddo
 
 qq = 0; pp = 0; rr = 1;
 
-do j = 1,N-1
+do j = 1,ceiling(NN/2.0)
 
-    do while( rr < Z(j) )
+    do while( pp < Z(j) )
     
         S = rr + 0.5;
     
@@ -335,61 +335,69 @@ do j = 1,N-1
             
             pp = pp + 1;
             
-            do kk = 1,N-1
-        
-                ii = 2; jj = 1;
-    
-                S = R(ii,jj,kk);
-
-                do k = 1,Z(kk)
-                    
-                    do p = 1,N-1
-    
-                        if( V(p) .eq. 0 ) then
-        
-                            if( jj .le. N - 1 ) then
-        
-                                jj = jj + 1; 
-                    
-                                S = S + R(ii,jj,kk);  
-                    
-                            endif          
-           
-                        elseif( V(p) .eq. 1 ) then
-        
-                            if( ii .gt. N - M + 1 .and. jj .le. N - 1 ) then
-                        
-                                ii = ii + 1;
-                    
-                                jj = jj + 1;    
-                    
-                                S = S + R(ii,jj,kk); 
-                   
-                            endif
-                            
-                        endif
+            print*, rr
             
-                    enddo
-
-                    SS(2) = S;
-    
-                    if( SS(1) < SS(2) ) then
-    
-                        SS(1) = SS(2);
-                        SS(2) = 0;
-
-                    elseif( SS(1) > SS(2) ) then
-    
-                        SS(2) =  0; 
-                        
-                    endif     
-                    
-                enddo
-                ii = 2; jj = 1; 
-                
-                S = R(ii,jj,kk);            
-                
-            enddo
+            print*, " "
+            
+            print*, V
+            
+            pause
+            
+            !do kk = 1,N-1
+            !    
+            !    ii = 2; jj = 1;
+            !    
+            !    S = R(ii,jj,kk);
+            !    
+            !    do k = 1,Z(kk)
+            !        
+            !        do p = 1,LL
+            !
+            !            if( V(p) .eq. 0 ) then
+            !
+            !                if( jj .le. N - 2 ) then
+            !
+            !                    jj = jj + 1; 
+            !        
+            !                    S = S + R(ii,jj,kk);  
+            !        
+            !                endif          
+            !
+            !            elseif( V(p) .eq. 1 ) then
+            !
+            !                if( ii .gt. N - M + 1 .and. jj .le. N - 2 ) then
+            !            
+            !                    ii = ii + 1;
+            !        
+            !                    jj = jj + 1;    
+            !        
+            !                    S = S + R(ii,jj,kk); 
+            !       
+            !                endif
+            !                
+            !            endif
+            !
+            !        enddo
+            !
+            !        SS(2) = S;
+            !
+            !        if( SS(1) < SS(2) ) then
+            !
+            !            SS(1) = SS(2);
+            !            SS(2) = 0;
+            !
+            !        elseif( SS(1) > SS(2) ) then
+            !
+            !            SS(2) =  0; 
+            !            
+            !        endif 
+            !        
+            !    enddo
+            !    ii = 2; jj = 1; 
+            !    
+            !    S = R(ii,jj,kk);            
+            !    
+            !enddo
 
         endif
         rr = rr + 1;

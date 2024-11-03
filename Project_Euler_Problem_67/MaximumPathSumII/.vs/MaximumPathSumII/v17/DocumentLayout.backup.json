@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\jmgar\\OneDrive\\Documents\\GitHub\\project-euler\\Project_Euler_Problem_67\\MaximumPathSumII\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{654F3676-691F-4BE0-80D8-AB34797180DE}|MaximumPathSumII\\MaximumPathSumII.vfproj|c:\\users\\jmgar\\onedrive\\documents\\github\\project-euler\\project_euler_problem_67\\maximumpathsumii\\maximumpathsumii\\binaries.f90||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{654F3676-691F-4BE0-80D8-AB34797180DE}|MaximumPathSumII\\MaximumPathSumII.vfproj|solutionrelative:maximumpathsumii\\binaries.f90||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{654F3676-691F-4BE0-80D8-AB34797180DE}|MaximumPathSumII\\MaximumPathSumII.vfproj|c:\\users\\jmgar\\onedrive\\documents\\github\\project-euler\\project_euler_problem_67\\maximumpathsumii\\maximumpathsumii\\maximumpathsumii.f90||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{654F3676-691F-4BE0-80D8-AB34797180DE}|MaximumPathSumII\\MaximumPathSumII.vfproj|solutionrelative:maximumpathsumii\\maximumpathsumii.f90||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
@@ -35,32 +39,45 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "binaries.f90",
+              "DocumentMoniker": "C:\\Users\\jmgar\\OneDrive\\Documents\\GitHub\\project-euler\\Project_Euler_Problem_67\\MaximumPathSumII\\MaximumPathSumII\\binaries.f90",
+              "RelativeDocumentMoniker": "MaximumPathSumII\\binaries.f90",
+              "ToolTip": "C:\\Users\\jmgar\\OneDrive\\Documents\\GitHub\\project-euler\\Project_Euler_Problem_67\\MaximumPathSumII\\MaximumPathSumII\\binaries.f90",
+              "RelativeToolTip": "MaximumPathSumII\\binaries.f90",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAAAGkAAAAJAAAAAAAAAA==",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGeSURBVDhP7ZS/SwJhGMe/nRodHhkUFIKRInZFQ1JOTbq0tTmG0KBI1OBig4sJTa0hzv0VhSi0OZTQFEKTGAWFCl506N3l\u002B/rKdXXljxr7wMM93\u002Bd9\u002BcJzz8MLTdNQKpUwLOl0\u002BkSSJNUsiNkEMVQUJSDL8jCuj91odcPbvHmGpmq0SBBWZmC122AwLJfLqNVq7IoRi8UCURThdrupvpg/h9Jq05ywdbUDx8YcrExTisUiCoUCU0Y4joPf70ckEoHH46G1yQUe4vEmzfklgX4Nhn2y2SzLdBqNBlKpFDXtG7ZfZNyf3sJ7tI7J2SlytsrRk0\u002B4XK4v4XQ6ya9Bu623qSkq3h5eoUgdqiuVyp2p4bDYvQ5sP\u002B1icW\u002BZVb5p2Qye5xEOh\u002BlgCO7DNVinbTTP5/OX3YFeU0Gm3Ol0AmSPMpmMGgwGTXfsp4jFYvvUrMvYLUejUSSTSaZ0xjas1\u002BtoNptM6fxqKGb8G/aoVqsDQ1VVdtuI6WLH43GWjY7BMBQKwefzMTUYQei9MB8Z9YE1JZFIHORyuTOSU8O/A3gHjAvzDFBvvjUAAAAASUVORK5CYII=",
+              "WhenOpened": "2024-11-03T00:47:28.994Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "MaximumPathSumII.f90",
               "DocumentMoniker": "C:\\Users\\jmgar\\OneDrive\\Documents\\GitHub\\project-euler\\Project_Euler_Problem_67\\MaximumPathSumII\\MaximumPathSumII\\MaximumPathSumII.f90",
               "RelativeDocumentMoniker": "MaximumPathSumII\\MaximumPathSumII.f90",
               "ToolTip": "C:\\Users\\jmgar\\OneDrive\\Documents\\GitHub\\project-euler\\Project_Euler_Problem_67\\MaximumPathSumII\\MaximumPathSumII\\MaximumPathSumII.f90",
               "RelativeToolTip": "MaximumPathSumII\\MaximumPathSumII.f90",
-              "ViewState": "AgIAAEkBAAAAAAAAAAAtwE0BAAANAAAAAAAAAA==",
+              "ViewState": "AgIAABwBAAAAAAAAAAAgwDUBAAAYAAAAAAAAAA==",
               "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGeSURBVDhP7ZS/SwJhGMe/nRodHhkUFIKRInZFQ1JOTbq0tTmG0KBI1OBig4sJTa0hzv0VhSi0OZTQFEKTGAWFCl506N3l\u002B/rKdXXljxr7wMM93\u002Bd9\u002BcJzz8MLTdNQKpUwLOl0\u002BkSSJNUsiNkEMVQUJSDL8jCuj91odcPbvHmGpmq0SBBWZmC122AwLJfLqNVq7IoRi8UCURThdrupvpg/h9Jq05ywdbUDx8YcrExTisUiCoUCU0Y4joPf70ckEoHH46G1yQUe4vEmzfklgX4Nhn2y2SzLdBqNBlKpFDXtG7ZfZNyf3sJ7tI7J2SlytsrRk0\u002B4XK4v4XQ6ya9Bu623qSkq3h5eoUgdqiuVyp2p4bDYvQ5sP\u002B1icW\u002BZVb5p2Qye5xEOh\u002BlgCO7DNVinbTTP5/OX3YFeU0Gm3Ol0AmSPMpmMGgwGTXfsp4jFYvvUrMvYLUejUSSTSaZ0xjas1\u002BtoNptM6fxqKGb8G/aoVqsDQ1VVdtuI6WLH43GWjY7BMBQKwefzMTUYQei9MB8Z9YE1JZFIHORyuTOSU8O/A3gHjAvzDFBvvjUAAAAASUVORK5CYII=",
               "WhenOpened": "2024-10-26T03:30:26.806Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "write.txt",
               "DocumentMoniker": "C:\\Users\\jmgar\\OneDrive\\Documents\\GitHub\\project-euler\\Project_Euler_Problem_67\\MaximumPathSumII\\MaximumPathSumII\\write.txt",
               "RelativeDocumentMoniker": "MaximumPathSumII\\write.txt",
               "ToolTip": "C:\\Users\\jmgar\\OneDrive\\Documents\\GitHub\\project-euler\\Project_Euler_Problem_67\\MaximumPathSumII\\MaximumPathSumII\\write.txt",
               "RelativeToolTip": "MaximumPathSumII\\write.txt",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAPAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
               "WhenOpened": "2024-11-02T19:37:48.755Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "triangle_tiny.txt",
               "DocumentMoniker": "C:\\Users\\jmgar\\OneDrive\\Documents\\GitHub\\project-euler\\Project_Euler_Problem_67\\MaximumPathSumII\\MaximumPathSumII\\Vectors\\triangle_tiny.txt",
               "RelativeDocumentMoniker": "MaximumPathSumII\\Vectors\\triangle_tiny.txt",
@@ -73,7 +90,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "triangle_small.txt",
               "DocumentMoniker": "C:\\Users\\jmgar\\OneDrive\\Documents\\GitHub\\project-euler\\Project_Euler_Problem_67\\MaximumPathSumII\\MaximumPathSumII\\Vectors\\triangle_small.txt",
               "RelativeDocumentMoniker": "MaximumPathSumII\\Vectors\\triangle_small.txt",
@@ -85,7 +102,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "triangle_large.txt",
               "DocumentMoniker": "C:\\Users\\jmgar\\OneDrive\\Documents\\GitHub\\project-euler\\Project_Euler_Problem_67\\MaximumPathSumII\\MaximumPathSumII\\Vectors\\triangle_large.txt",
               "RelativeDocumentMoniker": "MaximumPathSumII\\Vectors\\triangle_large.txt",
