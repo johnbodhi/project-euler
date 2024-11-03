@@ -404,8 +404,8 @@ H = maxval(SS(:));
 print*, H
 
 !close(10);
-close(20);
-!close(30);
+!close(20);
+close(30);
 !close(40);
 
 print*," "
