@@ -85,13 +85,19 @@ Z = diag( flip( pascal( size( A, 1 ) ), 2 ) );
 S  = zeros(2,1);
 SS = zeros(2,1);
 
+G = 2.^(2-N:0); V = [0;1];
+
 qq = 0; pp = 0; rr = 1;
 
 for u = 1:1:ceil(N/2)
 
     while( pp < Z(u) )
         
-        B = permn([0;1],N-1,rr);
+        I = ((rr-.5) * G);
+        I = rem(floor(I), 2) + 1;
+        B = V(I)';
+        
+        % B = permn([0;1],N-1,rr);
         
         if( sum(B,2) == qq )
 
@@ -163,3 +169,4 @@ end
 H = max(SS)
 
 toc;
+
