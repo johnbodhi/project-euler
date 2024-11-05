@@ -18,7 +18,7 @@ function [ RA, RS, D ] = trellis()
     AS = AS';
     
     % D = zeros( size(A,1), size(A,2), size(A,1) );
-    
+    % 
     % for k = size( D, 3 ):-1:1
     %     for j = 1:1:size( D, 2 )
     %         for i = 1:1:size( D, 1 )               

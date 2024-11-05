@@ -72,7 +72,7 @@ for u = 1:1:ceil(N/2)
             end
             
             SS( 2 ) = S( 1 );
-            
+
             if( SS( 1 ) >= SS( 2 ) )
 
                 SS( 2 ) = 0;
@@ -83,7 +83,9 @@ for u = 1:1:ceil(N/2)
 
         end
         rr = rr + 1;
+
     end
     qq = qq + 1; pp = 0; rr = 1;
+    
 end
 H = max(SS); toc;
