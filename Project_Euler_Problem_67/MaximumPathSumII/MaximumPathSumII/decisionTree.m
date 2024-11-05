@@ -105,8 +105,9 @@ Z = diag( flip( pascal( size( A, 1 ) ), 2 ) ); % Number of paths through the tri
 % streams, and add all corresponding elements in the tree.
 
 S  = zeros(1,2);
-
 SS = zeros(1,2);
+
+G = 2.^(2-N:0); V = [0;1];
 
 qq = 0; pp = 0; rr = 1;
 
@@ -114,7 +115,11 @@ for u = 1:1:floor(N/2)
 
     while( pp < Z(u) )
 
-        B = permn([0 1],M-1,rr);
+        I = ((rr-.5) * G);
+        I = rem(floor(I),2) + 1;
+        B = V(I)';
+
+        % B = permn([0 1],M-1,rr);
 
         if( sum( B, 2 ) == qq )
     
