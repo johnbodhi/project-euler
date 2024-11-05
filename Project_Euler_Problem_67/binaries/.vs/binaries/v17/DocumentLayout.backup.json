@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\jmgar\\Downloads\\binaries\\",
+  "WorkspaceRootPath": "C:\\Users\\jmgar\\OneDrive\\Documents\\GitHub\\project-euler\\Project_Euler_Problem_67\\binaries\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9844AD29-D239-4F94-BD03-B18532519431}|binaries\\binaries.vfproj|c:\\users\\jmgar\\downloads\\binaries\\binaries\\binaries.f90||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "AbsoluteMoniker": "D:0:0:{9844AD29-D239-4F94-BD03-B18532519431}|binaries\\binaries.vfproj|c:\\users\\jmgar\\onedrive\\documents\\github\\project-euler\\project_euler_problem_67\\binaries\\binaries\\binaries.f90||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{9844AD29-D239-4F94-BD03-B18532519431}|binaries\\binaries.vfproj|solutionrelative:binaries\\binaries.f90||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
   ],
@@ -20,11 +20,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "binaries.f90",
-              "DocumentMoniker": "C:\\Users\\jmgar\\Downloads\\binaries\\binaries\\binaries.f90",
+              "DocumentMoniker": "C:\\Users\\jmgar\\OneDrive\\Documents\\GitHub\\project-euler\\Project_Euler_Problem_67\\binaries\\binaries\\binaries.f90",
               "RelativeDocumentMoniker": "binaries\\binaries.f90",
-              "ToolTip": "C:\\Users\\jmgar\\Downloads\\binaries\\binaries\\binaries.f90",
+              "ToolTip": "C:\\Users\\jmgar\\OneDrive\\Documents\\GitHub\\project-euler\\Project_Euler_Problem_67\\binaries\\binaries\\binaries.f90",
               "RelativeToolTip": "binaries\\binaries.f90",
-              "ViewState": "AgIAADkAAAAAAAAAAAAAAFQAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAAAFwAAAAVAAAAAAAAAA==",
               "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGeSURBVDhP7ZS/SwJhGMe/nRodHhkUFIKRInZFQ1JOTbq0tTmG0KBI1OBig4sJTa0hzv0VhSi0OZTQFEKTGAWFCl506N3l\u002B/rKdXXljxr7wMM93\u002Bd9\u002BcJzz8MLTdNQKpUwLOl0\u002BkSSJNUsiNkEMVQUJSDL8jCuj91odcPbvHmGpmq0SBBWZmC122AwLJfLqNVq7IoRi8UCURThdrupvpg/h9Jq05ywdbUDx8YcrExTisUiCoUCU0Y4joPf70ckEoHH46G1yQUe4vEmzfklgX4Nhn2y2SzLdBqNBlKpFDXtG7ZfZNyf3sJ7tI7J2SlytsrRk0\u002B4XK4v4XQ6ya9Bu623qSkq3h5eoUgdqiuVyp2p4bDYvQ5sP\u002B1icW\u002BZVb5p2Qye5xEOh\u002BlgCO7DNVinbTTP5/OX3YFeU0Gm3Ol0AmSPMpmMGgwGTXfsp4jFYvvUrMvYLUejUSSTSaZ0xjas1\u002BtoNptM6fxqKGb8G/aoVqsDQ1VVdtuI6WLH43GWjY7BMBQKwefzMTUYQei9MB8Z9YE1JZFIHORyuTOSU8O/A3gHjAvzDFBvvjUAAAAASUVORK5CYII=",
               "WhenOpened": "2024-11-03T00:51:38.077Z",
               "EditorCaption": ""

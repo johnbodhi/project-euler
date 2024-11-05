@@ -5,51 +5,55 @@ implicit none
 real                                 :: t,t_(2),t1,t2
 
 
-integer, parameter                   :: N = 6, M = N
+integer, parameter                   :: N = 101, M = N
 
 integer, parameter                   :: LL = N-2
 
-real                                 :: NN = N-1, MM = M-1
+real                                 :: NN = N-1
 
 
 integer                              :: i, j, k
 
-integer                              :: ii, jj, kk
+integer                              :: ii
 
-integer                              :: cc, dd, hh
+real                                 :: pp, qq, rr
 
-integer                              :: INF, SUP
-
-real                                 :: p, pp, qq, rr
-
-
-integer                              :: L, LN, L1
-
-integer                              :: H
 
 real                                 :: S
 
 
-real,    dimension((N-1)*(M-1))      :: RF
-
 integer, dimension(LL)               :: V
 
-
-
-integer, dimension(N-1,M-1,N-1)      :: D
 
 real,    dimension(LL)               :: B
 
 real,    dimension(N-1)              :: Z
 
-real,    dimension(N-1,M-1)          :: Q, A, AS
+real,    dimension(N-1,M-1)          :: Q
 
-real,    dimension(N-1,M-1,N-1)      :: R, RA, RS
-
-real,    dimension(2)                :: SS
 
 
 call CPU_TIME(t1); t = etime(t_);
+
+
+do i = 2,N         
+    do j = 2,M       
+        if( j .eq. 2 .or. i .eq. j ) then
+            
+            Q(i-1,j-1) = 1;  
+            
+        elseif( i .ge. j ) then
+            
+            Q(i-1,j-1) = Q(i-2,j-2) + Q(i-2,j-1);      
+            
+        else
+            
+            Q(i-1,j-1) = 0;            
+            
+        endif        
+    enddo     
+enddo
+Z(:) = Q(N-1,1:M-1);
 
 ii = 1;
 do i = LL,1,-1
@@ -62,31 +66,41 @@ do i = 1,LL
     B(i) = 2**B(i);
 enddo
 
-do rr = 1,32,2
+qq = 0; pp = 0; rr = 1;
 
-    S = rr + 0.50;
+do j = 1,ceiling(NN/2.0)
+
+    do while( pp < Z(j) )
     
-    do i = 1,LL
+        S = rr + 0.5;
+    
+        do i = 1,LL
         
-        V(i) = floor(S * B(i));
+            V(i) = floor(S * B(i));
         
-        V(i) = ( V(i) - floor( V(i) / 2.0 ) * 2.0 ) + 1.0;
+            V(i) = ( V(i) - floor( V(i) / 2.0 ) * 2.0 ) + 1.0;
         
-        if( V(i) .le. 1 ) then
+            if( V(i) .le. 1 ) then
             
-            V(i) = 0;
+                V(i) = 0;            
+            elseif ( V(i) .gt. 1 ) then
             
-        elseif ( V(i) .gt. 1 ) then
+                V(i) = 1;            
+            endif
             
-            V(i) = 1;
+        enddo
+        
+        if ( sum(V) .eq. qq ) then
             
+            pp = pp + 1;
+
         endif
-            
+        rr = rr + 2;
+        
     enddo
+    qq = qq + 1; pp = 0; rr = 2;
     
 enddo
-
-
 
 print*," "
 write(*,*) 'Program has used',t, 'seconds of CPU time.'
