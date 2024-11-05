@@ -15,9 +15,11 @@ for U = 1:1:ceil(N/2)
 
     while( P < Z(U) )
         
-        B = genFun(U);
+        % B = genFun(U);
 
         % SS = dT(B);
+
+        B = permn([0;1],N-1,K);
 
         for i = 1:1:size(B,1)
 
