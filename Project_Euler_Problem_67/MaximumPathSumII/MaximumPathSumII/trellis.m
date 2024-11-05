@@ -1,6 +1,6 @@
 function [ RA, RS, D ] = trellis()
 
-    global N M
+    global N
     
     % A = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_tiny.csv");
     % A = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_small.csv"); 
@@ -86,4 +86,5 @@ function [ RA, RS, D ] = trellis()
     RA = circshift(RA,1,1);
     RS = circshift(RS,1,1);
     D = flip(D,2);  
+    
 end
