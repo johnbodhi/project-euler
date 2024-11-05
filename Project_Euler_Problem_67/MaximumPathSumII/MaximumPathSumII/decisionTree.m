@@ -1,8 +1,8 @@
 clear all; close all; clc; tic
 
 % A = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_tiny.csv");
-A = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_small.csv"); 
-% A = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_large.csv"); 
+% A = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_small.csv"); 
+A = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_large.csv"); 
 
 N = size(A,1); M = size(A,2);
 
@@ -64,13 +64,15 @@ RS = zeros(N,M);
 
 for k = 1:ceil(size(D,3)/2)
     for j = 1:size(D,2)
-        for i = 1:size(D,1)
-            if( D( i, j, k ) )
+        for i = 1:size(D,1) 
 
-                RA( i, j, k ) = A( D( i, j, k ), j );
+            if(D(i,j,k))
 
-                RS( i, j, k ) = AS( D( i, j, k ), j );
-            end            
+                RA(i,j,k) = A(D(i,j,k),j);
+
+                RS(i,j,k) = AS(D(i,j,k),j);
+            end    
+
         end
     end
 end
@@ -80,7 +82,7 @@ D = flip(D,2);
 RA = circshift(RA,1,1);
 RS = circshift(RS,1,1);
 
-Z = diag( flip( pascal( size( A, 1 ) ), 2 ) );
+Z = diag(flip(pascal(size(A,1)),2));
 
 S  = zeros(1,2);
 SS = zeros(1,2);
@@ -93,8 +95,10 @@ for u = 1:1:ceil(N/2)
 
     while( pp < Z(u) )
         
-        I = ((rr-.5) * G);
-        I = rem(floor(I), 2) + 1;
+        I = ((rr-.5)*G);
+
+        I = rem(floor(I),2)+1;
+
         B = V(I)';
         
         % B = permn([0;1],N-1,rr);
