@@ -2,25 +2,29 @@ function [ H_ ] = dTa( V_, RA_, RS_, Q_ )
 
     global N
 
-    S_ = squeeze(sum(V_(:,:,:),1));
+    S_ = zeros(N,N,ceil(N/2),2);
 
+    S_(:,:,1) = squeeze(sum(V_(:,:,1:ceil(N/2)),1)  );
 
+    S_(:,:,2) = squeeze(sum(V_(:,:,ceil(N/2))+1:N,1));
+
+    
     for i = 1:1:size(S_,2)
 
-        X = find(V(:,j));
+        X = find(V(:,i));
 
         if ( ~isinf(X) )
 
-            F(i) = max(find(S_(:,j)));
+            F(i) = max(find(S_(:,i)));
         else
             
             F(i) = 0;
         end
+        
     end
-    
+
 
     for k = 1:1:size(V_,3)
-
         for j = 1:1:F(k)
 
             ii = 2; jj = 1;
