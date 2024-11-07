@@ -1,6 +1,8 @@
-function [ B_ ] = genFun( U_ )
+function [ B_, V_ ] = genFun( Q_, U_, K_ )
 
     global N
+    
+    V_ = zeros(N,N,ceil(N/2)); V_(:,1,:) = Inf;
 
     if( U_ == 1 )
     
@@ -17,45 +19,32 @@ function [ B_ ] = genFun( U_ )
         B_ = permn([0;1],N-1,K_);
 
     elseif( U_ > 2 )
-        
-        % B_ = permn([0;1],N-1,K_);
 
-        qq = 0; pp = 0; jj = 1; kk = 1;
-        for i = 1:1:ceil(N/2)
-            while( pp < Z(i,1) )
-        
-                B = permn([0;1],M-1,kk);
-        
-                if( sum(B,2) > qq )
+        P = 0; K_ = 1;
+
+        while( ~P )
+    
+            B_ = permn([0;1],M-1,K_);
             
-                    pp = pp + 1;
-        
-                    % V_(:,pp,i)     = B;            
-                    % V_(1:M-1,pp,i) = B;
-                    % V_(M,pp,i)     = kk;
-                    % V_(i,pp)         = kk;
-
-                    if( ~V_(:,jj-1,sum(B,2)) )
-        
-                        V_(:,jj-1,sum(B,2)) = B;
-
-                    elseif( V_(:,jj-1,sum(B,2)) )
-                        
-                        V_(:,jj,sum(B,2)) = B;
-
-                        jj = jj + 1;
-                    end
-        
-                end
-                kk = kk + 1;
+            if( sum(B,2) == Q_ )
+            
+                P = P + 1;
+    
+            elseif( sum(B,2) > Q_ )
+    
+                S = sum(B_,2);
+    
+                V = sum(V_(:,:,S),1);
+    
+                J = max(find(V)); J = J + 1;
+    
+                V_(:,J,S) = B_; 
                 
-            end
-            qq = qq + 1; pp = 0; kk = 1;
+                K_ = K_ + 1;  
+            end            
+
         end
 
     end
-
-
-
 
 end
