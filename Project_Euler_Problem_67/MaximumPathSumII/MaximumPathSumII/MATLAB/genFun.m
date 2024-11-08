@@ -1,18 +1,22 @@
 function [ B_, V_ ] = genFun( Q_, U_, K_ )
 
     global N
+
+    Z = diag(flip(pascal(N),2));
+
+    SUP = 1e2;
     
-    V_ = zeros(N,N,ceil(N/2)); V_(:,1,:) = Inf;
+    V_ = zeros(N,SUP,N); V_(:,1,:) = Inf;
 
     if( U_ == 1 )
     
-            K_(1,1) = 1;
+            K_ = 1;
 
             B_ = permn([0;1],N-1,K_);
 
     elseif( U_ == 2 )
 
-        for i = 1:1:N
+        for i = 1:1:Z(2)
         
             K_(i,1) = 0.5*(2^i+2);
         end
@@ -24,11 +28,13 @@ function [ B_, V_ ] = genFun( Q_, U_, K_ )
 
         while( ~P )
     
-            B_ = permn([0;1],M-1,K_);
+            B_ = permn([0;1],N-1,K_);
             
             if( sum(B,2) == Q_ )
             
-                P = P + 1;
+                P  = P + 1;
+
+                V_ = 0;
     
             elseif( sum(B,2) > Q_ )
     
