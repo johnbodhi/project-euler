@@ -7,6 +7,20 @@ function [ RA, RS, D ] = trellis()
     % A = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_large.csv"); 
     
     N = size(A,1); M = size(A,2);
+
+    %{
+    N = 10; M = N; % Maximal for N odd...
+    for j = 1:M
+        for i = 1:N
+             if( i < j || i == j)
+     
+                A( i, j ) = randi( [ 1, 100 ] )/100;
+                % A( i, j ) = 0;
+             end
+         end
+    end
+    A = A';
+    %}
     
     AS = zeros(size(A,1),size(A,2));
     for i = 1:1:size(A,1)

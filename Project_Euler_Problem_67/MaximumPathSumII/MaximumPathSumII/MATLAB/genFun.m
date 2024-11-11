@@ -1,4 +1,4 @@
-function [ B_, V_ ] = genFun( Q_, U_, K_ )
+function [ B_, V_, K_ ] = genFun( Q_, K_ )
 
     global N
 
@@ -8,13 +8,13 @@ function [ B_, V_ ] = genFun( Q_, U_, K_ )
     
     V_ = zeros(N,SUP,N); V_(:,1,:) = Inf;
 
-    if( U_ == 1 )
+    if( Q_ == 1 )
     
             K_ = 1;
 
             B_ = permn([0;1],N-1,K_);
 
-    elseif( U_ == 2 )
+    elseif( Q_ == 2 )
 
         for i = 1:1:Z(2)
         
@@ -22,15 +22,15 @@ function [ B_, V_ ] = genFun( Q_, U_, K_ )
         end
         B_ = permn([0;1],N-1,K_);
 
-    elseif( U_ > 2 )
+    elseif( Q_ > 2 )
 
-        P = 0; K_ = 1;
+        P = 0;
 
         while( ~P )
     
             B_ = permn([0;1],N-1,K_);
             
-            if( sum(B,2) == Q_ )
+            if( sum(B,2) == Z(Q_) )
             
                 P  = P + 1;
 
@@ -46,11 +46,10 @@ function [ B_, V_ ] = genFun( Q_, U_, K_ )
     
                 V_(:,J,S) = B_; 
                 
-                K_ = K_ + 1;  
+                K_ = K_ + 1;
+
             end            
-
         end
-
     end
 
 end
