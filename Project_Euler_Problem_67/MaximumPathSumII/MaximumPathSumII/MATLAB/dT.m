@@ -1,35 +1,33 @@
-function [ H_ ] = dT( B_, RA_, RS_, Q_ )
-
-    global N
+function [ H_ ] = dT( N_, B_, RA_, RS_, Q_ )
 
     ii = 2; jj = 1;
     
-    S( 1 ) = RA_(ii,jj,Q_+1);
-    S( 2 ) = RS_(ii,jj,Q_+1);
+    S( 1 ) = RA_(ii,jj,Q_);
+    S( 2 ) = RS_(ii,jj,Q_);
     
-    for j = 1:1:size(B_,2)
+    for j = 1:1:N_-1
     
         if( ~B_(j) )
     
-            if( jj <= N-1 )
+            if( jj <= N_-1 )
     
                 jj = jj + 1; 
     
-                S( 1 ) = S( 1 ) + RA_(ii,jj,Q_+1);
-                S( 2 ) = S( 2 ) + RS_(ii,jj,Q_+1);
+                S( 1 ) = S( 1 ) + RA_(ii,jj,Q_);
+                S( 2 ) = S( 2 ) + RS_(ii,jj,Q_);
     
             end           
     
             elseif( B_(j) )
     
-            if( ii > 1 && jj <= N-1 )
+            if( ii > 1 && jj <= N_-1 )
     
                 ii = ii + 1;
     
                 jj = jj + 1;    
     
-                S( 1 ) = S( 1 ) + RA_(ii,jj,Q_+1);
-                S( 2 ) = S( 2 ) + RS_(ii,jj,Q_+1);
+                S( 1 ) = S( 1 ) + RA_(ii,jj,Q_);
+                S( 2 ) = S( 2 ) + RS_(ii,jj,Q_);
     
             end    
         end 

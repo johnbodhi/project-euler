@@ -1,6 +1,6 @@
 clc; close all; clear all; tic;
 
-N = 20; M = N;
+N = 10; M = N;
 
 Z = diag( flip( pascal( N ), 2 ) );
 

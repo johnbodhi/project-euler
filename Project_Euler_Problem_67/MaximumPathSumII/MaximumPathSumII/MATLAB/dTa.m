@@ -1,51 +1,49 @@
-function [ H_ ] = dTa( V_, RA_, RS_, Q_ )
+function [ H_ ] = dTa( N_, V_, RA_, RS_ )
 
-    global N
-
-    S_(:,:) = squeeze(sum(V_(:,:,:),1));
+    S_(:,:) = squeeze(sum(V_(:,:,:),1)); H_ = 0;
    
-    for k = 1:1:size(S_,2)
+    for k = 1:1:ceil(N_/2)
 
-        F_(k) = max(find(S_(1:N,k)))+1;                
+        F_(k) = max(find(S_(:,k)));                
     end
 
-    for k = 1:1:size(V_,3)
+    for k = 1:1:ceil(N_/2)
 
-        for j = 1:1:F_(k)
+        for j = 2:1:F_(k)
 
-            if( F_(k) <= 2 )
-
+            if( F_(k) <= 1 )
+            
                 break;
             end
 
-            for i = 1:1:size(V_,1)
+            ii = 2; jj = 1;
 
-                ii = 2; jj = 1;
-        
-                S( 1 ) = RA_(ii,jj,Q_+1);
-                S( 2 ) = RS_(ii,jj,Q_+1);
-                
-                if( ~V_(i,F_(j),k) )
+            S( 1 ) = RA_(ii,jj,k);
+            S( 2 ) = RS_(ii,jj,k);
+
+            for i = 1:1:N_-1
+
+                if( ~V_(i,j,k) )
             
-                    if( jj <= N-1 )
+                    if( jj <= N_-1 )
             
                         jj = jj + 1; 
             
-                        S( 1 ) = S( 1 ) + RA_(ii,jj,Q_+1);
-                        S( 2 ) = S( 2 ) + RS_(ii,jj,Q_+1);
+                        S( 1 ) = S( 1 ) + RA_(ii,jj,k);
+                        S( 2 ) = S( 2 ) + RS_(ii,jj,k);
             
                     end           
             
-                elseif( V_(i,F_(j),k) )
+                elseif( V_(i,j,k) )
             
-                    if( ii > 1 && jj <= N-1 )
+                    if( ii > 1 && jj <= N_-1 )
             
                         ii = ii + 1;
             
                         jj = jj + 1;    
             
-                        S( 1 ) = S( 1 ) + RA_(ii,jj,Q_+1);
-                        S( 2 ) = S( 2 ) + RS_(ii,jj,Q_+1);
+                        S( 1 ) = S( 1 ) + RA_(ii,jj,k);
+                        S( 2 ) = S( 2 ) + RS_(ii,jj,k);
             
                     end    
                 end  
@@ -67,10 +65,10 @@ function [ H_ ] = dTa( V_, RA_, RS_, Q_ )
             
                     SS_( 1 ) = SS_( 2 );
                 end
+                
             end
-            H_ = SS_;  
+            H_ = SS_(1);  
 
         end
     end
-
 end
