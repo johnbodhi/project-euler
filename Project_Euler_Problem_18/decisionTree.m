@@ -160,7 +160,7 @@ SS = zeros(1,2);
 
 RF = flip(R,2);
 
-UP = 1; DOWN = 0;
+UP = 0; DOWN = 1;
 
 DIRECTION = [UP DOWN]; % [ Toward the vertex. Toward the edge. ]
 
@@ -173,6 +173,7 @@ for kk = 1:1:size(Z,1)
             if( R( k, 1, kk ) )
                 
                 ii_ = k;
+
                 break;
             end
         end
@@ -191,9 +192,11 @@ for kk = 1:1:size(Z,1)
     for j = 1:1:Z(kk)
         
         for i = 1:1:size(V,1)
+
+            B = V(:,j,kk);
     
             if( ~V(i,j,kk) )
-        
+
                 if( jj <= N - 1 )
         
                     jj = jj + 1; 
@@ -236,6 +239,8 @@ for kk = 1:1:size(Z,1)
     
             SS( 2 ) = 0; 
             SS = circshift( SS, 1, 2 );
+
+            B = V(:,j,kk);
         end
         ii = ii_; jj = 1; 
         

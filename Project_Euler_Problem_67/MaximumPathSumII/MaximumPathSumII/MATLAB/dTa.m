@@ -7,7 +7,7 @@ function [ H_ ] = dTa( N_, V_, RA_, RS_ )
         F_(k) = max(find(S_(:,k)));                
     end
 
-    for k = 1:1:ceil(N_/2)
+    for k = 1:1:ceil(N_/2)-1
 
         for j = 2:1:F_(k)
 
@@ -18,8 +18,8 @@ function [ H_ ] = dTa( N_, V_, RA_, RS_ )
 
             ii = 2; jj = 1;
 
-            S( 1 ) = RA_(ii,jj,k);
-            S( 2 ) = RS_(ii,jj,k);
+            S( 1 ) = RA_(ii,jj,k+1);
+            S( 2 ) = RS_(ii,jj,k+1);
 
             for i = 1:1:N_-1
 
@@ -29,8 +29,8 @@ function [ H_ ] = dTa( N_, V_, RA_, RS_ )
             
                         jj = jj + 1; 
             
-                        S( 1 ) = S( 1 ) + RA_(ii,jj,k);
-                        S( 2 ) = S( 2 ) + RS_(ii,jj,k);
+                        S( 1 ) = S( 1 ) + RA_(ii,jj,k+1);
+                        S( 2 ) = S( 2 ) + RS_(ii,jj,k+1);
             
                     end           
             
@@ -42,32 +42,31 @@ function [ H_ ] = dTa( N_, V_, RA_, RS_ )
             
                         jj = jj + 1;    
             
-                        S( 1 ) = S( 1 ) + RA_(ii,jj,k);
-                        S( 2 ) = S( 2 ) + RS_(ii,jj,k);
+                        S( 1 ) = S( 1 ) + RA_(ii,jj,k+1);
+                        S( 2 ) = S( 2 ) + RS_(ii,jj,k+1);
             
                     end    
-                end  
-
-                if( S( 1 ) >= S( 2 ) )
-        
-                    S( 2 ) = 0;
-                elseif( S( 1 ) < S( 2 ) )
-            
-                    S( 1 ) = S( 2 );
-                end
-            
-                SS_( 2 ) = S( 1 );
-            
-                if( SS_( 1 ) >= SS_( 2 ) )
-            
-                    SS_( 2 ) = 0;
-                elseif( SS_( 1 ) < SS_( 2 ) )
-            
-                    SS_( 1 ) = SS_( 2 );
-                end
-                
+                end                
             end
-            H_ = SS_(1);  
+
+            if( S( 1 ) >= S( 2 ) )
+    
+                S( 2 ) = 0;
+            elseif( S( 1 ) < S( 2 ) )
+            
+                S( 1 ) = S( 2 );
+            end
+            
+            SS_( 2 ) = S( 1 );
+            
+            if( SS_( 1 ) >= SS_( 2 ) )
+            
+                SS_( 2 ) = 0;
+            elseif( SS_( 1 ) < SS_( 2 ) )
+            
+                SS_( 1 ) = SS_( 2 );
+            end
+            H_ = SS_(1);
 
         end
     end

@@ -1,7 +1,9 @@
-function [ B_, V_, K_, P_, G_ ] = genFun( N_, Q_, K_, P_, V_, SUP )
+function [ V_, B_, K_, P_, G_, EXIT_ ] = genFun( N_, Q_, K_, P_ )
 
-    global SUP ACCEL
+    SUP = 1e2; EXIT_ = 0;
 
+    V_  = zeros(N_-1,SUP,ceil(N_/2)); V_(:,1,:) = Inf;
+    
     W_ = 0; G_ = 0;
 
     while( ~W_ )
@@ -14,7 +16,7 @@ function [ B_, V_, K_, P_, G_ ] = genFun( N_, Q_, K_, P_, V_, SUP )
 
             W_ = 1;
 
-        elseif( ACCEL && sum(B_,2) > Q_- 1 && sum(B_,2) < ceil(N_/2) && G_ <= SUP )
+        elseif( sum(B_,2) > Q_- 1 && sum(B_,2) <= ceil(N_/2) && G_ <= SUP )
 
             S = sum(B_,2);
 
@@ -22,16 +24,18 @@ function [ B_, V_, K_, P_, G_ ] = genFun( N_, Q_, K_, P_, V_, SUP )
 
             J = max(find(V));
 
-            V_(:,J+1,S) = flip(B_',1); G_ = G_ + 1;
+            V_(:,J+1,S) = B_; G_ = G_ + 1;
 
-        end    
-        K_ = K_ + 1;
+            if( G_ == SUP )
 
-        if( G_ == SUP )
+                W_ = 1;
+            end            
 
-            break;
+        elseif( sum(B_,2) == N_-1 )
+
+            W_ = 1; EXIT_ = 1;
+            
         end
-
+        K_ = K_ + 1;
     end
-
 end
