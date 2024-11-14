@@ -72,7 +72,7 @@ function [ RA, RS, D ] = trellis()
     % end
     % 
     % save("D.mat","D");
-
+     
     D = load("D.mat"); D = D.D;
     
     D  = flip(D,2);
