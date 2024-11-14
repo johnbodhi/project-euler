@@ -50,7 +50,7 @@ function [ H_ ] = dT( N_, B_, RA_, RS_, Q_ )
     
         SS_( 1 ) = SS_( 2 );
     end
-    H_ = SS_(1);
+    H_ = SS_( 1 );
 
 end
 
