@@ -16,7 +16,7 @@ function [ V_, B_, K_, P_, G_, EXIT_ ] = genFun( N_, Q_, K_, P_ )
 
             W_ = 1;
 
-        elseif( sum(B_,2) > Q_- 1 && sum(B_,2) <= ceil(N_/2) && G_ <= SUP )
+        elseif( sum(B_,2) > Q_- 1 && sum(B_,2) <= ceil(N_/2) && G_ < SUP )
 
             S = sum(B_,2);
 
