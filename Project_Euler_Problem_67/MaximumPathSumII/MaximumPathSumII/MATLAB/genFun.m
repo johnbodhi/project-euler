@@ -2,7 +2,7 @@ function [ V_, B_, K_, P_, G_, EXIT_ ] = genFun( N_, Q_, K_, P_ )
 
     SUP = 1e2; EXIT_ = 0;
 
-    V_  = zeros(N_-1,SUP,ceil(N_/2)); V_(:,1,:) = Inf;
+    V_  = zeros(N_-1,ceil(SUP/2),ceil(N_/2)); V_(:,1,:) = Inf;
     
     W_ = 0; G_ = 0;
 

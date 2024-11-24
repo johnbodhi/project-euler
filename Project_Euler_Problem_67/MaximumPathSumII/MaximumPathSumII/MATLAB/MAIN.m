@@ -22,7 +22,7 @@ for Q = 1:1:ceil(N/2)
     
         S(1) = dT( N, B, RA, RS, Q );
     
-        S(2) = dTa( N, V, RA, RS );
+        S(2) = dTa( N, V, RA, RS   );
     
         if( S( 1 ) >= S( 2 ) )
 
