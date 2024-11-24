@@ -75,7 +75,7 @@ function [ RA, RS, D ] = trellis()
      
     D = load("D.mat"); D = D.D;
     
-    D  = flip(D,2);
+    D = flip(D,2);
     
     RA = zeros(N,M); 
     RS = zeros(N,M);
