@@ -29,6 +29,7 @@ function [ V_, B_, K_, P_, G_, EXIT_ ] = genFun( N_, Q_, K_, P_ )
             if( G_ == SUP )
 
                 W_ = 1;
+
             end            
 
         elseif( sum(B_,2) == N_-1 )
@@ -36,6 +37,6 @@ function [ V_, B_, K_, P_, G_, EXIT_ ] = genFun( N_, Q_, K_, P_ )
             W_ = 1; EXIT_ = 1;
             
         end
-        K_ = K_ + 1;
+        K_ = K_ + 1
     end
 end

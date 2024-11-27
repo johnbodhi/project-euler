@@ -45,4 +45,4 @@ for Q = 1:1:ceil(N/2)
     end
     P = 0;
 end   
-H = max(SS); toc;
+H = max(SS); toc
