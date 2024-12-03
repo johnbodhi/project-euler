@@ -1,4 +1,4 @@
-function [ V_, B_, K_, P_, G_, EXIT_ ] = genFun( N_, Q_, Kf_, Kb_, P_, EMAX_ )
+function [ V_, B_, K_, P_, G_, EXIT_ ] = genFun( N_, Q_, K_, P_, EMAX_ )
 
     SUP = 1e2; EXIT_ = 0;
 
@@ -16,7 +16,7 @@ function [ V_, B_, K_, P_, G_, EXIT_ ] = genFun( N_, Q_, Kf_, Kb_, P_, EMAX_ )
 
         Bb_ = permn([0;1],N_-1,Kb_);
 
-        Bm_ = monteCarlo(EMAX_);
+        Bm_ = monteCarlo(EMAX);
         
         if( sum(B_,2) == Q_- 1 )
         
@@ -79,5 +79,6 @@ function [ V_, B_, K_, P_, G_, EXIT_ ] = genFun( N_, Q_, Kf_, Kb_, P_, EMAX_ )
         end
         Kf_ = Kf_ + 1;
         Kb_ = Kb_ - 1;
+        Km_ = Km_ + 1;
     end
 end

@@ -4,16 +4,20 @@ N = 100;
 
 Z = diag(flip(pascal(N),2));
 
+EMAX = log(Z(ceil(N/2)))/log(2);
+
 S  = zeros(1,2);
 SS = zeros(1,2);
 
-[ RA, RS ] = trellis(); P = 0; K = 1;
+[ RA, RS ] = trellis(); P = 0; 
+
+Kf = 1; Kb = Z(ciel(N/2));
 
 for Q = 1:1:ceil(N/2)
 
     while( P < Z(Q) )
     
-        [ V, B, K, P, G, EXIT ] = genFun( N, Q, K, P );
+        [ V, B, K, P, G, EXIT ] = genFun( N, Q, Kf, Kb, P, EMAX );
 
         if(EXIT) 
 
