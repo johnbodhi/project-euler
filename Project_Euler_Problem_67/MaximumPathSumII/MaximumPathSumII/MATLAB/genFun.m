@@ -1,4 +1,4 @@
-function [ V_, B_, K_, P_, G_, EXIT_ ] = genFun( N_, Q_, Kf_, Kb_, P_, EMAX_ )
+function [ Vf_, Vb_, Vm_, B_, K_, P_, G_, EXIT_ ] = genFun( N_, Q_, Kf_, Kb_, P_, EMAX_ )
 
     SUP = 1e2; EXIT_ = 0;
 
@@ -18,66 +18,73 @@ function [ V_, B_, K_, P_, G_, EXIT_ ] = genFun( N_, Q_, Kf_, Kb_, P_, EMAX_ )
 
         Bm_ = monteCarlo(EMAX_);
         
-        if( sum(B_,2) == Q_- 1 )
+        if( sum(Bf_,2) == Q_- 1 )
         
             P_ = P_ + 1;
 
-            W_ = 1;
+            Wf_ = 1;
 
-        elseif( sum(B_,2) > Q_- 1 && sum(B_,2) <= ceil(N_/2) && G_ < SUP )
+        elseif( sum(Bb_,2) == ceil(N_/2) - Q_ + 1 )
+        
+            P_ = P_ + 1;
 
-            S = sum(B_,2);
+            Wb_ = 1;
 
-            V = sum(V_(:,:,S),1);
+        elseif( sum(Bf_,2) > Q_- 1 && sum(Bf_,2) <= ceil(N_/2) && Gf_ < SUP && ~Wf_ )
 
-            J = max(find(V));
+            S = sum(Bf_,2);
 
-            V_(:,J+1,S) = B_; G_ = G_ + 1;
-
-            if( G_ == SUP )
-
-                W_ = 1;
-
-            end   
-
-        elseif( sum(B_,2) > Q_- 1 && sum(B_,2) <= ceil(N_/2) && G_ < SUP )
-
-            S = sum(B_,2);
-
-            V = sum(V_(:,:,S),1);
+            V = sum(Vf_(:,:,S),1);
 
             J = max(find(V));
 
-            V_(:,J+1,S) = B_; G_ = G_ + 1;
+            Vf_(:,J+1,S) = Bf_; Gf_ = Gf_ + 1;
 
-            if( G_ == SUP )
+            if( Gf_ == SUP )
 
-                W_ = 1;
+                Wf_ = 1;
 
             end   
 
-        elseif( sum(B_,2) > Q_- 1 && sum(B_,2) <= ceil(N_/2) && G_ < SUP )
+        elseif( sum(Bb_,2) > ceil(N_/2)-Q && Gb_ < SUP && ~Wb_ )
 
-            S = sum(B_,2);
+            S = sum(Bb_,2);
 
-            V = sum(V_(:,:,S),1);
+            V = sum(Vb_(:,:,S),1);
 
             J = max(find(V));
 
-            V_(:,J+1,S) = B_; G_ = G_ + 1;
+            Vb_(:,J+1,S) = Bb_; Gb_ = Gb_ + 1;
 
-            if( G_ == SUP )
+            if( Gb_ == SUP )
 
-                W_ = 1;
+                Wb_ = 1;
 
             end   
 
-        elseif( sum(B_,2) == N_-1 )
+        elseif( ~Wm_ )
 
-            W_ = 1; EXIT_ = 1;
+            S = sum(Bm_,2);
+
+            V = sum(Vm_(:,:,S),1);
+
+            J = max(find(V));
+
+            Vm_(:,J+1,S) = Bm_; Gm_ = Gm_ + 1;
+
+            if( Gm_ == SUP )
+
+                Wm_ = 1;
+
+            end   
+
+        elseif( sum(Bf_,2) == N_-1 || sum(Bb_,2) == 0 )
+
+            Wf_ = 1; Wb_ = 1; Wm_ = 1; EXIT_ = 1;
             
         end
         Kf_ = Kf_ + 1;
         Kb_ = Kb_ - 1;
+        
     end
 end

@@ -6,7 +6,7 @@ Z = diag(flip(pascal(N),2));
 
 EMAX = log(Z(ceil(N/2)))/log(2);
 
-S  = zeros(1,2);
+S  = zeros(1,3);
 SS = zeros(1,2);
 
 [ RA, RS ] = trellis(); P = 0; 
@@ -17,7 +17,7 @@ for Q = 1:1:ceil(N/2)
 
     while( P < Z(Q) )
     
-        [ V, B, K, P, G, EXIT ] = genFun( N, Q, Kf, Kb, P, EMAX );
+        [ Vf, Vb, Vm, B, K, P, G, EXIT ] = genFun( N, Q, Kf, Kb, P, EMAX );
 
         if(EXIT) 
 
