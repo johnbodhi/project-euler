@@ -1,90 +1,47 @@
-function [ Vf_, Vb_, Vm_, B_, K_, P_, G_, EXIT_ ] = genFun( N_, Q_, Kf_, Kb_, P_, EMAX_ )
+function [ Vf_, Vb_, Vm_, B_, K_, P_, G_, EXIT_ ] = genFun( N_, Q_, K_, P_, EMAX_ )
 
     SUP = 1e2; EXIT_ = 0;
 
-    Vf_  = zeros(N_-1,ceil(SUP/2),ceil(N_/2)); Vf_(:,1,:) = Inf;
-    Vb_  = zeros(N_-1,ceil(SUP/2),ceil(N_/2)); Vb_(:,1,:) = Inf;
-    Vm_  = zeros(N_-1,ceil(SUP/2),ceil(N_/2)); Vm_(:,1,:) = Inf;
+    V_  = zeros(N_-1,ceil(SUP/2),ceil(N_/2)); V_(:,1,:) = Inf;
     
-    Wf_ = 0; Gf_ = 0;
-    Wb_ = 0; Gb_ = 0;
-    Wm_ = 0; Gm_ = 0;
+    W_ = 0; G_ = 0;
 
-    while( ~Wf_ && ~Wb_ && ~Wm_ )
+    while( ~W_ )
 
-        Bf_ = permn([0;1],N_-1,Kf_);
+        B_(1,:) = permn([0;1],N_-1,Kf_);
 
-        Bb_ = permn([0;1],N_-1,Kb_);
+        B_(2,:) = permn([0;1],N_-1,Kb_);
 
-        Bm_ = monteCarlo(EMAX_);
-        
-        if( sum(Bf_,2) == Q_- 1 )
-        
-            P_ = P_ + 1;
+        B_(3,:) = monteCarlo(EMAX_);
 
-            Wf_ = 1;
+        if( sum(B_(1,:),2) >= Q_- 1 && sum(B_(1,:),2) <= ceil(N_/2) ||...
+            sum(B_(2,:),2) >= Q_- 1 && sum(B_(2,:),2) <= ceil(N_/2) ||...
+            sum(B_(3,:),2) >= Q_- 1 && sum(B_(3,:),2) <= ceil(N_/2) &&...
+            G_ < SUP )
 
-        elseif( sum(Bb_,2) == ceil(N_/2) - Q_ + 1 )
-        
-            P_ = P_ + 1;
+            for i = 1:1:size(B_,1)
 
-            Wb_ = 1;
+                S(i) = sum(B_(i,:),2);
+    
+                V = sum(V_(:,:,S(i)),1);
+    
+                J = max(find(V));
+    
+                V_(:,J+1,S(i)) = B_(i,:); G_ = G_ + 1;
+            end
 
-        elseif( sum(Bf_,2) > Q_- 1 && sum(Bf_,2) <= ceil(N_/2) && Gf_ < SUP && ~Wf_ )
+            if( G_ == SUP )
 
-            S = sum(Bf_,2);
+                W_ = 1;
+            end    
 
-            V = sum(Vf_(:,:,S),1);
+        elseif( sum(B_(1,:),2) == N_-1 )
 
-            J = max(find(V));
-
-            Vf_(:,J+1,S) = Bf_; Gf_ = Gf_ + 1;
-
-            if( Gf_ == SUP )
-
-                Wf_ = 1;
-
-            end   
-
-        elseif( sum(Bb_,2) > ceil(N_/2)-Q && Gb_ < SUP && ~Wb_ )
-
-            S = sum(Bb_,2);
-
-            V = sum(Vb_(:,:,S),1);
-
-            J = max(find(V));
-
-            Vb_(:,J+1,S) = Bb_; Gb_ = Gb_ + 1;
-
-            if( Gb_ == SUP )
-
-                Wb_ = 1;
-
-            end   
-
-        elseif( ~Wm_ )
-
-            S = sum(Bm_,2);
-
-            V = sum(Vm_(:,:,S),1);
-
-            J = max(find(V));
-
-            Vm_(:,J+1,S) = Bm_; Gm_ = Gm_ + 1;
-
-            if( Gm_ == SUP )
-
-                Wm_ = 1;
-
-            end   
-
-        elseif( sum(Bf_,2) == N_-1 || sum(Bb_,2) == 0 )
-
-            Wf_ = 1; Wb_ = 1; Wm_ = 1; EXIT_ = 1;
-            
+            W_ = 1; EXIT_ = 1;            
         end
-        Kf_ = Kf_ + 1;
-        Kb_ = Kb_ - 1;
+        K_ = K_ + 3;
+        Kf = Kf + 1;
+        Kb = Kb - 1;
         
     end
 end

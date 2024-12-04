@@ -17,7 +17,7 @@ for Q = 1:1:ceil(N/2)
 
     while( P < Z(Q) )
     
-        [ Vf, Vb, Vm, B, K, P, G, EXIT ] = genFun( N, Q, Kf, Kb, P, EMAX );
+        [ V, B, K, P, G, EXIT ] = genFun( N, Q, Kf, Kb, P, EMAX );
 
         if(EXIT) 
 
