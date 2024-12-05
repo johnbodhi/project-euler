@@ -1,6 +1,10 @@
-function [ Vf_, Vb_, Vm_, B_, K_, P_, G_, EXIT_ ] = genFun( N_, Q_, K_, P_, EMAX_ )
+function [ V_, B_, K_, P_, G_, EXIT_ ] = genFun( N_, Q_, K_, P_, EMAX_ )
 
     SUP = 1e2; EXIT_ = 0;
+
+    S   = zeros(3,1);
+
+    B_  = zeros(3,N_-1);
 
     V_  = zeros(N_-1,ceil(SUP/2),ceil(N_/2)); V_(:,1,:) = Inf;
     
@@ -8,9 +12,9 @@ function [ Vf_, Vb_, Vm_, B_, K_, P_, G_, EXIT_ ] = genFun( N_, Q_, K_, P_, EMAX
 
     while( ~W_ )
 
-        B_(1,:) = permn([0;1],N_-1,Kf_);
+        B_(1,:) = permn([0;1],N_-1,K_);
 
-        B_(2,:) = permn([0;1],N_-1,Kb_);
+        B_(2,:) = permn([0;1],N_-1,2^EMAX_-K_);
 
         B_(3,:) = monteCarlo(EMAX_);
 
@@ -39,9 +43,7 @@ function [ Vf_, Vb_, Vm_, B_, K_, P_, G_, EXIT_ ] = genFun( N_, Q_, K_, P_, EMAX
 
             W_ = 1; EXIT_ = 1;            
         end
-        K_ = K_ + 3;
-        Kf = Kf + 1;
-        Kb = Kb - 1;
+        K_ = K_ + 1;
         
     end
 end

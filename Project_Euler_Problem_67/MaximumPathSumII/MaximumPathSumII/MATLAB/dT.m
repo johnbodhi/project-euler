@@ -1,58 +1,73 @@
-function [ H_ ] = dT( N_, B_, RA_, RS_, Q_ )
+function [ H_ ] = dT( N_, V_, RA_, RS_ )
 
-    ii = 2; jj = 1;
-    
-    S( 1 ) = RA_(ii,jj,Q_);
-    S( 2 ) = RS_(ii,jj,Q_);
-    
-    for j = 1:1:N_-1
-    
-        if( ~B_(j) )
-    
-            if( jj <= N_-1 )
-    
-                jj = jj + 1; 
-    
-                S( 1 ) = S( 1 ) + RA_(ii,jj,Q_);
-                S( 2 ) = S( 2 ) + RS_(ii,jj,Q_);
-    
-            end           
-    
-            elseif( B_(j) )
-    
-            if( ii > 1 && jj <= N_-1 )
-    
-                ii = ii + 1;
-    
-                jj = jj + 1;    
-    
-                S( 1 ) = S( 1 ) + RA_(ii,jj,Q_);
-                S( 2 ) = S( 2 ) + RS_(ii,jj,Q_);
-    
-            end    
-        end 
-    end
-    
-    if( S( 1 ) >= S( 2 ) )
-    
-        S( 2 ) = 0;
-    elseif( S( 1 ) < S( 2 ) )
-    
-        S( 1 ) = S( 2 );
-    end
-    
-    SS_( 2 ) = S( 1 );
-    
-    if( SS_( 1 ) >= SS_( 2 ) )
-    
-        SS_( 2 ) = 0;
-    elseif( SS_( 1 ) < SS_( 2 ) )
-    
-        SS_( 1 ) = SS_( 2 );
-    end
-    H_ = SS_( 1 );
+    S_(:,:) = squeeze(sum(V_(:,:,:),1)); H_ = 0;
+   
+    for k = 1:1:ceil(N_/2)
 
+        F_(k) = max(find(S_(:,k)));                
+    end
+
+    for k = 1:1:ceil(N_/2)
+
+        for j = 2:1:F_(k)
+
+            if( F_(k) <= 1 )
+            
+                break;
+            end
+
+            ii = 2; jj = 1;
+
+            S( 1 ) = RA_(ii,jj,k);
+            S( 2 ) = RS_(ii,jj,k);
+
+            for i = 1:1:N_-1
+
+                if( ~V_(i,j,k) )
+            
+                    if( jj <= N_-1 )
+            
+                        jj = jj + 1; 
+            
+                        S( 1 ) = S( 1 ) + RA_(ii,jj,k);
+                        S( 2 ) = S( 2 ) + RS_(ii,jj,k);
+            
+                    end           
+            
+                elseif( V_(i,j,k) )
+            
+                    if( ii > 1 && jj <= N_-1 )
+            
+                        ii = ii + 1;
+            
+                        jj = jj + 1;    
+            
+                        S( 1 ) = S( 1 ) + RA_(ii,jj,k);
+                        S( 2 ) = S( 2 ) + RS_(ii,jj,k);
+            
+                    end    
+                end                
+            end
+
+            if( S( 1 ) >= S( 2 ) )
+    
+                S( 2 ) = 0;
+            elseif( S( 1 ) < S( 2 ) )
+            
+                S( 1 ) = S( 2 );
+            end
+            
+            SS_( 2 ) = S( 1 );
+            
+            if( SS_( 1 ) >= SS_( 2 ) )
+            
+                SS_( 2 ) = 0;
+            elseif( SS_( 1 ) < SS_( 2 ) )
+            
+                SS_( 1 ) = SS_( 2 );
+            end
+            H_ = SS_( 1 );
+
+        end
+    end
 end
-
-        
-

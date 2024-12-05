@@ -1,4 +1,4 @@
-function [ H_ ] = dTa( N_, V_, RA_, RS_ )
+function [ H_ ] = dT( N_, V_, RA_, RS_ )
 
     S_(:,:) = squeeze(sum(V_(:,:,:),1)); H_ = 0;
    
@@ -7,7 +7,7 @@ function [ H_ ] = dTa( N_, V_, RA_, RS_ )
         F_(k) = max(find(S_(:,k)));                
     end
 
-    for k = 1:1:ceil(N_/2)-1
+    for k = 1:1:ceil(N_/2)
 
         for j = 2:1:F_(k)
 
@@ -18,8 +18,8 @@ function [ H_ ] = dTa( N_, V_, RA_, RS_ )
 
             ii = 2; jj = 1;
 
-            S( 1 ) = RA_(ii,jj,k+1);
-            S( 2 ) = RS_(ii,jj,k+1);
+            S( 1 ) = RA_(ii,jj,k);
+            S( 2 ) = RS_(ii,jj,k);
 
             for i = 1:1:N_-1
 
@@ -29,8 +29,8 @@ function [ H_ ] = dTa( N_, V_, RA_, RS_ )
             
                         jj = jj + 1; 
             
-                        S( 1 ) = S( 1 ) + RA_(ii,jj,k+1);
-                        S( 2 ) = S( 2 ) + RS_(ii,jj,k+1);
+                        S( 1 ) = S( 1 ) + RA_(ii,jj,k);
+                        S( 2 ) = S( 2 ) + RS_(ii,jj,k);
             
                     end           
             
@@ -42,8 +42,8 @@ function [ H_ ] = dTa( N_, V_, RA_, RS_ )
             
                         jj = jj + 1;    
             
-                        S( 1 ) = S( 1 ) + RA_(ii,jj,k+1);
-                        S( 2 ) = S( 2 ) + RS_(ii,jj,k+1);
+                        S( 1 ) = S( 1 ) + RA_(ii,jj,k);
+                        S( 2 ) = S( 2 ) + RS_(ii,jj,k);
             
                     end    
                 end                
