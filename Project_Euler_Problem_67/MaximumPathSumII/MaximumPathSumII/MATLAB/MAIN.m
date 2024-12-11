@@ -4,13 +4,15 @@ N = 100;
 
 Z = diag(flip(pascal(N),2));
 
+EMAX = log(sum(Z(1:ceil(N/2))))/log(2);
+
 [ RA, RS ] = trellis(); P = 0; K = 1;
 
 for Q = 1:1:ceil(N/2)
 
     while( P < Z(Q) )
 
-        B = permn([0;1],N-1,K); K = K + 1;
+        B(1,:) = permn([0;1],N-1,K); K = K + 1;
 
         if( K == sum(Z(1:ceil(N/2))) )
     
@@ -22,7 +24,9 @@ for Q = 1:1:ceil(N/2)
             P = P + 1;
         end
 
-        if( sum(B) < ceil(N/2) )            
+        B(2,:) = monteCarlo(N,EMAX);
+
+        if( sum(B(1,:)) < ceil(N/2) && sum(B(2,:)) < ceil(N/2) )            
 
             S(2) = dT( N, B, RA, RS );
         end
