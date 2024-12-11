@@ -1,6 +1,6 @@
 clear all; close all; clc; tic;
 
-N = 15;
+N = 100;
 
 Z = diag(flip(pascal(N),2));
 
