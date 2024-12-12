@@ -19,7 +19,7 @@ for Q = 1:1:ceil(N/2)
             break;
         end
 
-        if( sum(B) == Q-1 )
+        if( sum(B(1,:)) == Q-1 )
 
             P = P + 1;
         end
