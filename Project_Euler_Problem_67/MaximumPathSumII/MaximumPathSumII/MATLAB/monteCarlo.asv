@@ -6,7 +6,7 @@ function [ B_ ] = monteCarlo(N_,EMAX_)
 
     else
 
-        OPT = floor(2^EMAX_/2^52);
+        OPT = 2^EMAX_/2^52;
         
         K_ = randi( [0, OPT] ) * randi( [0, 2^52] );
 
