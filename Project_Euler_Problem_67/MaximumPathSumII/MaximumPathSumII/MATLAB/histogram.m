@@ -1,0 +1,28 @@
+function [ F ] = histogram( B_ )
+
+    frameLength = size(B_,2); DATARANGE = size(B_,2);
+
+    F_ = zeros(1,DATARANGE); H = 1;
+
+    for k = 1:1:size(X,2)-1
+        for ii = 1:1:1
+            X_(:,1) = X((ii-1)*frameLength+1:ii*frameLength,k);
+            for j = 0:1:DATARANGE
+                for i = 1:1:size(X_,1)
+                
+                    if( j ==  X_(i,1) )
+
+                        F_(ii,X_(i,1)+1,k) = H;
+                        H = H + 1;
+                    end
+                end 
+                H = 1;
+            end
+        end
+    end
+
+    F = F_;
+
+    F = F ./ frameLength;
+    
+end

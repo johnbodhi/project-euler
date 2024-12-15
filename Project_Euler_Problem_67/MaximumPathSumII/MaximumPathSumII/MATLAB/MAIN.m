@@ -23,6 +23,8 @@ for Q = 1:1:ceil(N/2)
     
             P = P + 1;
         end
+
+        % H = histogram(B(1,:));
     
         B(2,:) = permn([1;0],N-1,T); T = T - 1;
     
