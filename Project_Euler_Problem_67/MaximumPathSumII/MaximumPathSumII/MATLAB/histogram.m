@@ -1,28 +1,25 @@
-function [ F ] = histogram( B_ )
+function [ F_, H_, E_ ] = histogram( B_, H_, E_ )
 
-    frameLength = size(B_,2); DATARANGE = size(B_,2);
+    DATARANGE = size(B_,2);
 
-    F_ = zeros(1,DATARANGE); H = 1;
+    F_ = zeros(1,DATARANGE); H_ = zeros(1,DATARANGE); E_ = zeros(1,DATARNAGE);
+         
+    for j = 0:1:DATARANGE
 
-    for k = 1:1:size(X,2)-1
-        for ii = 1:1:1
-            X_(:,1) = X((ii-1)*frameLength+1:ii*frameLength,k);
-            for j = 0:1:DATARANGE
-                for i = 1:1:size(X_,1)
-                
-                    if( j ==  X_(i,1) )
+        for i = 1:1:size(B_,1)
+        
+            if( B_(i,j) )
 
-                        F_(ii,X_(i,1)+1,k) = H;
-                        H = H + 1;
-                    end
-                end 
-                H = 1;
+                H_(i,j) = H_(i,j) + 1;
+
+                F_(i,j) = H_(i,j);
+
             end
-        end
+
+        end 
+
     end
 
-    F = F_;
+    E_(1,sum(B_,2)) = E_(1,sum(B_,2)) + 1;
 
-    F = F ./ frameLength;
-    
 end

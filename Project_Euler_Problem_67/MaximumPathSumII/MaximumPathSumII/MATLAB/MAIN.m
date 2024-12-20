@@ -1,12 +1,12 @@
 clear all; close all; clc; tic;
 
-N = 100;
+N = 4;
 
 Z = diag(flip(pascal(N),2));
 
 EMAX = log(sum(Z(1:ceil(N/2))))/log(2);
 
-[ RA, RS ] = trellis(); P = 0; K = 1; T = sym(2^EMAX);
+[ RA, RS ] = trellis(); P = 0; K = 1; % T = sym(2^EMAX);
 
 for Q = 1:1:ceil(N/2)
 
@@ -24,13 +24,15 @@ for Q = 1:1:ceil(N/2)
             P = P + 1;
         end
 
-        % H = histogram(B(1,:));
+        % [ F, H, E ] = histogram(B(1,:), H, E_ );
+
+        % [ D ] = CNN( F, H, E );
     
-        B(2,:) = permn([1;0],N-1,T); T = T - 1;
+        % B(2,:) = permn([1;0],N-1,T); T = T - 1;
     
-        B(3,:) = monteCarlo(N,EMAX);
+        B(2,:) = monteCarlo(N,EMAX);
     
-        if( sum(B(1,:)) < ceil(N/2) && sum(B(2,:)) < ceil(N/2) && sum(B(3,:)) < ceil(N/2) )            
+        if( sum(B(1,:)) < ceil(N/2) && sum(B(2,:)) < ceil(N/2) )            
     
             S(2) = dT( N, B, RA, RS );
         end

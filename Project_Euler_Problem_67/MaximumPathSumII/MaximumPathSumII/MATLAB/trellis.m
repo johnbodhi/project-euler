@@ -7,7 +7,7 @@ function [ RA, RS, D ] = trellis()
     N = size(A,1); M = size(A,2);
 
     %{
-    N = 20; M = N; 
+    N = 8; M = N; 
     for j = 1:M
         for i = 1:N
              if( i < j || i == j)
