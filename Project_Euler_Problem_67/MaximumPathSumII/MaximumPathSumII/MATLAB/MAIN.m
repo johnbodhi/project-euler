@@ -35,7 +35,7 @@ for Q = 1:1:ceil(N/2)
            [ F, E ] = allocate( B ); A = 0;
         end
 
-        [ F, E ] = histogram( B(1,:), F, E );
+        [ F, E ] = histogram( B, F, E );
     
         % if( sum(B(1,:)) < ceil(N/2) && sum(B(2,:)) < ceil(N/2) && sum(B(3,:)) < ceil(N/2) ) 
         if( sum(B(1,:)) < ceil(N/2) && sum(B(2,:)) < ceil(N/2) ) 
