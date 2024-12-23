@@ -25,6 +25,10 @@ for Q = 1:1:ceil(N/2)
     
             P = P + 1;
         end
+    
+        % B(2,:) = permn([1;0],N-1,T); T = T - 1;
+    
+        B(2,:) = monteCarlo(N,EMAX);
 
         if ( A )
 
@@ -33,24 +37,13 @@ for Q = 1:1:ceil(N/2)
 
         [ F, E ] = histogram( B(1,:), F, E );
     
-        % B(2,:) = permn([1;0],N-1,T); T = T - 1;
+        % if( sum(B(1,:)) < ceil(N/2) && sum(B(2,:)) < ceil(N/2) && sum(B(3,:)) < ceil(N/2) ) 
+        if( sum(B(1,:)) < ceil(N/2) && sum(B(2,:)) < ceil(N/2) ) 
     
-        B(2,:) = monteCarlo(N,EMAX);
-    
-        if( sum(B(1,:)) < ceil(N/2) && sum(B(2,:)) < ceil(N/2) )            
-    
-            S(2) = dT( N, B, RA, RS );
+            S_(2) = dT( N, B, RA, RS );
         end
-            
-        if( S(1) <= S(2) )
-    
-            S(1) = S(2); S(2) = 0;
-            
-        elseif( S(1) > S(2) )
         
-            S(2) = 0;
-        end
-        H_ = S(1);
+        [ H_, S_ ] = sol( S_ );
     
     end
     P = 0;
