@@ -1,6 +1,6 @@
 clear all; close all; clc; tic;
 
-N = 4;
+N = 100;
 
 Z = diag(flip(pascal(N),2));
 
@@ -9,6 +9,8 @@ EMAX = log(sum(Z(1:ceil(N/2))))/log(2);
 [ RA, RS ] = trellis(); P = 0; K = 1; % T = sym(2^EMAX);
 
 for Q = 1:1:ceil(N/2)
+
+    A = 1;
 
     while( P < Z(Q) )
     
@@ -24,9 +26,12 @@ for Q = 1:1:ceil(N/2)
             P = P + 1;
         end
 
-        % [ F, H, E ] = histogram(B(1,:), H, E_ );
+        if ( A )
 
-        % [ D ] = CNN( F, H, E );
+           [ F, E ] = allocate( B ); A = 0;
+        end
+
+        [ F, E ] = histogram( B(1,:), F, E );
     
         % B(2,:) = permn([1;0],N-1,T); T = T - 1;
     
