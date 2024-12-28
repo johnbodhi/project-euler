@@ -1,4 +1,4 @@
-function [ F_, E_ ] = histogram( B_, F_, E_ )
+function [ F_, E_ ] = histogram( B_, F_, K_ )
 
     for i = 1:1:size(B_,1)
 
@@ -6,7 +6,7 @@ function [ F_, E_ ] = histogram( B_, F_, E_ )
         
             if( B_(i,j) )
 
-                F_(i,j) = F_(i,j) + 1;
+                F_(1,j) = F_(1,j) + 1;
 
             end
 
@@ -14,6 +14,9 @@ function [ F_, E_ ] = histogram( B_, F_, E_ )
 
     end
 
-    E_(1,sum(B_,2)+1) = E_(1,sum(B_,2)+1) + 1;
+    F_(2,sum(B_,2)+1) = F_(2,sum(B_,2)+1) + 1; 
+    
+    % F_(1,:) = F_(1,:) ./ K_;
+    % F_(2,:) = F_(2,:) ./ sum(F_(2,:),2);
 
 end

@@ -8,7 +8,7 @@ EMAX = log(sum(Z(1:ceil(N/2))))/log(2);
 
 [ RA, RS ] = trellis(); P = 0; K = 1; % T = sym(2^EMAX);
 
-for Q = 1:1:ceil(N/2)
+for Q = ceil(N/2):-1:1
 
     A = 1;
 
@@ -32,13 +32,12 @@ for Q = 1:1:ceil(N/2)
 
         if ( A )
 
-           [ F, E ] = allocate( B ); A = 0;
+           [ F ] = allocate( B ); A = 0;
         end
 
-        [ F, E ] = histogram( B, F, E );
-    
-        % if( sum(B(1,:)) < ceil(N/2) && sum(B(2,:)) < ceil(N/2) && sum(B(3,:)) < ceil(N/2) ) 
-        if( sum(B(1,:)) < ceil(N/2) && sum(B(2,:)) < ceil(N/2) ) 
+        [ F ] = histogram( B, F, K );
+
+        if( sum(B(1,:)) < ceil(N/2) && sum(B(2,:)) < ceil(N/2) )
     
             S_(2) = dT( N, B, RA, RS );
         end
