@@ -4,7 +4,7 @@ N = 100;
 
 Z = diag(flip(pascal(N),2));
 
-EMAX = log(sum(Z(1:ceil(N/2))))/log(2);
+EMAX = log( sum( Z(1:ceil( N / 2 ) ) ) ) / log( 2 );
 
 [ RA, RS ] = trellis(); P = 0; K = 1; % T = sym(2^EMAX);
 
@@ -51,6 +51,7 @@ for Q = ceil(N/2):-1:1
     
         break;
     end
+
 end
 
 toc;
