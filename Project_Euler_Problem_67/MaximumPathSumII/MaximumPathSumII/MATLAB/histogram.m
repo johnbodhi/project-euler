@@ -1,4 +1,4 @@
-function [ F_, E_ ] = histogram( B_, F_, K_ )
+function [ F_ ] = histogram( B_, F_ )
 
     for i = 1:1:size(B_,1)
 
