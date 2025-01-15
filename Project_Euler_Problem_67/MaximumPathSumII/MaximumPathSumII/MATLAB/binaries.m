@@ -1,6 +1,6 @@
 clc; close all; clear all; tic;
 
-N = 15; M = N;
+N = 20; M = N;
 
 Z = diag( flip( pascal( N ), 2 ) );
 
@@ -8,7 +8,7 @@ qq = 0; pp = 0; kk = 1;
 for i = 1:1:ceil(N/2)
     while( pp < Z(i,1) )
 
-        B = permn([0;1],M-1,kk);
+        B = permn([0;1],N-1,kk);
 
         if( sum(B,2) == qq )
     

@@ -65,7 +65,7 @@ function [ S_ ] = BiCGSTAB_( A, ~, B )
         WALK_(j,1) = sum(W_,1);
     end
 
-    Z_ = min(WALK_);    
+    % Z_ = min(WALK_);    
 
     [ ~, Z ] = min(S(BPI(1,1):BPI(1,2),1)); % Decisions are not constrained to groups. 
 
@@ -77,4 +77,5 @@ function [ S_ ] = BiCGSTAB_( A, ~, B )
 
         Z = BPI(1,2);        
     end
+
 end

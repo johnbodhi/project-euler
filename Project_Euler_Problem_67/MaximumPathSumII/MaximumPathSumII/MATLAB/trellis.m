@@ -96,4 +96,5 @@ function [ RA, RS, D ] = trellis()
     end    
     RA = circshift(RA,1,1);
     RS = circshift(RS,1,1);
+    
 end

@@ -26,7 +26,7 @@ function [ RA ] = CNN( A_ )
 
     CONTAINMENT = floor( 0.50 * N );
     
-    V   = zeros(N-CONTAINMENT,M);
+    V   = zeros(N-CONTAINMENT, M);
     
     IT  = size(V,1)^M;
     
