@@ -66,16 +66,16 @@ function [ S_ ] = BiCGSTAB_( A, ~, B )
     end
 
     % Z_ = min(WALK_);    
-
-    [ ~, Z ] = min(S(BPI(1,1):BPI(1,2),1)); % Decisions are not constrained to groups. 
-
-    if( Z == 1 )
-
-        Z = BPI(1,1);
-
-    elseif ( Z == 2 )
-
-        Z = BPI(1,2);        
-    end
+    % 
+    % [ ~, Z ] = min(BPI(1,1):BPI(1,2),1); % Decisions are not constrained to groups. 
+    % 
+    % if( Z == 1 )
+    % 
+    %     Z = BPI(1,1);
+    % 
+    % elseif ( Z == 2 )
+    % 
+    %     Z = BPI(1,2);        
+    % end
 
 end

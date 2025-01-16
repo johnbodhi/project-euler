@@ -1,6 +1,6 @@
 clc; close all; clear all; tic;
 
-N = 20; M = N;
+N = 10; M = N;
 
 Z = diag( flip( pascal( N ), 2 ) );
 
@@ -14,7 +14,7 @@ for i = 1:1:ceil(N/2)
     
             pp = pp + 1;
 
-            % V_(:,pp,i)     = B;            
+            % V_(:,pp,i)     = B;           
             % V_(1:M-1,pp,i) = B;
             % V_(M,pp,i)     = kk;
             V_(i,pp)         = kk;
