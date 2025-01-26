@@ -53,10 +53,11 @@ function [ S_ ] = BiCGSTAB_( A, ~, B )
                 P(i,1)   = R(i,1) + BETA * ( P(i,1) - OMEGA * C(i,1) );
             
                 RHO(1,1) = RHO(1,2);
+
                             
                 S_ = S_ + 1;
             end 
-            TOL = 1; W_(ii,1) = S_; 
+            TOL = 1; W_(ii,1) = S_;
 
             S_ = 0; ii = ii + 1;
 
