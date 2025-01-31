@@ -18,5 +18,4 @@ function [ F_ ] = histogram( B_, F_ )
     
     % F_(1,:) = F_(1,:) ./ K_;
     % F_(2,:) = F_(2,:) ./ sum(F_(2,:),2);
-
 end

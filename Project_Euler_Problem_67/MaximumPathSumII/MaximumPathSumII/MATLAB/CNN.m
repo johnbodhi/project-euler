@@ -51,7 +51,7 @@ function [ RA ] = CNN( A_ )
 
             B(aa,1) = 1;
 
-            for q = 1:1:N 
+            for q = 1:1:N
                 
                 % We can utilize Monte Carlo methods
                 % in a stencil to hasten convergence.
@@ -112,7 +112,7 @@ function [ RA ] = CNN( A_ )
                     % prior classification segment contained in the filter
                     % manifold...
                     
-                    WALK_( jj, 1 ) = BiCGSTAB_( RA(BPI(1,1),:,:), [], RA(BPI(1,2),:,:) ); jj = jj + 1;
+                    WALK_( jj ) =  BiCGSTAB_( RA(BPI(1,1),:,:), [], RA(BPI(1,2),:,:) ); jj = jj + 1; 
 
                     % We need to reinforce exlusivity of the samples 
                     % in the averages comprising the filter.
@@ -160,8 +160,7 @@ function [ RA ] = CNN( A_ )
 
                         X_(jj,1:end-1,1) = RA(:,:,:);
                     end
-
-          
+   
                     if( q == N )
                         
                         [ ~, I ]  = min( WALK_(:,1) );

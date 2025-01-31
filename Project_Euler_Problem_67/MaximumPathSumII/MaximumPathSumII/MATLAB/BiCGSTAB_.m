@@ -1,6 +1,6 @@
 function [ H_ ] = BiCGSTAB_( A, ~, B )
 
-    TOL = 1; LIMIT = 1e-2; S_ = 0; 
+    TOL = 1; LIMIT = 1e-2; S_ = zeros(2,1); 
 
     for j = 1:1:size(RA,1)
         
@@ -53,11 +53,10 @@ function [ H_ ] = BiCGSTAB_( A, ~, B )
                 RHO(1,1) = RHO(1,2);
 
                             
-                S_ = S_ + 1;
+                S_(2,1) = S_(2,1) + 1;
             end
             
-            [ H_, S_ ] = sol( S_ ); TOL = 1; 
-
+            [ H_, S_ ] = sol( S_ ); TOL = 1;
         end
 
     end
