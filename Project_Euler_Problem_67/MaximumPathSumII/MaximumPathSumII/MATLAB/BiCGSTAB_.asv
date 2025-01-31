@@ -1,4 +1,6 @@
-function [ H_ ] = BiCGSTAB_( A, ~, B )
+function [ S_ ] = BiCGSTAB_( A, ~, B )
+    
+    global TOL LIMIT RA BPI
 
     TOL = 1; LIMIT = 1e-2; S_ = 0; 
 
@@ -54,9 +56,12 @@ function [ H_ ] = BiCGSTAB_( A, ~, B )
 
                             
                 S_ = S_ + 1;
-            end
+            end 
+            TOL = 1; 
+
+            % S_ = 0; 
             
-            [ H_, S_ ] = sol( S_ ); TOL = 1; 
+            ii = ii + 1;
 
         end
 
