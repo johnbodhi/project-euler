@@ -3,10 +3,8 @@ function [ RA ] = CNN( A_ )
     ii = 2; ij = 3;
 
     BPI = [ ii ij ];
-    
 
     classType = [ 0 0 ]; classGroups = [ 0 0 0 ];
-
    
     N   = size(classType,2);
     
@@ -32,7 +30,6 @@ function [ RA ] = CNN( A_ )
     
     
     B   = zeros(N,M);
-
     
     X   = zeros(N,BINS+1,2);
     
