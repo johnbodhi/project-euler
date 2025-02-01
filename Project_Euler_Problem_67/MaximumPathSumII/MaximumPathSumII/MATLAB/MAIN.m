@@ -26,7 +26,7 @@ for Q = ceil(N/2):-1:1
             P = P + 1;
         end
     
-        % B(2,:) = permn([1;0],N-1,T); T = T - 1;
+        % B(2,:) = permn([1;0],N-1,T); T = T - 1; % Slow...
     
         B(2,:) = monteCarlo(N,EMAX);
 

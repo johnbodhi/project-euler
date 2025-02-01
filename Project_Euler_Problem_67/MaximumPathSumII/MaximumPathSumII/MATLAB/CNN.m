@@ -75,7 +75,9 @@ function [ RA ] = CNN( A_ )
 
                 if( ACC >= T )
                 
-                    X(BPI(1,1),1:end-1,1) = RA(:,:,:); aa_ = aa; 
+                    X(BPI(1,1),1:end-1,1) = RA(:,:,:); aa_ = aa;
+
+                    [ X ] = subGradient( X );
 
                     Q = X; % Filter reset.
                 end
