@@ -1,5 +1,6 @@
 function [ X ] = subGradient( RA_ )
 
+    ss = 0; jj = 1;
                     
     W_( jj ) =  BiCGSTAB_( RA_(BPI(1,1),:,:), [], [] ); jj = jj + 1; 
 

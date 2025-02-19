@@ -3,24 +3,23 @@ function [ RA ] = CNN( A_ )
     ii = 2; ij = 3;
 
     BPI = [ ii ij ];
-    
+
 
     classType = [ 0 0 ]; classGroups = [ 0 0 0 ];
 
    
     N   = size(classType,2);
     
-    M   = size(A_,2); 
+    M   = size(classGroups,2);
 
-    O   = size(classGroups,2);
+    O   = size(A_,1); 
+
+    P   = size(A_,2);
 
 
-    F = zeros(N,M,O);
-    
-
-    for j = 1:1:M
+    for j = 1:1:O
            
-        TL_(:,j) = (1:1:size(A_,1)); % Sample tracking labels (supervision).
+        TL_(:,j) = (1:1:O); % Sample tracking labels (supervision).
     end
 
 
@@ -31,10 +30,10 @@ function [ RA ] = CNN( A_ )
     IT  = size(V,1)^M;
     
     
-    B   = zeros(N,M);
+    B   = zeros(size(A_,1),N);
 
     
-    X   = zeros(N,BINS+1,2);
+    X   = zeros(N,M+1,O);
     
 
     % Convolution with a sub-gradient!!
@@ -42,9 +41,6 @@ function [ RA ] = CNN( A_ )
     aa = 1; bb = 1; 
     
     T  = 1.0;
-    
-    ss = 0; jj = 1;
-
 
     while( sum(sum(B,1),2) < IT )
 
