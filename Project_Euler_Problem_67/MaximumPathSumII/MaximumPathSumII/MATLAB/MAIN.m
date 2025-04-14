@@ -6,11 +6,11 @@ Z = diag(flip(pascal(N),2));
 
 EMAX = log(sum(Z(1:ceil(N/2)))) / log( 2 );
 
-[ RA, RS ] = trellis(); P = 0; K = 1; % T = sym(2^EMAX);
+[ RA, RS ] = trellis(); K = 1; P = 0; MOD = 1; % T = sym(2^EMAX); 
 
 for Q = ceil(N/2):-1:1
 
-    A = 1;
+    A = 1; D = 1;
 
     while( P < Z(Q) )
     
@@ -24,22 +24,33 @@ for Q = ceil(N/2):-1:1
         if( sum(B(1,:)) == Q-1 )
     
             P = P + 1;
-        end
-    
-        % B(2,:) = permn([1;0],N-1,T); T = T - 1; % Slow...
-    
+        end      
+
         B(2,:) = monteCarlo(N,EMAX);
 
         if ( A )
 
-           [ F ] = allocate( B ); A = 0;
+            [ B, ~, STT, SP ] = allocate( N, Q, MOD, B );
+        end       
+
+        [ B(3,:), F, STT, SP ] = DNN( N, Q, B(3,:), STT, SP );
+
+        % B(4,:) = permn([1;0],N-1,T); T = T - 1; % Slow...  
+
+        % M = (0:1:MOD)';
+
+        % B(5,:) = permn(M,N-1,D); D = D + 1;
+
+        if ( A )
+
+           [ ~, F, ~, ~ ] = allocate( N, Q, MOD, B ); A = 0;
         end
 
         [ F ] = histogram( B, F );
 
-        if( sum(B(1,:)) < ceil(N/2) && sum(B(2,:)) < ceil(N/2) )
+        if( sum(B(1,:)) < ceil(N/2) && sum(B(2,:)) < ceil(N/2) && sum(B(3,:)) < ceil(N/2) )
     
-            S_(2) = dT( N, B, RA, RS );
+            S_(2) = pAdicDT( N, B, RA, RS );
         end
         
         [ H_, S_ ] = sol( S_ );
@@ -48,9 +59,10 @@ for Q = ceil(N/2):-1:1
     P = 0;
 
     if( K == sum(Z(1:ceil(N/2))) )
-    
+
         break;
     end
 
 end
 toc;
+

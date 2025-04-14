@@ -31,7 +31,6 @@ function [ RA ] = CNN( A_ )
     
     
     B   = zeros(size(A_,1),N);
-
     
     X   = zeros(N,M+1,O);
     
@@ -72,7 +71,9 @@ function [ RA ] = CNN( A_ )
 
                 if( ACC >= T )
                 
-                    X(BPI(1,1),1:end-1,1) = RA(:,:,:); aa_ = aa;
+                    X(BPI(1,1),1:end-1,1) = RA(:,:,:); 
+                    
+                    aa_ = aa;
 
                     [ X ] = subGradient( X );
 
@@ -119,6 +120,7 @@ function [ RA ] = CNN( A_ )
             bb = bb + 1; aa = 1; 
             
         end
+        
         % We need to increment the backpropagation indexes by two for the
         % next set of comparisons, and reset the dual space walk index.
         ii = ii + 2; ij = ij + 2; jj = 1;
