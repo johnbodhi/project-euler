@@ -38,14 +38,14 @@ function [ S_ ] = pAdicDT( B_, S_ )
 
             elseif( B_(i,j) == P-7 )
 
-                if( ii > 1 && jj <= N_-1 )
+                if( ii > 1 && jj <= N_-1 && kk <= N_-1 )
 
                     ii = ii + 1;
 
                     jj = jj + 1; 
 
                     kk = kk + 1;
-                    
+
 
                           
                 end   

@@ -1,16 +1,20 @@
 clear all; close all; clc; tic;
 
+
 N = 100;
+
+[ RA, RS ] = trellis(); 
 
 Z = diag(flip(pascal(N),2));
 
-EMAX = log(sum(Z(1:ceil(N/2)))) / log( 2 );
+EMAX = log(sum(Z(1:ceil(N/2)))) / log( 2 ); % T = sym(2^EMAX);
 
-[ RA, RS ] = trellis(); K = 1; P = 0; MOD = 1; % T = sym(2^EMAX); 
+K = 1; P = 0; MOD = 1; 
+
 
 for Q = ceil(N/2):-1:1
 
-    A = 1; D = 1;
+    A = 1;
 
     while( P < Z(Q) )
     
@@ -20,18 +24,18 @@ for Q = ceil(N/2):-1:1
     
             break;
         end
-    
+
         if( sum(B(1,:)) == Q-1 )
     
             P = P + 1;
-        end      
+        end
 
         B(2,:) = monteCarlo(N,EMAX);
 
         if ( A )
 
             [ B, ~, STT, SP ] = allocate( N, Q, MOD, B );
-        end       
+        end
 
         [ B(3,:), F, STT, SP ] = DNN( N, Q, B(3,:), STT, SP );
 
