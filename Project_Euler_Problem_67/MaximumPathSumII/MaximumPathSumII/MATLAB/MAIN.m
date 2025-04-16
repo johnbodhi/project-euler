@@ -36,7 +36,7 @@ for Q = ceil(N/2):-1:1
             [ B, ~, STT, SP ] = allocate( N, Q, MOD, B );
         end
 
-        [ B(3,:), F, STT, SP ] = DNN( N, Q, B(3,:), STT, SP );
+        [ B(3,:), ~, STT, SP ] = DNN( N, Q, B(3,:), STT, SP );
 
         % B(4,:) = permn([1;0],N-1,T); T = T - 1; % Slow...  
 

@@ -1,9 +1,9 @@
 function [ B_, STT_, SP_ ] = DNN( N_, Q_, B_, STT_, SP_ )
 
 
-        INF = 10; SUP = 10; C = zeros(1,INF+SUP+N_);
-
-        C(1,INF+1:1:SUP-1) = B_(3,:);
+        % INF = 10; SUP = 10; C = zeros(1,INF+SUP+N_);
+        % 
+        % C(1,INF+1:1:SUP-1) = B_;
         
         for jbx = STT_(49):1:N_-50
             for jbw = STT_(48):1:N_-49
@@ -53,74 +53,24 @@ function [ B_, STT_, SP_ ] = DNN( N_, Q_, B_, STT_, SP_ )
                                                                                                                                                                                             for jae = STT_(5):1:N_-5
                                                                                                                                                                                                 for jad = STT_(4):1:N_-4
                                                                                                                                                                                                     for jac = STT_(3):1:N_-3                                                                                                                                                                                     
-                                                                                                                                                                                                        for jab = STT_(2):1:N_-2                                                                                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                        for jab = STT_(2):1:N_-2
+
+                                                                                                                                                                                                            [ B_ ] = bitCoffee( Q_, jab, B_, SP_ );
+
+                                                                                                                                                                                                            if( sum(B_) == Q_ )
+                                                                                                                                                                                                            
+                                                                                                                                                                                                                return
+                                                                                                                                                                                                            end
+
+                                                                                                                                                                                                            
                                                                                                                                                                                                             for jaa = STT_(1):1:N_-1
-                                                                                                                                                                                                                  
-                                                                                                                                                                                                                if( B_(3,jaa) && ~SP(B_(3,:),jaa) && ~B_(3,jaa+1) && ~SP(B_(3,:),jaa+1)  )                                                                                                                                                                                             
-                                                                                                                                                                                            
-                                                                                                                                                                                                                      B_(3,jaa+1) = B_(3,jaa);
+                                                                                                                                                                                                            
+                                                                                                                                                                                                                [ B_ ] = bitCoffee( Q_, jaa, B_, SP_ );
 
-                                                                                                                                                                                                                      B_(3,jaa)   = 0;
-
-                                                                                                                                                                                                                      if( sum(B_(3,:)) == Q )
-
-                                                                                                                                                                                                                        return
-                                                                                                                                                                                                                      end
-                                                                                                                                                                                                                      
-                                                                                                                                                                                                                elseif( B_(3,jaa) && SP(B_(3,:),jaa) && ~B_(3,jaa+1) && ~SP(B_(3,:),jaa+1))
-
-                                                                                                                                                                                                                      [~,J,K] = find(SP_(:,jaa),1,'last');
-
-                                                                                                                                                                                                                      B_(3,jaa+1  ) = J;                                                                                                                                                                                                                             
-
-                                                                                                                                                                                                                      SP_( J, jaa ) = K - 1;
-
-                                                                                                                                                                                                                      [~,J,~] = find(SP_(:,jaa),1,'last');
-
-                                                                                                                                                                                                                      B_(3,jaa) = J;                                                                                                                                                                                                                                                                                                                                                                                                          
-
-                                                                                                                                                                                                                      if( sum(B_(3,:)) == Q )
-
-                                                                                                                                                                                                                        return
-                                                                                                                                                                                                                      end                                                                                                                         
-
-                                                                                                                                                                                                                elseif( B_(3,jaa) && ~SP(B_(3,:),jaa) && B_(3,jaa+1) && ~SP(B_(3,:),jaa+1))
-
-
-                                                                                                                                                                                                                      if( sum(B_(3,:)) == Q )
-
-                                                                                                                                                                                                                        return
-                                                                                                                                                                                                                      end
+                                                                                                                                                                                                                if( sum(B_) == Q_ )
                                                                                                                                                                                                                 
-                                                                                                                                                                                                                elseif( B_(3,jaa) && SP(B_(3,:),jaa) && B_(3,jaa+1) && ~SP(B_(3,:),jaa+1) )
-
-                                                                                                                                                                                                                 
-
-                                                                                                                                                                                                                      if( sum(B_(3,:)) == Q )
-
-                                                                                                                                                                                                                        return
-                                                                                                                                                                                                                      end
-
-                                                                                                                                                                                                                elseif( B_(3,jaa) && ~SP(B_(3,:),jaa) && B_(3,jaa+1) && SP(B_(3,:),jaa+1) )
-
-
-
-                                                                                                                                                                                                                      if( sum(B_(3,:)) == Q )
-
-                                                                                                                                                                                                                        return
-                                                                                                                                                                                                                      end
-
-                                                                                                                                                                                                                elseif( B_(3,jaa) && SP(B_(3,:),jaa) && B_(3,jaa+1) && SP(B_(3,:),jaa+1)  )   
-
-
-
-                                                                                                                                                                                                                      if( sum(B_(3,:)) == Q )
-
-                                                                                                                                                                                                                        return
-                                                                                                                                                                                                                      end
-
-                                                                                                                                                                                                                end                                                                                                                                                                                                                                                                                                                                                                                                                           
-                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                    return
+                                                                                                                                                                                                                end                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
                                                                                                                                                                                                             end
                                                                                                                                                                                                         end
                                                                                                                                                                                                     end
@@ -158,7 +108,7 @@ function [ B_, STT_, SP_ ] = DNN( N_, Q_, B_, STT_, SP_ )
                                                                     end
                                                                 end
                                                             end
-                                                        end'
+                                                        end
                                                     end
                                                 end
                                             end
