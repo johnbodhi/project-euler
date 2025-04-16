@@ -82,28 +82,9 @@ function [ B_, STT_, SP_ ] = DNN( N_, Q_, B_, STT_, SP_ )
                                                                                                                                                                                                                       if( sum(B_(3,:)) == Q )
 
                                                                                                                                                                                                                         return
-                                                                                                                                                                                                                      end
-
-                                                                                                                                                                                                                elseif( B_(3,jaa) && ~SP(B_(3,:),jaa) && ~B_(3,jaa+1) && SP(B_(3,:),jaa+1))
-
-                                                                                                                                                                                                                      
-                                                                                                                                                                                                                      if( sum(B_(3,:)) == Q )
-
-                                                                                                                                                                                                                        return
-                                                                                                                                                                                                                      end
-
-                                                                                                                                                                                                                elseif( B_(3,jaa) && SP(B_(3,:),jaa) && ~B_(3,jaa+1) && SP(B_(3,:),jaa+1) )
-
-                                                                                                                                                                                                                     
-
-
-                                                                                                                                                                                                                      if( sum(B_(3,:)) == Q )
-
-                                                                                                                                                                                                                        return
-                                                                                                                                                                                                                      end
+                                                                                                                                                                                                                      end                                                                                                                         
 
                                                                                                                                                                                                                 elseif( B_(3,jaa) && ~SP(B_(3,:),jaa) && B_(3,jaa+1) && ~SP(B_(3,:),jaa+1))
-
 
 
                                                                                                                                                                                                                       if( sum(B_(3,:)) == Q )
@@ -137,7 +118,7 @@ function [ B_, STT_, SP_ ] = DNN( N_, Q_, B_, STT_, SP_ )
 
                                                                                                                                                                                                                         return
                                                                                                                                                                                                                       end
-                                                                                                                                                                                                                      
+
                                                                                                                                                                                                                 end                                                                                                                                                                                                                                                                                                                                                                                                                           
                                                                                                                                                                                                                                                                                                 
                                                                                                                                                                                                             end

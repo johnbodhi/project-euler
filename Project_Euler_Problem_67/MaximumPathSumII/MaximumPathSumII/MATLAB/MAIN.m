@@ -11,7 +11,6 @@ EMAX = log(sum(Z(1:ceil(N/2)))) / log( 2 ); % T = sym(2^EMAX);
 
 K = 1; P = 0; MOD = 1; 
 
-
 for Q = ceil(N/2):-1:1
 
     A = 1;
