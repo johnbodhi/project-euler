@@ -1,6 +1,5 @@
 function [ B_, STT_, SP_ ] = DNN( N_, Q_, B_, STT_, SP_ )
 
-
         % INF = 10; SUP = 10; C = zeros(1,INF+SUP+N_);
         % 
         % C(1,INF+1:1:SUP-1) = B_;
@@ -52,20 +51,35 @@ function [ B_, STT_, SP_ ] = DNN( N_, Q_, B_, STT_, SP_ )
                                                                                                                                                                                         for jaf = STT_(6):1:N_-6
                                                                                                                                                                                             for jae = STT_(5):1:N_-5
                                                                                                                                                                                                 for jad = STT_(4):1:N_-4
-                                                                                                                                                                                                    for jac = STT_(3):1:N_-3                                                                                                                                                                                     
+
+                                                                                                                                                                                                    [ B_ ] = bitCoffee( jad, B_, SP_ );
+
+                                                                                                                                                                                                    if( sum(B_) == Q_ )
+                                                                                                                                                                                                    
+                                                                                                                                                                                                        return
+                                                                                                                                                                                                    end
+
+                                                                                                                                                                                                    for jac = STT_(3):1:N_-3 
+
+                                                                                                                                                                                                        [ B_ ] = bitCoffee( jac, B_, SP_ );
+
+                                                                                                                                                                                                        if( sum(B_) == Q_ )
+                                                                                                                                                                                                        
+                                                                                                                                                                                                            return
+                                                                                                                                                                                                        end
+
                                                                                                                                                                                                         for jab = STT_(2):1:N_-2
 
-                                                                                                                                                                                                            [ B_ ] = bitCoffee( Q_, jab, B_, SP_ );
+                                                                                                                                                                                                            [ B_ ] = bitCoffee( jab, B_, SP_ );
 
                                                                                                                                                                                                             if( sum(B_) == Q_ )
                                                                                                                                                                                                             
                                                                                                                                                                                                                 return
                                                                                                                                                                                                             end
-
                                                                                                                                                                                                             
                                                                                                                                                                                                             for jaa = STT_(1):1:N_-1
                                                                                                                                                                                                             
-                                                                                                                                                                                                                [ B_ ] = bitCoffee( Q_, jaa, B_, SP_ );
+                                                                                                                                                                                                                [ B_ ] = bitCoffee( jaa, B_, SP_ );
 
                                                                                                                                                                                                                 if( sum(B_) == Q_ )
                                                                                                                                                                                                                 
