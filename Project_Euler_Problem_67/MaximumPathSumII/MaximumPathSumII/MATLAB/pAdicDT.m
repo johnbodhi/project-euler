@@ -31,13 +31,11 @@ function [ H_ ] = pAdicDT( N_, B_, RA_, RS_ )
                     jj = jj + 1;    
         
                     S_( 1 ) = S_( 1 ) + RA_(ii,jj,k);
-                    S_( 2 ) = S_( 2 ) + RS_(ii,jj,k);            
-                end 
-
-            end
-
+                    S_( 2 ) = S_( 2 ) + RS_(ii,jj,k);          
+                end
+            end           
         end
+        [ H_ ] = sol( S_ );
      end
-     [ H_, ~ ] = sol( S_ );
 
 end
