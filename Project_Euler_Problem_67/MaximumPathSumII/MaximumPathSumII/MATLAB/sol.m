@@ -1,6 +1,6 @@
-function [ H_, S_ ] = sol( S_ )
+function [ Y_ ] = sol( X_ )
 
-    MIN = 1; MAX = 1;
+    MIN = 1; MAX = 1; S_ = X_;
 
     if( MAX )
 
@@ -12,9 +12,20 @@ function [ H_, S_ ] = sol( S_ )
     
             S_(2) = 0;
         end
-        H_(1) = S_(1);
+        H_(1) = S_(1);        
+
+        if( Y_(1) <= H_(1) )
+    
+            H_(1) = 0;
+    
+        elseif( Y_(1) > H_(2) )
+    
+            Y_(1) = H_(1); H_(1) = 0;
+        end
 
     end
+
+    S_ = X_;
 
     if( MIN )
     
@@ -28,6 +39,15 @@ function [ H_, S_ ] = sol( S_ )
         end
         H_(2) = S_(1);
 
-    end
+        if( Y_(2) <= H_(2) )
+    
+            H_(2) = 0;
+    
+        elseif( Y_(2) > H_(2) )
+    
+            Y_(2) = H_(2); H_(2) = 0;
+        end
+
+    end    
 
 end
