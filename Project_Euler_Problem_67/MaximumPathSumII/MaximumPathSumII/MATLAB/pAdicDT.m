@@ -1,4 +1,4 @@
-function [ H_ ] = pAdicDT( N_, B_, RA_, RS_ )
+function [ H_ ] = pAdicDT( N_, B_, RA_, RS_, F_ )
 
      for i = 1:1:size(B_,1)
 
@@ -35,7 +35,7 @@ function [ H_ ] = pAdicDT( N_, B_, RA_, RS_ )
                 end
             end           
         end
-        [ H_ ] = sol( S_ );
+        [ H_ ] = sol( S_, F_ );
      end
 
 end
