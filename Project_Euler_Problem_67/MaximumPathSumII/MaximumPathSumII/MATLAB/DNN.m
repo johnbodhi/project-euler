@@ -1,8 +1,8 @@
 function [ B_, STT_, SP_ ] = DNN( N_, Q_, B_, STT_, SP_ )
 
-        % INF = 10; SUP = 10; C = zeros(1,INF+SUP+N_);
-        % 
-        % C(1,INF+1:1:SUP-1) = B_;
+        INF = 10; SUP = 10; C = zeros(1,INF+SUP+N_);
+
+        C(1,INF+1:1:SUP-1) = B_;
         
         for jbx = STT_(49):1:N_-50
             for jbw = STT_(48):1:N_-49
@@ -50,6 +50,14 @@ function [ B_, STT_, SP_ ] = DNN( N_, Q_, B_, STT_, SP_ )
                                                                                                                                                                                     for jag = STT_(7):1:N_-7
                                                                                                                                                                                         for jaf = STT_(6):1:N_-6
                                                                                                                                                                                             for jae = STT_(5):1:N_-5
+
+                                                                                                                                                                                                [ B_ ] = bitCoffee( jae, B_, SP_ );
+
+                                                                                                                                                                                                if( sum(B_) == Q_ )
+                                                                                                                                                                                                
+                                                                                                                                                                                                    return
+                                                                                                                                                                                                end
+
                                                                                                                                                                                                 for jad = STT_(4):1:N_-4
 
                                                                                                                                                                                                     [ B_ ] = bitCoffee( jad, B_, SP_ );
