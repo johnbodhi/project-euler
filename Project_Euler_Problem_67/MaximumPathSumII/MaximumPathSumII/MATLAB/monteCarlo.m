@@ -2,13 +2,13 @@ function [ B_ ] = monteCarlo(N_,EMAX_)
 
     if( 2^EMAX_ <= 2^52 )
 
-        K_ = randi( [0, floor(2^EMAX_)] );
+        K_ = randi( [1, floor(2^EMAX_)] );
 
     else
 
         OPT = floor(2^EMAX_/2^52);
         
-        K_ = randi( [0, OPT] ) * randi( [0, 2^52] );
+        K_ = randi( [1, OPT] ) * randi( [1, 2^52] );
 
     end
 

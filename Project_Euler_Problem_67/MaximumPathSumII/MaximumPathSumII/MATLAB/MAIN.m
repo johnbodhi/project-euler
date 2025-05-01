@@ -14,25 +14,23 @@ F = [ -1 10000 ];
 
 for Q = ceil(N/2):-1:1
 
-    A = 1;
-
     while( P < Z(Q) )
     
         B(1,:) = permn([0;1],N-1,K); K = K + 1;
 
         B(2,:) = monteCarlo(N,EMAX);
 
-        % B(3,:) = permn([1;0],N-1,T); T = T - 1; % Slow...  
+        % B(3,:) = permn([1;0],N-1,T); T = T - 1; % Slow... 
     
-        if( K == sum(Z(1:ceil(N/2))) )
-    
+        if( K == sum(Z(1:ceil(N/2)))+1 )
+
             break;
         end
 
         if( sum(B(1,:)) == Q-1 )
     
             P = P + 1;
-        end       
+        end 
 
         if( sum(B(1,:)) < ceil(N/2) && sum(B(2,:)) < ceil(N/2) )
     
@@ -42,9 +40,10 @@ for Q = ceil(N/2):-1:1
     end
     P = 0;
 
-    if( K == sum(Z(1:ceil(N/2))) )
+    if( K == sum(Z(1:ceil(N/2)))+1 )
 
         break;
     end
+
 end
 toc;
