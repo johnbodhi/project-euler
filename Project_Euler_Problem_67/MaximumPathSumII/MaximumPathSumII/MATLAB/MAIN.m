@@ -20,7 +20,7 @@ for Q = ceil(N/2):-1:1
 
         B(2,:) = monteCarlo(N,EMAX);
 
-        % B(3,:) = permn([1;0],N-1,T); T = T - 1; % Slow... 
+        % B(3,:) = permn([0;1],N-1,T); T = T - 1; % Slow... 
     
         if( K == sum(Z(1:ceil(N/2)))+1 )
 
