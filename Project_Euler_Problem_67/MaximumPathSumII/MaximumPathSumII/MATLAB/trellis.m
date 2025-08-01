@@ -1,8 +1,8 @@
-function [ RA, RS, D ] = trellis()
+function [ RA, RS, RAF, RSF, N ] = trellis()
     
     % A = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_tiny.csv");
-    % A = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_small.csv"); 
-    A = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_large.csv");    
+    A = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_small.csv"); 
+    % A = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_large.csv");    
     
     N = size(A,1); M = size(A,2);
 
@@ -67,18 +67,19 @@ function [ RA, RS, D ] = trellis()
     %                 end
     % 
     %             end
+    % 
     %         end
     %     end
     % end
 
     % save("D.mat","D");
-     
+
     D = load("D.mat"); D = D.D;
     
     D = flip(D,2);
     
-    RA = zeros(N,M); 
-    RS = zeros(N,M);
+    RA  = zeros(N,M);
+    RS  = zeros(N,M);
     
     for k = 1:ceil(size(D,3)/2)
         for j = 1:size(D,2)
@@ -94,7 +95,16 @@ function [ RA, RS, D ] = trellis()
             end
         end
     end
-    RA = circshift(RA,1,1);
-    RS = circshift(RS,1,1);
-    
+
+    % We can fold the trellis for a second time, allowing us to reduce the
+    % number of directives necessary to search the leafs by half.
+
+    RA  = circshift(RA,1,1);
+    RAF = flip(RA,2);
+    RAF = swap(RAF);
+
+    RS  = circshift(RS,1,1);
+    RSF = flip(RS,2);
+    RSF = swap(RSF);
+
 end

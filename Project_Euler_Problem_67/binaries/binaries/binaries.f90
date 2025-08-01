@@ -5,7 +5,7 @@ implicit none
 real                                 :: t,t_(2),t1,t2
 
 
-integer, parameter                   :: N = 31, M = N
+integer, parameter                   :: N = 21, M = N
 
 integer, parameter                   :: LL = N-2
 

@@ -4,21 +4,29 @@ function [ F_ ] = sol( X_, F_ )
     
     S_ = X_;
 
+    % We need to window the min / max process since there are more than one
+    % folds in the tree.
+
     if( MAX )
 
-        if( S_(1) <= S_(2) )
-    
-            S_(1) = S_(2); S_(2) = 0;
-    
-        elseif( S_(1) > S_(2) )
-    
-            S_(2) = 0;
-        end
-        Y_(1) = S_(1);
+        for j = 2:1:size(S_,2)
 
-        if( Y_(1) >= F_(1) )
+            if( S_(j-1) <= S_(j) )
+        
+                S_(j-1) = S_(j); S_(j) = 0;
+        
+            elseif( S_(j-1) > S_(j) )
+        
+                S_(j) = 0;
+            end
+            Y_(1) = S_(j-1);
+    
+            if( Y_(1) >= F_(1) )
+    
+                F_(1) = Y_(1);
+            end
+            S_ = X_;
 
-            F_(1) = Y_(1);
         end
 
     end
@@ -26,21 +34,25 @@ function [ F_ ] = sol( X_, F_ )
     S_ = X_;
 
     if( MIN )
-    
-        if( S_(1) <= S_(2) )
-    
-            S_(2) = 0;
-    
-        elseif( S_(1) > S_(2) )
-    
-            S_(1) = S_(2); S_(2) = 0;
-        end
-        Y_(2) = S_(1);
 
-        if( Y_(2) <= F_(2) )
+        for j = 2:1:size(S_,2)
+    
+            if( S_(j-1) <= S_(j) )
+        
+                S_(j) = 0;
+        
+            elseif( S_(j-1) > S_(j) )
+        
+                S_(j-1) = S_(j); S_(j) = 0;
+            end
+            Y_(2) = S_(j-1);
+    
+            if( Y_(2) <= F_(2) )
+    
+                F_(2) = Y_(2);
+            end
+            S_ = X_;
 
-            F_(2) = Y_(2);
         end
+
     end
-
-end
