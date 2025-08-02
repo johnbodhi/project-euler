@@ -9,7 +9,7 @@ Z = ceil(diag(flip(pascal(N),2))./2);
 
 Z = Z(1:ceil(N/2));
 
-EMAX = log(sum(Z,1)) / log( 2 ); % T = sym(2^EMAX);
+% EMAX = log(sum(Z,1)) / log( 2 ); % T = sym(2^EMAX);
 
 K = 1; P = 0;
 

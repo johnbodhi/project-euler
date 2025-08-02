@@ -20,8 +20,8 @@ function [ RA, RS, RAF, RSF, N ] = trellis()
     A = A';
     %}
    
-    AS = zeros(size(A,1),size(A,2));
-    for i = 1:1:size(A,1)
+    AS = zeros(N,M);
+    for i = 1:1:N
 
         AS(i,1:i) = flip(A(i,1:i),2);
     end
@@ -29,7 +29,7 @@ function [ RA, RS, RAF, RSF, N ] = trellis()
     A  = A';
     AS = AS';
 
-    D = zeros( size(A,1), size(A,2), size(A,1) );
+    D = zeros( N, M, N );
 
     % for k = size( D, 3 ):-1:1
     %     for j = 1:1:size( D, 2 )
@@ -71,8 +71,8 @@ function [ RA, RS, RAF, RSF, N ] = trellis()
     %         end
     %     end
     % end
-
-    % save("D.mat","D");
+    % 
+    %  save("D.mat","D");
 
     D = load("D.mat"); D = D.D;
     
@@ -95,9 +95,6 @@ function [ RA, RS, RAF, RSF, N ] = trellis()
             end
         end
     end
-
-    % We can fold the trellis for a second time, allowing us to reduce the
-    % number of directives necessary to search the leafs by half.
 
     RA  = circshift(RA,1,1);
     RAF = flip(RA,2);
