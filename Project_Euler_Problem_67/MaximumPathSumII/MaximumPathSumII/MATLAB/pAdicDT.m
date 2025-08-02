@@ -25,10 +25,6 @@ function [ F_ ] = pAdicDT( N_, B_, RA_, RS_, RAF_, RSF_, F_ )
 
                     S_( 3 ) = S_( 3 ) + RAF_(ii,jj,k);
                     S_( 4 ) = S_( 4 ) + RSF_(ii,jj,k);
-                    
-
-
-
                 end           
         
             elseif( B_(i,j) )
@@ -44,10 +40,6 @@ function [ F_ ] = pAdicDT( N_, B_, RA_, RS_, RAF_, RSF_, F_ )
 
                     S_( 3 ) = S_( 3 ) + RAF_(ii,jj,k);
                     S_( 4 ) = S_( 4 ) + RSF_(ii,jj,k);
-
-
-
-
                 end
 
             end           

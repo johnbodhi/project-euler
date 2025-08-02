@@ -9,9 +9,7 @@ Z = ceil(diag(flip(pascal(N),2))./2);
 
 Z = Z(1:ceil(N/2));
 
-EMAX = log(sum(Z,1)) / log( 2 ); 
-
-% T = sym(2^EMAX);
+EMAX = log(sum(Z,1)) / log( 2 ); % T = sym(2^EMAX);
 
 K = 1; P = 0;
 
@@ -23,7 +21,7 @@ for Q = ceil(N/2):-1:1
     
         B(1,:) = permn([0;1],N-1,K); K = K + 1;
 
-        B(2,:) = monteCarlo(N,EMAX);
+        % B(2,:) = monteCarlo(N,EMAX);
 
         % B(3,:) = permn([0;1],N-1,T); T = T - 1; % Slow... 
     
@@ -37,7 +35,7 @@ for Q = ceil(N/2):-1:1
             P = P + 1;
         end 
 
-        if( sum(B(1,:)) < Q && sum(B(2,:)) < Q )
+        if( sum(B(1,:)) < Q )
     
             [ F ] = pAdicDT( N, B, RA, RS, RAF, RSF, F );
         end
@@ -49,7 +47,6 @@ for Q = ceil(N/2):-1:1
 
         break
     end
-
 end
 
 toc;
