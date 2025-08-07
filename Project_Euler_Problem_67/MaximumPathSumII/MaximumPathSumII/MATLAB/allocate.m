@@ -1,7 +1,5 @@
 function [ F_, B_, STL_, STU_, SP_ ] = allocate( N_, Q_, MOD_ )
 
-    
-
     DATARANGE  = N_-floor(Q_/2);
 
     GENERATORS = 4; 
@@ -10,7 +8,7 @@ function [ F_, B_, STL_, STU_, SP_ ] = allocate( N_, Q_, MOD_ )
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-    B_(3,1:ceil(Q_/2)) = permn( (MOD_:-1:0)', ceil(Q_/2), 1 );
+    B_(3,1:ceil(Q_/2),1:ceil(Q_/2)) = permn( (MOD_:-1:0)', ceil(Q_/2), 1 );
     
     STL_               = (ceil(Q_/2):-1:2)';
 
