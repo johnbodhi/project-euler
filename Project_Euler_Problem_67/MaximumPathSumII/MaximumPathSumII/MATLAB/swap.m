@@ -5,9 +5,9 @@ function [ Y_ ] = swap( X_ )
         for j = 1:1:size(X_,2)
             for i = 1:1:floor(k/2)
 
-                L              = X_(k+1-ii,j,k);
-                X_(k+1-ii,j,k) = X_(i+1,j,k);
-                X_(i+1,j,k)    = L;
+                L            = X_(k-ii,j,k);
+                X_(k-ii,j,k) = X_(i,j,k);
+                X_(i,j,k)    = L;
                 ii = ii + 1;                
             end
             ii = 0;

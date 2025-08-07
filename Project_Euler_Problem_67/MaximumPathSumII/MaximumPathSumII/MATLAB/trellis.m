@@ -6,18 +6,6 @@ function [ NEXPSPACE_, N_ ] = trellis()
     
     N_ = size(A,1);
 
-    % N = 10; M = N; 
-    % for j = 1:M
-    %     for i = 1:N
-    %          if( i < j || i == j)
-    % 
-    %             A( i, j ) = randi( [ 1, 100 ] );
-    %             % A( i, j ) = 0;
-    %          end
-    %     end
-    % end
-    % A = A';
-
     AS = zeros(N_);
     for i = 1:1:N_
 
@@ -25,7 +13,7 @@ function [ NEXPSPACE_, N_ ] = trellis()
     end
     A  = A'; AS = AS';
 
-    D = zeros( N_, N_, N_ );
+    D = zeros(N_,N_,N_);
 
     % for k = N:-1:1
     %     for j = 1:1:N
