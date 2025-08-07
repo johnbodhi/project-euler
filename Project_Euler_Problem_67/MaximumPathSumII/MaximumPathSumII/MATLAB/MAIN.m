@@ -7,7 +7,7 @@ clear all; close all; clc; tic;
 
 Z = ceil(diag(flip(pascal(N),2))./2); Z = Z(1:ceil(N/2));
 
-EMAX = log(sum(Z,1)) / log( 2 ); % T = sym(2^EMAX);
+EMAX = log(sum(Z)) / log( 2 ); % T = sym(2^EMAX);
 
 K = 1; P = 0;
 
@@ -15,11 +15,15 @@ F = [ -1 10000 ];
 
 for Q = ceil(N/2):-1:1
 
+    [ ~, B, STL, STU, SP ] = allocate( Q, MOD );
+    
     while( P < Z(Q) )
     
         B(1,:) = permn([0;1],N-1,K); K = K + 1;
 
         % B(2,:) = monteCarlo(N,EMAX);
+
+        % [ B, STL, STU, SP ] = DNN( N, Q, B, STL, STU, SP );
 
         % B(3,:) = permn([0;1],N-1,T); T = T - 1; % Slow...
     
@@ -33,7 +37,7 @@ for Q = ceil(N/2):-1:1
             P = P + 1;
         end
 
-        if( sum(B(1,:)) < Q    )
+        if( sum(B(1,:)) < Q && sum(B(2,:)) < Q )
     
             [ F ] = pAdicDT( N, B, RA, RS, RAF, RSF, F );
         end

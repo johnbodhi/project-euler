@@ -142,7 +142,7 @@ else
         % The engine is based on version 3.2 with the correction
         % suggested by Roger Stafford. This approach uses a single matrix
         % multiplication.
-        B = flip(nV.^(1-N:0),2);
+        B = nV.^(0:-1:1-N); % MSB First...
         I = ((K(:)-.5) * B); % matrix multiplication
         I = rem(floor(I), nV) + 1;
         M = V(I) ;
