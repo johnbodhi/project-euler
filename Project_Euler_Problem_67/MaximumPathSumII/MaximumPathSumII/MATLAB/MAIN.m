@@ -37,7 +37,7 @@ for Q = ceil(N/2):-1:1
             P = P + 1;
         end
 
-        if( sum(B(1,:)) < Q && sum(B(2,:)) < Q )
+        if( sum(B(1,:)) < Q && sum(B(2,:)) < Q && sum(B(3,:)) < Q && sum(B(4,:)) < Q )
     
             [ F ] = pAdicDT( N, B, RA, RS, RAF, RSF, F );
         end

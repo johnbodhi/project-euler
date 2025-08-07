@@ -229,27 +229,27 @@ function [ B_, STL_, STU_, SP_ ] = DNN( N_, Q_, B_, STL_, STU_, SP_ )
         
                                                                                                             [ B_, SP_ ] = bitCoffee( jab, B_, SP_ );
         
-                                                                                                            if( sum(B_) == Q_ )
-        
+                                                                                                            if ( sum(C,2) <= ceil(Q_/4) )
+                                                                                             
                                                                                                                 return
-                                                                                                            end
+                                                                                                            end    
         
                                                                                                             for jaa = STL_(1):1:STU_(1)
                 
-                                                                                                            % Extend to MOD_ > 1 -> [0,...,N]   
-                                                                                                            
-                                                                                                            % Extend objective function SP_ slices as minimizer: 
-                                                                                                            % bit position, Bit value, bit accumulator, bit index, 
-                                                                                                            % convolution range values, convolutional range
-                                                                                                            % indexes, vector nest index, 
-                                                                                                            % vector nest column operation output value
+                                                                                                                % Extend to MOD_ > 1 -> [0,...,N]   
+                                                                                                                
+                                                                                                                % Extend objective function SP_ slices as minimizer: 
+                                                                                                                % bit position, Bit value, bit accumulator, bit index, 
+                                                                                                                % convolution range values, convolutional range
+                                                                                                                % indexes, vector nest index, 
+                                                                                                                % vector nest column operation output value
+                    
+                                                                                                                [ B_, SP_ ] = bitCoffee( jaa, C, SP_ );                                                                                                                                                                                                                
                 
-                                                                                                            [ B_, SP_ ] = bitCoffee( jaa, B_(4,:), SP_ );                                                                                                                                                                                                                
-                
-                                                                                                               if ( sum(B_(4,:),2) <= Q_ )
+                                                                                                                if ( sum(C,2) <= ceil(Q_/4) )
                                                                                              
                                                                                                                     return
-                                                                                                               end        
+                                                                                                                end        
                                                                                                             end
                                                                                                         end
                                                                                                     end
