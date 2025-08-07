@@ -96,16 +96,16 @@ function [ RA, RS, RAF, RSF, N ] = trellis()
 
     RA  = circshift(RA,1,1);
     RAF = flip(RA,2);
-    RAF = flip(RA(2:Q_+1,:,:,1);
-    % RAF = swap(RAF);
+    RAF = swap(RAF);
 
     RS  = circshift(RS,1,1);
     RSF = flip(RS,2);
-    RSF = flip(RA(2:Q_+1,:,:,1);
-    % RSF = swap(RSF);
+    RSF = swap(RSF);
 
-    % Next fold is a column-wise decimation and a sequence of flips as
-    % seen.  This reduces the necessary number of binary directives to a
-    % quarter of what was needed, as weel shortens the directive lengths
-    % for a convolutional p-adic decision tree process.
+    % The next fold is a column-wise decimation and a sequence of flips as
+    % seen previously.  This reduces the necessary number of binary directives to a
+    % quarter of what was needed before the folds, as weel shortens the directive lengths
+    % for a convolutional p-adic decision tree process ( two trees ).
+
+    [RA,RAF,RS,RSF] = decimate(RA,RS,RAF,RSF);   
 end
