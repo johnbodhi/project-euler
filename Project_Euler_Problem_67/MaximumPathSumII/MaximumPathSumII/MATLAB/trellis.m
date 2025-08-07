@@ -1,4 +1,4 @@
-function [ RA, RS, RAF, RSF, N ] = trellis()
+function [ NEXPSPACE_ ] = trellis()
     
     % A = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_tiny.csv");
     A = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_small.csv"); 
@@ -24,7 +24,9 @@ function [ RA, RS, RAF, RSF, N ] = trellis()
         AS(i,1:i) = flip(A(i,1:i),2);
     end
 
-    A  = A'; AS = AS';
+    A  = A'; 
+    
+    AS = AS';
 
     D = zeros( N, M, N );
 
@@ -74,29 +76,5 @@ function [ RA, RS, RAF, RSF, N ] = trellis()
     D = load("D.mat"); D = D.D;
     
     D = flip(D,2);
-    
-    RA  = zeros(N,M);
-    RS  = zeros(N,M);
-    
-    for k = 1:ceil(size(D,3)/2)
-        for j = 1:size(D,2)
-            for i = 1:size(D,1) 
-    
-                if(D(i,j,k))
-    
-                    RA(i,j,k) = A(D(i,j,k),j);
-    
-                    RS(i,j,k) = AS(D(i,j,k),j);
-                end   
-            end
-        end
-    end
 
-    % The next fold is a column-wise decimation and a sequence of flips as
-    % seen previously.  This reduces the necessary number of binary directives to a
-    % quarter of what was needed before the folds, as weel shortens the directive lengths
-    % for a convolutional p-adic decision tree process ( two trees ).
-
-    [NEXPSPACE] = decimate(RA,RS,RAF,RSF); 
-
-end
+    [ NEXPSPACE_ ] = decimate(D); 

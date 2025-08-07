@@ -1,0 +1,1 @@
+function [ A_, B_ ] = decompose( A_, B_ )

@@ -1,6 +1,6 @@
 clear all; close all; clc; tic;
 
-[ RA, RS, RAF, RSF, N ] = trellis(); % Can we extend Q outcomes to segmented higher modulus folds? 
+[ NEXPSPACE ] = trellis(); % Can we extend Q outcomes to segmented higher modulus folds? 
 
 % Fold half of half etc... Overlap lower value directive with higher valued
 % directives in the same leaf? p-adic directives and p-adic directed geometry!
@@ -45,7 +45,7 @@ for Q = ceil(N/2):-1:1
 
         if( sum(B(1,:)) < Q )
     
-            [ F ] = pAdicDT( N, B, RA, RS, RAF, RSF, F );
+            [ F ] = pAdicDT( N, F, B, P );
         end
 
     end
