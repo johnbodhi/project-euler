@@ -1,4 +1,4 @@
-function  [ B_, SP_ ] = bitCoffee( J_, B_, SP_ )
+function  [ C_, SP_ ] = bitCoffee( J_, C_, SP_ )
 
     % Extend to MOD_ > 1 -> [0,...,N]   
 
@@ -7,48 +7,48 @@ function  [ B_, SP_ ] = bitCoffee( J_, B_, SP_ )
     % values, Convolution range values, Convolutional range
     % indexes, Logic layer index value, Logic layer column operation output value )
     
-    if ( B_(J_-1) && ~SP_(B_(J_-1), J_-1) && ~B_(J_) && ~SP_(B_(J_), J_)   )                                                                                                                                                                      
+    if ( C_(J_-1) && ~SP_(C_(J_-1), J_-1) && ~C_(J_) && ~SP_(C_(J_), J_)   )                                                                                                                                                                      
     
-        B_(J_)   = B_(J_-1);
+        C_(J_)   = C_(J_-1);
         
-        B_(J_-1) = 0;
+        C_(J_-1) = 0;
     
-    elseif ( B_(J_-1) && SP_(B_(J_-1), J_-1) && ~B_(J_) && ~SP_(B_(J_), J_) )                                                                                                                                                                                                          
+    elseif ( C_(J_-1) && SP_(C_(J_-1), J_-1) && ~C_(J_) && ~SP_(C_(J_), J_) )                                                                                                                                                                                                          
     
-        B_(J_)            = B_(J_-1);
+        C_(J_)            = C_(J_-1);
         
-        SP_(B_(J_), J_-1) = SP_(B_(J_), J_-1) - 1; % FOLI                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+        SP_(C_(J_), J_-1) = SP_(C_(J_), J_-1) - 1; % FOLI                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
                                                                                                                                  
-    elseif ( B_(J_-1) && ~SP_(B_(J_-1),J_-1) && B_(J_) && ~SP_(B_(J_),J_)   )
+    elseif ( C_(J_-1) && ~SP_(C_(J_-1),J_-1) && C_(J_) && ~SP_(C_(J_),J_)   )
     
-        SP_(B_(J_), J_) = SP_(B_(J_), J_) + 1;                                                                                                                                                                                    
+        SP_(C_(J_), J_) = SP_(C_(J_), J_) + 1;                                                                                                                                                                                    
         
-        B_(J_-1)        = 0;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+        C_(J_-1)        = 0;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
     
-    elseif ( B_(J_-1) && SP_(B_(J_-1),J_-1) && B_(J_) && ~SP_(B_(J_),J_)    )
+    elseif ( C_(J_-1) && SP_(C_(J_-1),J_-1) && C_(J_) && ~SP_(C_(J_),J_)    )
     
-        SP_( B_(J_), J_ )   = SP_( B_(J_), J_ ) + 1;  
+        SP_( C_(J_), J_ )   = SP_( C_(J_), J_ ) + 1;  
         
-        SP_(B_(J_-1), J_-1) = SP_(B_(J_-1), J_-1) - 1;                                                                                                                                                                                                     
+        SP_(C_(J_-1), J_-1) = SP_(C_(J_-1), J_-1) - 1;                                                                                                                                                                                                     
     
-    elseif ( B_(J_-1) && ~SP_(B_(J_-1),J_-1) && B_(J_) && SP_(B_(J_),J_)    )
+    elseif ( C_(J_-1) && ~SP_(C_(J_-1),J_-1) && C_(J_) && SP_(C_(J_),J_)    )
     
-        SP_(B_(J_),J_) = SP_(B_(J_),J_) + 1;
+        SP_(C_(J_),J_) = SP_(C_(J_),J_) + 1;
         
-        B_(J_-1)       = 0;
+        C_(J_-1)       = 0;
     
-    elseif ( B_(J_-1) && SP_(B_(J_-1),J_-1) && B_(J_) && SP_(B_(J_-1),J_)   )
+    elseif ( C_(J_-1) && SP_(C_(J_-1),J_-1) && C_(J_) && SP_(C_(J_-1),J_)   )
     
-        B_(J_-1)            = SP(B_(J_-1), J_-1);
+        C_(J_-1)            = SP(C_(J_-1), J_-1);
         
-        SP_(B_(J_-1), J_-1) = SP_(B_(J_-1),J_-1) - 1;
+        SP_(C_(J_-1), J_-1) = SP_(C_(J_-1),J_-1) - 1;
         
-        SP_(B_(J_-1), J_)   = SP_(B_(J_-1),J_) + 1;
+        SP_(C_(J_-1), J_)   = SP_(C_(J_-1),J_) + 1;
 
-    % elseif ( ~B_(J_-1) && SP_(B_(J_-1), J_-1) && ~B_(J_) && ~SP_(B_(J_), J_) )                                                                                                                                                                                                          
-    % 
-    %     B_(J_)            = B_(J_-1);
-    % 
-    %     SP_(B_(J_), J_-1) = SP_(B_(J_), J_-1) - 1; % FOLI                
+    elseif ( ~C_(J_-1) && SP_(C_(J_-1), J_-1) && ~C_(J_) && ~SP_(C_(J_), J_) )                                                                                                                                                                                                          
+
+        C_(J_)            = C_(J_-1);
+
+        SP_(C_(J_), J_-1) = SP_(C_(J_), J_-1) - 1; % FOLI                
     
     end

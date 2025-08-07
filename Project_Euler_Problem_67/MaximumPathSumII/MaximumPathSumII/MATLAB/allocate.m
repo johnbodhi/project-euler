@@ -6,13 +6,11 @@ function [ F_, B_, STL_, STU_, SP_ ] = allocate( Q_, MOD_ )
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-    % We sweep i, and Q to generate bit map.
-
-    B_(1,1:Q_) = permn( (0:1:MOD_)', Q_, 1 );
+    B_    = permn( (MOD_:-1:0)', ceil(Q_/2), 1 );
     
-    STL_       = (Q_:-1:2)';
+    STL_  = (ceil(Q_/2):-1:2)';
 
-    STU_       = (DATARANGE:-1:Q_)';
+    STU_  = (DATARANGE:-1:ceil(Q_/2))';
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
