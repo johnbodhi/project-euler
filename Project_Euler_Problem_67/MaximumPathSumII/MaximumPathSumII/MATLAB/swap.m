@@ -1,6 +1,5 @@
 function [ Y_ ] = swap( X_ )
 
-
     ii = 0;
     for k = 2:1:size(X_,3)
         for j = 1:1:size(X_,2)

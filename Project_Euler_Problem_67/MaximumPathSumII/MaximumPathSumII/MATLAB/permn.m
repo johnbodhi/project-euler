@@ -97,8 +97,6 @@ function [M, I] = permn(V, N, K)
 % 6.1 (may 2016) fixed spelling errors
 % 6.2 (jan 2019) fixed some coding style warnings
 
-
-
 narginchk(2, 3) ;
 
 if fix(N) ~= N || N < 0 || numel(N) ~= 1
