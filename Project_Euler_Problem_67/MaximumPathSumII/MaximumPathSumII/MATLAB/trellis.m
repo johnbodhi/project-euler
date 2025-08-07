@@ -4,7 +4,7 @@ function [ NEXPSPACE_ ] = trellis()
     A = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_small.csv"); 
     % A = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_large.csv");    
     
-    N = size(A,1); M = size(A,2);
+    N = size(A,1);
 
     % N = 10; M = N; 
     % for j = 1:M
@@ -18,26 +18,23 @@ function [ NEXPSPACE_ ] = trellis()
     % end
     % A = A';
 
-    AS = zeros(N,M);
+    AS = zeros(N);
     for i = 1:1:N
 
         AS(i,1:i) = flip(A(i,1:i),2);
     end
+    A  = A'; AS = AS';
 
-    A  = A'; 
-    
-    AS = AS';
+    D = zeros( N, N, N );
 
-    D = zeros( N, M, N );
-
-    % for k = size( D, 3 ):-1:1
-    %     for j = 1:1:size( D, 2 )
-    %         for i = 1:1:size( D, 1 )               
+    % for k = N:-1:1
+    %     for j = 1:1:N
+    %         for i = 1:1:N           
     % 
-    %             if( k == size(D,3) )
+    %             if( k == N )
     %                 cc = 0;
-    %                 for jj = 1:size(D,2)
-    %                     for ii = 1:size(D,1)
+    %                 for jj = 1:1:N
+    %                     for ii = 1:1:N
     %                         if( ii == jj )
     %                             D( k - cc, jj, k ) = k - cc;
     %                             cc = cc + 1;
@@ -45,9 +42,9 @@ function [ NEXPSPACE_ ] = trellis()
     %                     end
     %                 end
     % 
-    %             elseif( k < size(D,2) || k > 1 )
+    %             elseif( k < N || k > 1 )
     % 
-    %                 hh = size(D,2) - k + 1; 
+    %                 hh = N - k + 1; 
     %                 dd = 1;
     %                 for p = k:-1:1
     %                     D( p, dd:hh, k ) = p;
@@ -57,10 +54,10 @@ function [ NEXPSPACE_ ] = trellis()
     % 
     %             elseif( k == 1 )
     % 
-    %                 for j = 1:size(D,2)
-    %                     for i = 1:size(D,1)
-    %                         if( i == size(D,1) )
-    %                             D( size(D,1), j, k ) = k;
+    %                 for j = 1:1:N
+    %                     for i = 1:1:N
+    %                         if( i == N )
+    %                             D( N, j, k ) = k;
     %                         end
     %                     end
     %                 end
@@ -70,11 +67,11 @@ function [ NEXPSPACE_ ] = trellis()
     %         end
     %     end
     % end
-    % 
+
     % save("D.mat","D");
 
     D = load("D.mat"); D = D.D;
     
     D = flip(D,2);
 
-    [ NEXPSPACE_ ] = decimate(D); 
+    [ NEXPSPACE_ ] = decimate(A,AS,D,N); 

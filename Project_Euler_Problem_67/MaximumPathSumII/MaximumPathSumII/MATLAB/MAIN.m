@@ -22,7 +22,7 @@ for Q = ceil(N/2):-1:1
     
     while( P < Z(Q) )
     
-        B(1,:)                     = permn([0;1],N-1,2^K); K = K + 1;
+        B(:)                       = permn([0;1],N-1,2^K+1); K = K + 1;
 
         % B(1,:)                   = permn([0;1],N-1,K); K = K + 1;
 

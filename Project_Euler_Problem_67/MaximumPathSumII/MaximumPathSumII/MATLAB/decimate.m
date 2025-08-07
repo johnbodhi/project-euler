@@ -1,4 +1,4 @@
-function [ NEXPSPACE_ ] = decimate(D_)
+function [ NEXPSPACE_ ] = decimate(A_,AS_,D_,N_)
 
     % The next fold is a column-wise decimation and a sequence of flips as
     % seen previously.  This reduces the necessary number of binary directives to a
@@ -10,28 +10,27 @@ function [ NEXPSPACE_ ] = decimate(D_)
     % until we achieve a many-one reduction in exponential space, and
     % exponential time.
 
-    RA  = zeros(N,M);
-    RS  = zeros(N,M);
+    RA  = zeros(N_,N_);
+    RS  = zeros(N_,N_);
     
-    for k = 1:ceil(size(D_,3)/2)
-        for j = 1:size(D_,2)
-            for i = 1:size(D_,1)     
+    for k = 1:1:ceil(N_/2)
+        for j = 1:1:N_
+            for i = 1:1:N_     
                 if(D_(i,j,k))
     
-                    RA(i,j,k) = A(D_(i,j,k),j);
-    
-                    RS(i,j,k) = AS(D_(i,j,k),j);
+                    RA(i,j,k) = A_(D_(i,j,k),j);    
+                    RS(i,j,k) = AS_(D_(i,j,k),j);
                 end   
             end
         end
     end
     
-    RA_      = circshift(RA_,1,1);
-    RAF_     = flip(RA_,2);
-    RAF_     = swap(RAF_);
+    RA        = circshift(RA,1,1);
+    RAF       = flip(RA,2);
+    RAF       = swap(RAF);
     
-    RS_      = circshift(RS_,1,1);    
-    RSF_     = flip(RS_,2);
-    RSF_     = swap(RSF_);
+    RS        = circshift(RS,1,1);    
+    RSF       = flip(RS,2);
+    RSF       = swap(RSF);
     
-    [ A, B ] = decompose( A, B );
+    [ A_, B ] = decompose( A_, B );
