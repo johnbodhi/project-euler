@@ -30,7 +30,6 @@ function [ F_, B_, STL_, STU_, SP_ ] = allocate( N_, Q_, MOD_ )
     % We need room for back-propagation in the superposition array 
     % populated during the bit-flip convolution...
 
-    % We can use gradients to mimize our beliefs and expectations about the
-    % future bits...
+    % We can use gradi
 
     F_ = zeros( N_-1, DATARANGE );

@@ -95,10 +95,12 @@ function [ RA, RS, RAF, RSF, N ] = trellis()
     end
 
     RA  = circshift(RA,1,1);
+
     RAF = flip(RA,2);
     RAF = swap(RAF);
 
     RS  = circshift(RS,1,1);
+    
     RSF = flip(RS,2);
     RSF = swap(RSF);
 

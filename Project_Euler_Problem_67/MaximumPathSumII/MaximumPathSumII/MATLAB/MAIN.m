@@ -5,11 +5,13 @@ clear all; close all; clc; tic;
 % Fold half of half etc... Overlap lower value directive with higher valued
 % directives in the same leaf? p-adic directives and p-adic directed geometry!
 
-Z = ceil(diag(flip(pascal(N),2))./2); Z = Z(1:ceil(N/2));
+Z    = ceil(diag(flip(pascal(N),2))./2); 
+  
+Z    = Z(1:ceil(N/2));
 
-EMAX = log(sum(Z)) / log( 2 ); % T = sym(2^EMAX);
+EMAX = log(sum(Z))/log(2); 
 
-K = 1; P = 0;
+K = 1; % T = sym(2^EMAX); P = 0;
 
 F = [ -1 10000 ];
 
