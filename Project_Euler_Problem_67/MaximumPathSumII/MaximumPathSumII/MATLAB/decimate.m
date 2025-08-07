@@ -10,7 +10,7 @@ function [ NEXPSPACE_ ] = decimate(A_,AS_,D_,N_)
     % until we achieve a many-one reduction in exponential space, and
     % exponential time.
 
-    % Decimation is a unitary procedure...
+    % Decimation is a unitary procedure at a leaf rate of 2^k...
 
     RA  = zeros(N_,N_);
     RS  = zeros(N_,N_);
@@ -28,15 +28,14 @@ function [ NEXPSPACE_ ] = decimate(A_,AS_,D_,N_)
     end
     
     RA        = circshift(RA,1,1);
+    RS        = circshift(RS,1,1);   
+
     RAF       = flip(RA,2);
     RAF       = swap(RAF);
     
-    RS        = circshift(RS,1,1);   
     RSF       = flip(RS,2);
     RSF       = swap(RSF);
 
-
-    
 end
 
    

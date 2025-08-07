@@ -1,6 +1,6 @@
 clear all; close all; clc; tic;
 
-% NEXPSPACE-TIME MDP
+% NEXPSPACE-TIME MARKOV DECISION PROCESS
 
 [ NEXPSPACE, N ] = trellis(); 
 
