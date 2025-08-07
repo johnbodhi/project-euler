@@ -10,6 +10,8 @@ function [ NEXPSPACE_ ] = decimate(A_,AS_,D_,N_)
     % until we achieve a many-one reduction in exponential space, and
     % exponential time.
 
+    % Decimation is a unitary procedure...
+
     RA  = zeros(N_,N_);
     RS  = zeros(N_,N_);
     
@@ -32,5 +34,9 @@ function [ NEXPSPACE_ ] = decimate(A_,AS_,D_,N_)
     RS        = circshift(RS,1,1);   
     RSF       = flip(RS,2);
     RSF       = swap(RSF);
+
+
     
-    [ A_, B ] = decompose( A_, B );
+end
+
+   

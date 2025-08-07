@@ -4,9 +4,6 @@ function [ F_ ] = sol( X_, F_ )
     
     S_ = X_;
 
-    % We need to window the min / max process since there are more than one
-    % folds in the tree.
-
     if( MAX )
 
         for j = 2:1:size(S_,2)

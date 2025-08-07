@@ -1,10 +1,10 @@
-function [ NEXPSPACE_ ] = trellis()
+function [ NEXPSPACE_, N_ ] = trellis()
     
     % A = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_tiny.csv");
     A = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_small.csv"); 
     % A = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_large.csv");    
     
-    N = size(A,1);
+    N_ = size(A,1);
 
     % N = 10; M = N; 
     % for j = 1:M
@@ -18,14 +18,14 @@ function [ NEXPSPACE_ ] = trellis()
     % end
     % A = A';
 
-    AS = zeros(N);
-    for i = 1:1:N
+    AS = zeros(N_);
+    for i = 1:1:N_
 
         AS(i,1:i) = flip(A(i,1:i),2);
     end
     A  = A'; AS = AS';
 
-    D = zeros( N, N, N );
+    D = zeros( N_, N_, N_ );
 
     % for k = N:-1:1
     %     for j = 1:1:N
@@ -74,4 +74,4 @@ function [ NEXPSPACE_ ] = trellis()
     
     D = flip(D,2);
 
-    [ NEXPSPACE_ ] = decimate(A,AS,D,N); 
+    [ NEXPSPACE_ ] = decimate(A,AS,D,N_); 

@@ -2,10 +2,10 @@ clc; close all; clear all; tic;
 
 N = 15; M = N;
 
-Z = diag( flip( pascal( N ), 2 ) );
+Z = diag(flip(pascal(N),2));
 
 qq = 0; pp = 0; kk = 1;
-for i = 1:1:ceil(N/2)
+for i = 1:1:2   % EXPSPACE at V_(2,pp)
     while( pp < Z(i,1) )
 
         B = permn([0;1],N-1,kk);
@@ -23,6 +23,5 @@ for i = 1:1:ceil(N/2)
 
     end
     qq = qq + 1; pp = 0; kk = 1;
-
 end
 toc;
