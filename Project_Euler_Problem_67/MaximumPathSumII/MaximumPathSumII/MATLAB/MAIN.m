@@ -1,11 +1,10 @@
 clear all; close all; clc; tic;
 
-[ NEXPSPACE ] = trellis(); % Can we extend Q outcomes to segmented higher modulus folds? 
+% NEXPSPACE-TIME MDP
 
-% Fold half of half etc... Overlap lower value directive with higher valued
-% directives in the same leaf? p-adic directives and p-adic directed geometry!
+[ NEXPSPACE ] = trellis();
 
-Z    = ceil(diag(flip(pascal(N),2))./2); 
+Z    = ceil(diag(flip(pascal(N),2))./2); % How many divisions of Z? Z/nZ
   
 Z    = Z(1:ceil(N/2));
 
@@ -13,7 +12,7 @@ EMAX = log(sum(Z))/log(2);
 
 K = 0; % T = sym(2^EMAX); P = 0;
 
-MOD = 1;
+% MOD = 1;
 
 F = [ -1 10000 ];
 
@@ -45,7 +44,7 @@ for Q = ceil(N/2):-1:1
 
         if( sum(B(1,:)) < Q )
     
-            [ F ] = pAdicDT( N, F, B, P );
+            [ F ] = pAdicDT( N, F, B, NEXPSPACE );
         end
 
     end

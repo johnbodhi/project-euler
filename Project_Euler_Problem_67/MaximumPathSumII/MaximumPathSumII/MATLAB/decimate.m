@@ -15,8 +15,7 @@ function [ NEXPSPACE_ ] = decimate(D_)
     
     for k = 1:ceil(size(D_,3)/2)
         for j = 1:size(D_,2)
-            for i = 1:size(D_,1) 
-    
+            for i = 1:size(D_,1)     
                 if(D_(i,j,k))
     
                     RA(i,j,k) = A(D_(i,j,k),j);
