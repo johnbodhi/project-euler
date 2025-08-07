@@ -18,7 +18,7 @@ function [ NEXPSPACE_ ] = decimate(A_,AS_,D_,N_)
             for i = 1:1:N_     
                 if(D_(i,j,k))
     
-                    RA(i,j,k) = A_(D_(i,j,k),j);    
+                    RA(i,j,k) = A_(D_(i,j,k),j) ;    
                     RS(i,j,k) = AS_(D_(i,j,k),j);
                 end   
             end
@@ -29,7 +29,7 @@ function [ NEXPSPACE_ ] = decimate(A_,AS_,D_,N_)
     RAF       = flip(RA,2);
     RAF       = swap(RAF);
     
-    RS        = circshift(RS,1,1);    
+    RS        = circshift(RS,1,1);   
     RSF       = flip(RS,2);
     RSF       = swap(RSF);
     
