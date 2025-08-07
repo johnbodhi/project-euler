@@ -45,7 +45,7 @@ function  [ C_, SP_ ] = bitCoffee( J_, C_, SP_ )
         
         SP_(C_(J_-1), J_)   = SP_(C_(J_-1),J_) + 1;
 
-    elseif ( ~C_(J_-1) && SP_(C_(J_-1), J_-1) && ~C_(J_) && ~SP_(C_(J_), J_) )                                                                                                                                                                                                          
+    elseif ( ~C_(J_-1) && SP_(C_(J_-1), J_-1) && ~C_(J_) && ~SP_(C_(J_), J_) ) % ICS                                                                                                                                                                                                  
 
         C_(J_)            = C_(J_-1);
 

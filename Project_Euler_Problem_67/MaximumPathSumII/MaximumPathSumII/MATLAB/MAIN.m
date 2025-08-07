@@ -15,17 +15,18 @@ F = [ -1 10000 ];
 
 for Q = ceil(N/2):-1:1
 
-    [ ~, B, STL, STU, SP ] = allocate( Q, MOD );
+    [ ~, B, STL, STU, SP ] = allocate( Q, N, MOD );
     
     while( P < Z(Q) )
     
         B(1,:) = permn([0;1],N-1,K); K = K + 1;
 
-        % B(2,:) = monteCarlo(N,EMAX);
+        B(2,:) = monteCarlo(N,EMAX);
 
-        % [ B, STL, STU, SP ] = DNN( N, Q, B, STL, STU, SP );
+        [ B, STL, STU, SP ] = DNN( N, Q, B, STL, STU, SP );
 
-        % B(3,:) = permn([0;1],N-1,T); T = T - 1; % Slow...
+
+        % B(4,:) = permn([0;1],N-1,T); T = T - 1; % Slow...
     
         if( K == sum( Z ) + 1  )
 

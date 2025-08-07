@@ -1,23 +1,30 @@
-function [ F_, B_, STL_, STU_, SP_ ] = allocate( Q_, MOD_ )
+function [ F_, B_, STL_, STU_, SP_ ] = allocate( N_, Q_, MOD_ )
 
-    DATARANGE  = N-1;
+    DATARANGE  = N_-ceil(Q_/2);
 
-    F_         = zeros( N-1, DATARANGE );
+    F_         = zeros( N_-1, DATARANGE );
 
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-    B_    = permn( (MOD_:-1:0)', ceil(Q_/2), 1 );
+    GENERATORS = 4; 
     
-    STL_  = (ceil(Q_/2):-1:2)';
-
-    STU_  = (DATARANGE:-1:ceil(Q_/2))';
+    B_         = zeros(GENERATORS,N_-1);
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-    SP_                    = zeros( MOD_, DATARANGE );
+    B_(3,1:ceil(Q_/2)) = permn( (MOD_:-1:0)', ceil(Q_/2), 1 );
+    
+    STL_               = (ceil(Q_/2):-1:2)';
 
-    SP_( B_(1, Q_), Q_-1 ) = B_(1, Q_);
+    STU_               = (DATARANGE:-1:ceil(Q_/2))';
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-    B_( 1, Q_ ) = 0;
+    % We need an initial condition in SP_ to avoid bit-skipping in the
+    % DNN...
+
+    SP_                                = zeros( MOD_, DATARANGE );
+
+    SP_(B_(3,ceil(Q/2)),ceil(Q_/2)-1) = B_(3,ceil(Q_/2));
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    B_(3,ceil(Q/2)) = 0;

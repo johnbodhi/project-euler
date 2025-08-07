@@ -1,8 +1,4 @@
 function [ B_, STL_, STU_, SP_ ] = DNN( N_, Q_, B_, STL_, STU_, SP_ )
-
-        INF = 10; SUP = 10; C = zeros(1,INF+SUP+N_);
-
-        C(1,INF+1:ceil(Q_/2)) = B_;
         
         % The convolutional length is the same for each observation in a
         % complete linear dyadic search. We can learn different boundaries
