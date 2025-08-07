@@ -1,6 +1,8 @@
 function [ F_, B_, STL_, STU_, SP_ ] = allocate( N_, Q_, MOD_ )
 
-    DATARANGE  = N_-ceil(Q_/2);
+    
+
+    DATARANGE  = N_-floor(Q_/2);
 
     GENERATORS = 4; 
     
