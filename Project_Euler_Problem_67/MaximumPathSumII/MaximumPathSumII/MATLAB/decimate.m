@@ -15,6 +15,16 @@ function [ NEXPSPACE_ ] = decimate(A_,AS_,D_,N_)
         end
     end   
 
+    ii = 1;
+    for k = 2:1:ceil(N_/2)
+        for j = ceil(N_/2)+1:1:N_
+
+            RA(:,j,k) = circshift(RA(:,j,k),-ii);
+            RS(:,j,k) = circshift(RS(:,j,k),-ii);
+            ii = ii - 1;
+        end
+    end
+
     RAF = flip(RA,2); 
     RAF = swap(RAF) ;
     
