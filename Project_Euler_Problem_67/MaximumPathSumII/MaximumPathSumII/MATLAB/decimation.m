@@ -1,4 +1,4 @@
-function [ NEXPSPACE_ ] = decimate(A_,AS_,D_,N_)
+function [ NEXPSPACE_ ] = decimation(A_,AS_,D_,N_)
 
     RA  = zeros(N_,N_);
     RS  = zeros(N_,N_);
@@ -21,11 +21,11 @@ function [ NEXPSPACE_ ] = decimate(A_,AS_,D_,N_)
 
             RA(:,j,k) = circshift(RA(:,j,k),ii);
             RS(:,j,k) = circshift(RS(:,j,k),ii);
-            ii = ii + 1;
-        end        
-    end
+            ii = ii + 1; 
+        end       
+    end 
 
-    RAF = flip(RA,2); 
+    RAF = flip(RA,2);  
     RSF = flip(RS,2); 
 
     for k = 2:1:ceil(N_/2)
@@ -39,5 +39,5 @@ function [ NEXPSPACE_ ] = decimate(A_,AS_,D_,N_)
 
     
 
-   
+    
 end   

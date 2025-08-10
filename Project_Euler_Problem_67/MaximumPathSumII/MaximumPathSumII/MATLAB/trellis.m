@@ -18,7 +18,6 @@ function [NEXPSPACE_,N_] = trellis()
     % for k = N:-1:1
     %     for j = 1:1:N
     %         for i = 1:1:N           
-    % 
     %             if( k == N )
     %                 cc = 0;
     %                 for jj = 1:1:N
@@ -29,9 +28,7 @@ function [NEXPSPACE_,N_] = trellis()
     %                         end
     %                     end
     %                 end
-    % 
     %             elseif( k < N || k > 1 )
-    % 
     %                 hh = N - k + 1; 
     %                 dd = 1;
     %                 for p = k:-1:1
@@ -39,7 +36,6 @@ function [NEXPSPACE_,N_] = trellis()
     %                     dd = dd + 1;
     %                     hh = hh + 1; 
     %                 end                
-    % 
     %             elseif( k == 1 )
     % 
     %                 for j = 1:1:N
@@ -49,9 +45,7 @@ function [NEXPSPACE_,N_] = trellis()
     %                         end
     %                     end
     %                 end
-    % 
     %             end
-    % 
     %         end
     %     end
     % end
@@ -62,4 +56,4 @@ function [NEXPSPACE_,N_] = trellis()
     
     D = flip(D,2);
 
-    [ NEXPSPACE_ ] = decimate(A,AS,D,N_); 
+    [ NEXPSPACE_ ] = decimation(A,AS,D,N_); 
