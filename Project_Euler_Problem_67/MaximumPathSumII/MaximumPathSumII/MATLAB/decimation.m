@@ -38,6 +38,7 @@ function [ NEXPSPACE_ ] = decimation(A_,AS_,D_,N_)
     end
 
     
+    
 
     
 end   
