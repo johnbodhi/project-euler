@@ -2,15 +2,15 @@ clear all; close all; clc; tic;
 
 % NEXPSPACE-TIME MARKOV DECISION PROCESS
 
-[ NEXPSPACE, N ] = trellis(); 
+[ D, N ] = trellis(); 
 
 F = [ -1 10000 ];
 
-for K = 0:1:N-2
+for k = 0:1:N
     
     B(:)  = permn([0;1],ceil((N-1)/2),1); 
     
-    [ F ] = pAdicDT( N, F, B, NEXPSPACE );
+    [ F ] = pAdicDT( N, F, B, D );
 end
 
 toc;

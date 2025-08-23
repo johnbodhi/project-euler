@@ -23,4 +23,4 @@ function [F_] = pAdicDT(N_,F_,NEXPSPACE_)
             % S_( 6 ) = RSC_(ii,jj,k);
         end
     end
-    [F_] = sol(S_,F_); 
+    [F_] = sol(S_,F_);

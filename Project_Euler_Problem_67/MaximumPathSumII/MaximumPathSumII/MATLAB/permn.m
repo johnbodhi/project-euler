@@ -1,4 +1,4 @@
-function [M, I] = permn(V, N, K)
+function [ M, I ] = permn( V, N, K )
 
     narginchk(2, 3) ;
     
