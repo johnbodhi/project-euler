@@ -8,7 +8,7 @@ F = [ -1 10000 ];
 
 for k = 0:1:N
     
-    B(:)  = permn([0;1],ceil((N-1)/2),1); 
+    B(:)  = permn([0;1],  ,1); 
     
     [ F ] = pAdicDT( N, F, B, D );
 end
