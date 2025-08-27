@@ -1,8 +1,8 @@
 function [RA_,RAF_,RS_,RSF_,N_] = trellis()
     
     % A_ = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_tiny.csv");
-    A_ = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_small.csv"); 
-    % A_ = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_large.csv");    
+    % A_ = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_small.csv"); 
+    A_ = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_large.csv");    
     
     % [EXPSPACE_] = decimation(A); 
 
@@ -16,7 +16,7 @@ function [RA_,RAF_,RS_,RSF_,N_] = trellis()
     A_  = A_'; AS_ = AS_';
 
     % D = zeros(N_,N_,N_);
-
+    % 
     % for k = N_:-1:1
     %     for j = 1:1:N_
     %         for i = 1:1:N_           
@@ -54,26 +54,39 @@ function [RA_,RAF_,RS_,RSF_,N_] = trellis()
     % 
     % save("D.mat","D");
 
-    D = load("D.mat"); D = D.D;
-    
-    D_ = flip(D,2);
+    % D = load("D.mat"); D = D.D;
+    % 
+    % D_ = flip(D,2);
+    % 
+    % RA_  = zeros(N_,N_,ceil(N_/2));
+    % RS_  = zeros(N_,N_,ceil(N_/2));
+    % 
+    % for k = 1:1:ceil(N_/2)
+    %     for j = 1:1:N_
+    %         for i = 1:1:N_
+    %             if(D_(i,j,k))
+    % 
+    %                 RA_(i,j,k) = A_(D_(i,j,k),j) ;   
+    %                 RS_(i,j,k) = AS_(D_(i,j,k),j);                  
+    %             end   
+    %         end
+    %     end
+    % end   
+    % 
+    % RAF_ = flip(RA_,2);
+    % RAF_ = swap(RAF_) ;
+    % RSF_ = flip(RS_,2);
+    % RSF_ = swap(RSF_) ;
 
-    RA_  = zeros(N_,N_,ceil(N_/2));
-    RS_  = zeros(N_,N_,ceil(N_/2));
-    
-    for k = 1:1:ceil(N_/2)
-        for j = 1:1:N_
-            for i = 1:1:N_
-                if(D_(i,j,k))
-    
-                    RA_(i,j,k) = A_(D_(i,j,k),j) ;   
-                    RS_(i,j,k) = AS_(D_(i,j,k),j);                  
-                end   
-            end
-        end
-    end   
 
-    RAF_ = flip(RA_,2);
-    RAF_ = swap(RAF_) ;
-    RSF_ = flip(RS_,2);
-    RSF_ = swap(RSF_) ;
+    % save("RA_.mat","RA_");
+    % save("RS_.mat","RS_");
+    % 
+    % save("RAF_.mat","RAF_");
+    % save("RSF_.mat","RSF_");
+
+    RA_  = load("RA_.mat"); RA_  = RA_.RA_;
+    RS_  = load("RS_.mat"); RS_  = RS_.RS_;
+
+    RAF_ = load("RAF_.mat"); RAF_ = RAF_.RAF_;
+    RSF_ = load("RSF_.mat"); RSF_ = RSF_.RSF_;
