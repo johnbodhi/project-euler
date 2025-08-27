@@ -33,4 +33,4 @@ function [F_] = pAdicDT(N_,F_,B_,RA_,RAF_,RS_,RSF_)
         end
         
     end
-    [F_] = sol(S_,F_); S_(1) = 0; S_(2) = 0; S_(3) = 0; S_(4) = 0;
+    [F_] = sol(S_,F_); 
