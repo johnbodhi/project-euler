@@ -15,7 +15,7 @@ function [RA_,RAF_,RS_,RSF_,N_] = trellis()
     end
     A_  = A_'; AS_ = AS_';
 
-    D = zeros(N_,N_,N_);
+    % D = zeros(N_,N_,N_);
 
     % for k = N_:-1:1
     %     for j = 1:1:N_
