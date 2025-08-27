@@ -3,8 +3,6 @@ function [RA_,RAF_,RS_,RSF_,N_] = trellis()
     % A_ = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_tiny.csv");
     % A_ = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_small.csv"); 
     % A_ = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_large.csv");    
-    
-    % [EXPSPACE_] = decimation(A); 
 
     % N_ = size(A_,1);
     % 
@@ -80,7 +78,7 @@ function [RA_,RAF_,RS_,RSF_,N_] = trellis()
     % RSF_ = flip(RS_,2);
     % RSF_ = swap(RSF_) ;
     % 
-    % 
+    % leafCut();
     % 
     % save("N_.mat","N_")  ;
     % save("RA_.mat","RA_");
@@ -96,3 +94,5 @@ function [RA_,RAF_,RS_,RSF_,N_] = trellis()
 
     RAF_ = load("RAF_.mat"); RAF_ = RAF_.RAF_;
     RSF_ = load("RSF_.mat"); RSF_ = RSF_.RSF_;
+
+    % [NEXPSPACE_] = decimation(A); 

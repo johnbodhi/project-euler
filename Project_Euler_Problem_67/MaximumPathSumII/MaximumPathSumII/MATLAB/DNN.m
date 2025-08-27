@@ -1,6 +1,6 @@
 function [B_,SP_,STL_,STU_] = DNN(B_,SP_,STL_,STU_)
 
-    
+
     for jah = STL_(8):1:STU_(8)
 
         [B_,SP_] = bitCoffee(B_,SP_);

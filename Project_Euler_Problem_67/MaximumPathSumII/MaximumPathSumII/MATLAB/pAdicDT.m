@@ -3,7 +3,7 @@ function [F_] = pAdicDT(N_,F_,B_,RA_,RAF_,RS_,RSF_)
     S_(1) = 0; S_(2) = 0;
     S_(3) = 0; S_(4) = 0;
 
-    for i = 1:1:size(B_,1)   
+    for i = 1:1:size(B_,1)
 
         k = sum(B_(i,:))+1;
 
@@ -39,4 +39,3 @@ function [F_] = pAdicDT(N_,F_,B_,RA_,RAF_,RS_,RSF_)
         S_(1) = 0; S_(2) = 0;
         S_(3) = 0; S_(4) = 0;   
     end
-    
