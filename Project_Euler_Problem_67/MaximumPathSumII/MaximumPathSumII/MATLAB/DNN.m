@@ -2,11 +2,11 @@ function [B_,SP_,STL_,STU_] = DNN(B_,SP_,STL_,STU_)
 
     
 
-    for jah = STL_(6):1:STU_(6)
+    for jah = STL_(8):1:STU_(8)
 
         [B_,SP_] = bitCoffee(B_,SP_);
     
-        for jag = STL_(5):1:STU_(5)
+        for jag = STL_(7):1:STU_(7)
 
             [B_,SP_] = bitCoffee(B_,SP_);
     

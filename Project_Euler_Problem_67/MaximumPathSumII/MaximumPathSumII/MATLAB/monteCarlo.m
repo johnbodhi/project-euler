@@ -12,4 +12,4 @@ function [ B_ ] = monteCarlo(N_,EMAX_)
 
     end
 
-    B_ = permn([0;1],N_-1,K_);
+    B_ = permn([0;1],N_,K_);
