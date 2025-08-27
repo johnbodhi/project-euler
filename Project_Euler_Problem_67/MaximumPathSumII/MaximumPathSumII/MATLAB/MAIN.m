@@ -4,7 +4,7 @@ clear all; close all; clc; tic;
 
 [RA,RAF,RS,RSF,N] = trellis(); FN = 2;
 
-Z = diag(flip(pascal(N),1)); Z = ceil(Z(1:ceil(N/2)) ./ FN);
+Z = diag(flip(pascal(N),1)); Z = ceil( Z(1:ceil(N/2)) ./ FN );
 
 % EMAX = log(sum(Z(1:ceil(N/2))))/log(2); % T = sym(2^EMAX);
 
@@ -23,7 +23,7 @@ for Q = ceil(N/2):-1:1
 
         B(1,:) = permn([0;1],N,K); K = K + 1;
     
-        % B(2,:) = permn([0 1], N, T ); T = T - 1;
+        % B(2,:) = permn([0;1], N, T ); T = T - 1;
     
         % B(3,:) = montecarlo(N,EMAX);
 
@@ -38,8 +38,8 @@ for Q = ceil(N/2):-1:1
     
             [ F ] = pAdicDT( N, F, B, RA, RAF, RS, RSF );
         end
-
     end
     P = 0;
+    
 end
 toc;
