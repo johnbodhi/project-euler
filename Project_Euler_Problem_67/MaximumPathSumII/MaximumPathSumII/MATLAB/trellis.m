@@ -89,10 +89,10 @@ function [RA_,RAF_,RS_,RSF_,N_] = trellis()
     % save("RAF_.mat","RAF_");
     % save("RSF_.mat","RSF_");
 
-    N_   = load("N_.mat"); N_ = N_.N_;
+    N_   = load("N_.mat")  ; N_   = N_.N_;
 
-    RA_  = load("RA_.mat"); RA_  = RA_.RA_;
-    RS_  = load("RS_.mat"); RS_  = RS_.RS_;
+    RA_  = load("RA_.mat") ; RA_  = RA_.RA_;
+    RS_  = load("RS_.mat") ; RS_  = RS_.RS_;
 
     RAF_ = load("RAF_.mat"); RAF_ = RAF_.RAF_;
     RSF_ = load("RSF_.mat"); RSF_ = RSF_.RSF_;
