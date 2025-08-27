@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\jmgar\\OneDrive\\Documents\\GitHub\\project-euler\\Project_Euler_Problem_13\\MaxPathIV3\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{9F41B34D-A191-41B0-8421-C710998C7017}|MaxPathIV3\\MaxPathIV3.vcxproj|C:\\Users\\jmgar\\OneDrive\\Documents\\GitHub\\project-euler\\Project_Euler_Problem_13\\MaxPathIV3\\MaxPathIV3\\MaxPathIV3.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{9F41B34D-A191-41B0-8421-C710998C7017}|MaxPathIV3\\MaxPathIV3.vcxproj|solutionrelative:MaxPathIV3\\MaxPathIV3.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MaxPathIV3.cpp",
+              "DocumentMoniker": "C:\\Users\\jmgar\\OneDrive\\Documents\\GitHub\\project-euler\\Project_Euler_Problem_13\\MaxPathIV3\\MaxPathIV3\\MaxPathIV3.cpp",
+              "RelativeDocumentMoniker": "MaxPathIV3\\MaxPathIV3.cpp",
+              "ToolTip": "C:\\Users\\jmgar\\OneDrive\\Documents\\GitHub\\project-euler\\Project_Euler_Problem_13\\MaxPathIV3\\MaxPathIV3\\MaxPathIV3.cpp",
+              "RelativeToolTip": "MaxPathIV3\\MaxPathIV3.cpp",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-08-26T22:12:43.109Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

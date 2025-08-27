@@ -1,14 +1,13 @@
-function [ NEXPSPACE_ ] = decimation(A_)
+function [ EXPSPACE_ ] = decimation(A_)
 
     N_ = size(A_,1);
 
-    ASH = zeros(N_); ASV = zeros(N_); ASV = A';
+    ASH = zeros(N_);
     for i = 1:1:N_
         
-        ASV(i,1:i) = flip(A_(i,1:i),1);
-        ASH(i,1:i) = flip(A_(i,1:i),2);        
+        ASH_(i,1:i) = flip(A_(i,1:i),2);        
     end
-    A(:,:,1) = A_'; A(:,:,2) = ASH'; A(:,:,3) = ASV;
+    A  = A_'; A(:,:,2) = ASH_';
 
     D = zeros(N_,N_,N_);
 
@@ -89,7 +88,5 @@ function [ NEXPSPACE_ ] = decimation(A_)
             RSF(1:I,j,k) = flip(RSF(1:I,j,k),1);
         end
     end
-
-    
     
 end   
