@@ -27,6 +27,8 @@ for Q = ceil(N/2):-1:1
     
         % B(3,:) = montecarlo(N,EMAX);
 
+        % B(4,:) = DNN()
+
         if ( sum(B(1,:)) == Q )
 
             P = P + 1;
