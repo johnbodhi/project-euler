@@ -78,7 +78,6 @@ function [RA_,RAF_,RS_,RSF_,N_] = trellis()
     % RSF_ = flip(RS_,2);
     % RSF_ = swap(RSF_) ;
     % 
-    % leafCut();
     % 
     % save("N_.mat","N_")  ;
     % save("RA_.mat","RA_");
