@@ -1,22 +1,21 @@
 function [RA_,RAF_,RS_,RSF_,N_] = trellis()
     
-    % A_ = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_tiny.csv");
+    % A_ = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_tiny.csv") ;
     % A_ = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_small.csv"); 
     % A_ = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_large.csv");    
 
-    % N_ = size(A_,1);
+    % N_  = size(A_,1);
     % 
     % AS_ = zeros(N_);
-    % 
     % for i = 1:1:N_
     % 
-    %     AS_(i,1:i) = flip(A_(i,1:i),2);        
+    %     AS_(i,1:i) = flip(A_(i,1:i),2);
+    %     % A_ (i,ceil(i/2)+2:i) = 0;
+    %     % AS_(i,ceil(i/2)+2:i) = 0;
     % end
-    % 
     % A_  = A_'; AS_ = AS_';
     % 
     % D = zeros(N_,N_,N_);
-    % 
     % for k = N_:-1:1
     %     for j = 1:1:N_
     %         for i = 1:1:N_           
@@ -51,7 +50,6 @@ function [RA_,RAF_,RS_,RSF_,N_] = trellis()
     %         end
     %     end
     % end
-    % 
     % save("D.mat","D");
     % 
     % D = load("D.mat"); D = D.D;
@@ -93,5 +91,3 @@ function [RA_,RAF_,RS_,RSF_,N_] = trellis()
 
     RAF_ = load("RAF_.mat"); RAF_ = RAF_.RAF_;
     RSF_ = load("RSF_.mat"); RSF_ = RSF_.RSF_;
-
-    % [NEXPSPACE_] = decimation(A); 
