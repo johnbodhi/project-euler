@@ -1,6 +1,5 @@
 function [ Y_ ] = swap( X_, S_ )
         
-        
 
         if ( S_ == 1 )
 
@@ -25,7 +24,7 @@ function [ Y_ ] = swap( X_, S_ )
             for k = 1:1:size(X_,3)
                 for i = 1:1:k
                     M_ = k-1;
-                    for j = 1:1:ciel(M_/2)
+                    for j = 1:1:ceil(M_/2)
         
                         L             = X_(i,M_-jj,k);
                         X_(i,M_-jj,k) = X_(i,j,k);

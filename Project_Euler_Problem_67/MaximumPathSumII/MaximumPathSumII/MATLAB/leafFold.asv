@@ -20,8 +20,9 @@ function [Y_] = leafFold(X_)
         L_(:,:,k,1) = L_(:,:,k,1)';
         L_(:,:,k,2) = flip(L_(:,:,k,2),2)';
 
-        if( mod(M_,2) )
+        if( ~mod(M_,2))
 
-            L_(size(L_,1),:,k,2) = 0;
-        end
+            L_(size(L_,1),:,)
     end
+
+
