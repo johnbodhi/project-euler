@@ -1,4 +1,4 @@
-function [Y_] = leafFold(X_)
+function [L_] = leafFold(X_)
 
 
     M_ = size(X_,2);
@@ -11,7 +11,6 @@ function [Y_] = leafFold(X_)
         end
     end
 
-    
     for k = ceil(M_/2):-1:1
 
         L_(:,:,k,1) = X_(1:ceil(M_/2),1:ceil(M_/2),k) ;

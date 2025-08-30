@@ -91,3 +91,6 @@ function [RA_,RAF_,RS_,RSF_,N_] = trellis()
 
     RAF_ = load("RAF_.mat"); RAF_ = RAF_.RAF_;
     RSF_ = load("RSF_.mat"); RSF_ = RSF_.RSF_;
+
+
+    % [ L_ ] = leafFold(RA_);
