@@ -71,10 +71,10 @@ function [RA_,RAF_,RS_,RSF_,N_] = trellis()
     %     end
     % end   
     % 
-    % RAF_ = flip(RA_,2);
-    % RAF_ = swap(RAF_) ;
-    % RSF_ = flip(RS_,2);
-    % RSF_ = swap(RSF_) ;
+    % RAF_ = swap(RA_,1) ;
+    % RAF_ = swap(RAF_,2);
+    % RSF_ = swap(RS_,1) ;
+    % RSF_ = swap(RSF_,2);
     % 
     % 
     % save("N_.mat","N_")  ;
