@@ -25,6 +25,5 @@ while( P < Z(Q) )
 
         [F] = pAdicDT(N,F,B,RA,RAFS,RS,RSFS); 
     end
-
 end
 toc;
