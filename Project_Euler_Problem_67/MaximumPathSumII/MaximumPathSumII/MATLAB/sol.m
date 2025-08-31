@@ -1,4 +1,4 @@
-function [ F_ ] = sol( X_, F_ )
+function [S_,F_] = sol(X_,F_)
 
     MIN = 1; MAX = 1; 
     
@@ -53,3 +53,4 @@ function [ F_ ] = sol( X_, F_ )
         end
 
     end
+    [S_] = resetAcc();
