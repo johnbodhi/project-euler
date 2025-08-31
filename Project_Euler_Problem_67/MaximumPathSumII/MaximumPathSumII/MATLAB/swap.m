@@ -7,8 +7,8 @@ function [ Y_ ] = swap( X_, S_ )
                 for i = 1:1:size(X_,2)
 
                     [I,~,~]            = find(X_(:,i,k));
-                    M_                 = size(find(I),1);
-                    X_(I(1):I(M_),i,k) = flip(X_(I(1):I(M_),i,k));
+                    N_                 = size(find(I),1);
+                    X_(I(1):I(N_),i,k) = flip(X_(I(1):I(N_),i,k));
                 end
             end
             Y_ = X_;
