@@ -3,35 +3,24 @@ function [ Y_ ] = swap( X_, S_ )
 
         if ( S_ == 1 )
 
-            ii = 0;
-            for k = 2:1:size(X_,3)
-                for j = 1:1:size(X_,2)
-                    for i = 1:1:floor(k/2)
-        
-                        L            = X_(k-ii,j,k);
-                        X_(k-ii,j,k) = X_(i,j,k);
-                        X_(i,j,k)    = L;
-                        ii           = ii + 1;                
-                    end
-                    ii = 0;
+            for k = size(X_,3):-1:1
+                for i = 1:1:size(X_,2)
+
+                    [I,~,~]            = find(X_(:,i,k));
+                    M_                 = size(find(I),1);
+                    X_(I(1):I(M_),i,k) = flip(X_(I(1):I(M_),i,k));
                 end
             end
             Y_ = X_;
 
         elseif ( S_ == 2 )
-    
-            jj = 0;
-            for k = 1:1:size(X_,3)
+            
+            for k = size(X_,3):-1:1
                 for i = 1:1:k
-                    M_ = k-1;
-                    for j = 1:1:ceil(M_/2)
-        
-                        L             = X_(i,M_-jj,k);
-                        X_(i,M_-jj,k) = X_(i,j,k);
-                        X_(i,j,k)     = L;
-                        jj            = jj + 1;                
-                    end
-                    jj = 0;
+                    
+                    [~,J,~]            = find(X_(i,:,k));
+                    M_                 = size(find(J),2);
+                    X_(i,J(1):J(M_),k) = flip(X_(i,J(1):J(M_),k));
                 end
             end
             Y_ = X_;

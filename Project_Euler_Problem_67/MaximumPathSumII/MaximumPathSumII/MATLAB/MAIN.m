@@ -6,7 +6,7 @@ clear all; close all; clc; tic;
 
 [Z,Q,EMAX]        = pathing(N);
 
-K = 1; P = 0; % T = sym(2^EMAX); 
+K = 1; P = 0;
 
 F = [ -1 10000 ];
 
@@ -15,10 +15,6 @@ while( P < Z(Q) )
     B(1,:) = permn([0;1],N,K); K = K + 1;
 
     B(2,:) = flip(B(1,:),2)  ; 
-
-    % B(3,:) = montecarlo(N,EMAX);
-
-    % B(4,:) = DNN(); Convolve, and compliment with NAND logic...
 
     if ( sum(B(1,:)) == Q-1 )
 
