@@ -89,7 +89,7 @@ function [N_,L_] = trellis()
     % RSD_ = swap(RSC_,1);
     % RSE_ = swap(RSD_,2);
     % 
-    % save("N_.mat","N_") ;
+    % save("N_.mat","N_")    ;
     % 
     % save("RAA_.mat","RAA_");
     % save("RSA_.mat","RSA_");
@@ -105,7 +105,6 @@ function [N_,L_] = trellis()
     % 
     % save("RAE_.mat","RAE_");
     % save("RSE_.mat","RSE_");
-
 
     N_   = load("N_.mat")  ; N_   = N_.N_;
 
@@ -124,7 +123,6 @@ function [N_,L_] = trellis()
     RAE_ = load("RAE_.mat"); RAE_ = RAE_.RAE_;
     RSE_ = load("RSE_.mat"); RSE_ = RSE_.RSE_;
 
-
     L_(:,:,:,1)  = RAA_;
     L_(:,:,:,3)  = RAB_;
     L_(:,:,:,5)  = RAC_;
@@ -136,6 +134,5 @@ function [N_,L_] = trellis()
     L_(:,:,:,6)  = RSC_;
     L_(:,:,:,8)  = RSD_;
     L_(:,:,:,10) = RSE_;
-
 
     % L_         = foldLeaf(L_);

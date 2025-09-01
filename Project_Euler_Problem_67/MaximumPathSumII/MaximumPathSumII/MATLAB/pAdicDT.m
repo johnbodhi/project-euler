@@ -14,18 +14,16 @@ function [F_] = pAdicDT(N_,F_,B_,L_)
             
                 for l = 1:1:M
 
-                    S_(l) = S_(l) + L_(ii,jj,k,l)  ;
-                end
-                
+                    S_(l) = S_(l) + L_(ii,jj,k,l);
+                end                
                 jj = jj + 1;
             
             elseif ( B_(i,j) )
 
                 for l = 1:1:M
 
-                    S_(l) = S_(l) + L_(ii,jj,k,l)  ;
-                end
-                
+                    S_(l) = S_(l) + L_(ii,jj,k,l);
+                end                
                 jj = jj + 1;
                 ii = ii + 1;
             
