@@ -111,8 +111,8 @@ function [N_,L_] = trellis()
 
     N_   = load("N_.mat")  ; N_   = N_.N_;
 
-    RAA_  = load("RAA_.mat") ; RAA_  = RAA_.RAA_;
-    RSA_  = load("RSA_.mat") ; RSA_  = RSA_.RSA_;
+    RAA_ = load("RAA_.mat"); RAA_ = RAA_.RAA_;
+    RSA_ = load("RSA_.mat"); RSA_ = RSA_.RSA_;
 
     RAB_ = load("RAB_.mat"); RAB_ = RAB_.RAB_;
     RSB_ = load("RSB_.mat"); RSB_ = RSB_.RSB_;
@@ -125,7 +125,7 @@ function [N_,L_] = trellis()
 
     RAE_ = load("RAE_.mat"); RAE_ = RAE_.RAE_;
     RSE_ = load("RSE_.mat"); RSE_ = RSE_.RSE_;
-    
+
 
     L_(:,:,:,1)  = RAA_;
     L_(:,:,:,3)  = RAB_;

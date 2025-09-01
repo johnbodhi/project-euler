@@ -51,5 +51,4 @@ function [F_] = sol(X_,F_)
             S_ = X_;
 
         end
-
     end
