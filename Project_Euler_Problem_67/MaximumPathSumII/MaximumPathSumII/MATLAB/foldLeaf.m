@@ -1,4 +1,4 @@
-function [L_] = foldLeaves(X_)
+function [L_] = foldLeaf(X_)
 
     M_ = size(X_,2);
     for k = size(X_,3):-1:1
