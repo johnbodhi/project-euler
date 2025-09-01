@@ -2,9 +2,9 @@ clear all; close all; clc; tic;
 
 % NEXPSPACE-TIME MARKOV DECISION PROCESS
 
-[N,L]      = trellis();
+[N,L] = trellis();
 
-[Z,Q,EMAX] = pathing(N);
+[Z,Q,EMAX]        = pathing(N);
 
 K = 1; P = 0;
 
@@ -13,6 +13,7 @@ F = [ -1 10000 ];
 while( P < Z(Q) )
 
     B(1,:) = permn([0;1],N,K); K = K + 1;
+    % B(2,:) = flip(B(1,:),2);
 
     if ( sum(B(1,:)) == Q-1 )
 
