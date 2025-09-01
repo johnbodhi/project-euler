@@ -89,8 +89,6 @@ function [N_,L_] = trellis()
     % RSD_ = swap(RSC_,1);
     % RSE_ = swap(RSD_,2);
     % 
-    L_ = fold(L_);
-    % 
     % save("N_.mat","N_") ;
     % 
     % save("RAA_.mat","RAA_");
@@ -138,3 +136,6 @@ function [N_,L_] = trellis()
     L_(:,:,:,6)  = RSC_;
     L_(:,:,:,8)  = RSD_;
     L_(:,:,:,10) = RSE_;
+
+
+    % L_           = fold(L_);
