@@ -1,4 +1,3 @@
-function [ S_ ] = resetAcc()
+function [ S_ ] = resetAcc(L_)
 
-    S_(1) = 0; S_(2) = 0;
-    S_(3) = 0; S_(4) = 0;
+    S_ = zeros(size(L_,4),2);

@@ -1,4 +1,4 @@
-function [N_,L_] = trellis()
+function [RA_,RAF_,RS_,RSF_,N_] = trellis()
     
     % A_ = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_tiny.csv") ;
     % A_ = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_small.csv"); 
@@ -64,8 +64,8 @@ function [N_,L_] = trellis()
     % 
     % D_ = flip(D,2);
     % 
-    % RAA_  = zeros(N_,N_,ceil(N_/2));
-    % RSA_  = zeros(N_,N_,ceil(N_/2));
+    % RA_  = zeros(N_,N_,ceil(N_/2));
+    % RS_  = zeros(N_,N_,ceil(N_/2));
     % 
     % for k = 1:1:ceil(N_/2)
     %     for j = 1:1:N_
@@ -78,63 +78,50 @@ function [N_,L_] = trellis()
     %         end
     %     end
     % end   
-    % 
-    % RAB_ = flip(RAA_,2);
-    % RAC_ = smudge(RAB_);
-    % RAD_ = swap(RAC_,1);
-    % RAE_ = swap(RAD_,2);
-    % 
-    % RSB_ = flip(RSA_,2);
-    % RSC_ = smudge(RSB_);
-    % RSD_ = swap(RSC_,1);
-    % RSE_ = swap(RSD_,2);
-    % 
-    % % L_ = fold(L_);
-    % 
-    % save("N_.mat","N_") ;
-    % 
-    % save("RAA_.mat","RAA_");
-    % save("RSA_.mat","RSA_");
-    % 
-    % save("RAB_.mat","RAB_");
-    % save("RSB_.mat","RSB_");
-    % 
-    % save("RAC_.mat","RAC_");
-    % save("RSC_.mat","RSC_");
-    % 
-    % save("RAD_.mat","RAD_");
-    % save("RSD_.mat","RSD_");
-    % 
-    % save("RAE_.mat","RAE_");
-    % save("RSE_.mat","RSE_");
+    
+    RAB_ = flip(RAA_,2);
+    RAC_ = smudge(RAB_);
+    RAD_ = swap(RAC_,1);
+    RAE_ = swap(RAD_,2);
+
+    RSB_ = flip(RSA_,2);
+    RSC_ = smudge(RSB_);
+    RSD_ = swap(RSC_,1);
+    RSE_ = swap(RSD_,2);
+
+    % L_ = fold(L_);
+
+    save("N_.mat","N_") ;
+
+    save("RAA_.mat","RAA_");
+    save("RSA_.mat","RSA_");
+
+    save("RAB_.mat","RAB_");
+    save("RSB_.mat","RSB_");
+
+    save("RAC_.mat","RAC_");
+    save("RSC_.mat","RSC_");
+
+    save("RAD_.mat","RAD_");
+    save("RSD_.mat","RSD_");
+
+    save("RAE_.mat","RAE_");
+    save("RSE_.mat","RSE_");
 
 
     N_   = load("N_.mat")  ; N_   = N_.N_;
 
-    RAA_  = load("RAA_.mat") ; RAA_  = RAA_.RAA_;
-    RSA_  = load("RSA_.mat") ; RSA_  = RSA_.RSA_;
+    RA_  = load("RAA_.mat") ; RAA_  = RA_.RA_;
+    RS_  = load("RS_.mat") ; RS_  = RS_.RS_;
 
-    RAB_ = load("RAB_.mat"); RAB_ = RAB_.RAB_;
-    RSB_ = load("RSB_.mat"); RSB_ = RSB_.RSB_;
+    RAF_ = load("RAF_.mat"); RAF_ = RAF_.RAF_;
+    RSF_ = load("RSF_.mat"); RSF_ = RSF_.RSF_;
 
-    RAC_ = load("RAC_.mat"); RAC_ = RAC_.RAC_;
-    RSC_ = load("RSC_.mat"); RSC_ = RSC_.RSC_;
+    RAF_ = load("RAF_.mat"); RAF_ = RAF_.RAF_;
+    RSF_ = load("RSF_.mat"); RSF_ = RSF_.RSF_;
 
-    RAD_ = load("RAD_.mat"); RAD_ = RAD_.RAD_;
-    RSD_ = load("RSD_.mat"); RSD_ = RSD_.RSD_;
+    RAF_ = load("RAF_.mat"); RAF_ = RAF_.RAF_;
+    RSF_ = load("RSF_.mat"); RSF_ = RSF_.RSF_;
 
-    RAE_ = load("RAE_.mat"); RAE_ = RAE_.RAE_;
-    RSE_ = load("RSE_.mat"); RSE_ = RSE_.RSE_;
-    
-
-    L_(:,:,:,1)  = RAA_;
-    L_(:,:,:,3)  = RAB_;
-    L_(:,:,:,5)  = RAC_;
-    L_(:,:,:,7)  = RAD_;
-    L_(:,:,:,9)  = RAE_;
-
-    L_(:,:,:,2)  = RSA_;
-    L_(:,:,:,4)  = RSB_;
-    L_(:,:,:,6)  = RSC_;
-    L_(:,:,:,8)  = RSD_;
-    L_(:,:,:,10) = RSE_;
+    RAF_ = load("RAF_.mat"); RAF_ = RAF_.RAF_;
+    RSF_ = load("RSF_.mat"); RSF_ = RSF_.RSF_;

@@ -2,9 +2,10 @@ clear all; close all; clc; tic;
 
 % NEXPSPACE-TIME MARKOV DECISION PROCESS
 
-[N,L]      = trellis();
+[RAA,RAB,RAC,RAD,RAE,...
+ RSA,RSB,RSC,RSD,RSE,..N ] = trellis();
 
-[Z,Q,EMAX] = pathing(N);
+[Z,Q,EMAX]        = pathing(N);
 
 K = 1; P = 0;
 
@@ -23,7 +24,7 @@ while( P < Z(Q) )
 
     if (sum(B(1,:)) < Q )
 
-        [F] = pAdicDT(N,F,B,L); 
+        [F] = pAdicDT(N,F,B,RA,RAF,RS,RSF); 
     end
 end
 toc;
