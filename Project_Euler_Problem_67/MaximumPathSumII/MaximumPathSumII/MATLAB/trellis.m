@@ -79,12 +79,12 @@ function [RA_,RAF_,RS_,RSF_,N_] = trellis()
     %     end
     % end   
     % 
-    % RAF_ = flip(RA_,2)  ;
-    % RAF_ = smudge(RAF_) ;
+    % RAF_   = flip(RA_,2)  ;
+    % RAF_   = smudge(RAF_) ;
     % % RAF_ = swap(RAF_,1);
     % 
-    % RSF_ = flip(RS_,2)  ;
-    % RSF_ = smudge(RSF_) ;
+    % RSF_   = flip(RS_,2)  ;
+    % RSF_   = smudge(RSF_) ;
     % % RSF_ = swap(RSF_,1);
 
     % L_       = fold(L_);
