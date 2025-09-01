@@ -43,8 +43,8 @@ function [N_,L_] = trellis()
     %                 for p = k:-1:1
     %                     D( p, dd:hh, k ) = p;
     %                     dd = dd + 1;
-    %                     hh = hh + 1; 
-    %                 end                
+    %                     hh = hh + 1;
+    %                 end            
     %             elseif( k == 1 )
     % 
     %                 for j = 1:1:N_
