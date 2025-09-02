@@ -15,10 +15,10 @@ function [N_,L_] = trellis()
     % end
 
     % N_  = size(A_,1);
-    % 
+
     % AS_ = zeros(N_) ;
     % for i = 1:1:N_
-    % 
+
     %     AS_(i,1:i) = flip(A_(i,1:i),2);
     % end
     % A_  = A_'; AS_ = AS_';
@@ -61,9 +61,9 @@ function [N_,L_] = trellis()
     % save("D.mat","D");
 
     % D = load("D.mat"); D = D.D;
-    % 
+ 
     % D_ = flip(D,2);
-    % 
+
     % RAA_  = zeros(N_,N_,ceil(N_/2));
     % RSA_  = zeros(N_,N_,ceil(N_/2));
     % 
@@ -72,7 +72,7 @@ function [N_,L_] = trellis()
     %         for i = 1:1:N_
     %             if(D_(i,j,k))
     % 
-    %                 RAA_(i,j,k) = A_(D_(i,j,k),j) ;   
+    %                 RAA_(i,j,k) = A_ (D_(i,j,k),j);   
     %                 RSA_(i,j,k) = AS_(D_(i,j,k),j);                  
     %             end   
     %         end
@@ -83,7 +83,7 @@ function [N_,L_] = trellis()
     % RAC_ = smudge(RAB_);
     % RAD_ = swap(RAC_,1);
     % RAE_ = swap(RAD_,2);
-    % 
+
     % RSB_ = flip(RSA_,2);
     % RSC_ = smudge(RSB_);
     % RSD_ = swap(RSC_,1);
@@ -108,13 +108,13 @@ function [N_,L_] = trellis()
 
     % save("RAB_.mat","RAB_");
     % save("RSB_.mat","RSB_");
-    % 
+
     % save("RAC_.mat","RAC_");
     % save("RSC_.mat","RSC_");
-    % 
+
     % save("RAD_.mat","RAD_");
     % save("RSD_.mat","RSD_");
-    % 
+    
     % save("RAE_.mat","RAE_");
     % save("RSE_.mat","RSE_");
 
@@ -123,4 +123,4 @@ function [N_,L_] = trellis()
     N_ = load("N_.mat"); N_ = N_.N_;
     L_ = load("L_.mat"); L_ = L_.L_;
 
-    % L_ = foldLeaf(L_);
+    % L_ = foldLeaf(L_)      ;
