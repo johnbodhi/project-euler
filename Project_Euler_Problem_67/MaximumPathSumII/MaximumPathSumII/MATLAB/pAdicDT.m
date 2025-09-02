@@ -10,7 +10,7 @@ function [F_] = pAdicDT(N_,F_,B_,L_)
 
         for j = 1:1:N_
         
-            if ( ~B_(i,j)    )
+            if ( ~B_(i,j)   )
             
                 for l = 1:1:M
 
@@ -26,9 +26,9 @@ function [F_] = pAdicDT(N_,F_,B_,L_)
                 end                
                 jj = jj + 1;
                 ii = ii + 1;
-            
+                
             end            
         end
-        [F_] = sol(S_,F_); [S_] = resetAcc(L_);
+        [F_] = sol(S_,F_); [S_] = resetAcc(L_);    
         
     end

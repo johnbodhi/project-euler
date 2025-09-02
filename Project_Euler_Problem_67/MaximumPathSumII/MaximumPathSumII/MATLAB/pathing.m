@@ -2,7 +2,7 @@ function [Z_,Q_,EMAX_] = pathing(N_)
 
     Z_ = diag(flip(pascal(N_),1)); 
 
-    Z_ = ceil(Z_(1:ceil(N_/2)));
+    Z_ = Z_(1:ceil(N_/2));
 
     [~,Q_] = max(Z_);
 

@@ -27,7 +27,7 @@ function [N_,L_] = trellis()
     % for k = N_:-1:1
     %     for j = 1:1:N_
     %         for i = 1:1:N_           
-    %             if( k == N_ )
+    %             if(k == N_)
     %                 cc = 0;
     %                 for jj = 1:1:N_
     %                     for ii = 1:1:N_
@@ -43,8 +43,8 @@ function [N_,L_] = trellis()
     %                 for p = k:-1:1
     %                     D( p, dd:hh, k ) = p;
     %                     dd = dd + 1;
-    %                     hh = hh + 1;
-    %                 end            
+    %                     hh = hh + 1; 
+    %                 end                
     %             elseif( k == 1 )
     % 
     %                 for j = 1:1:N_
@@ -78,7 +78,7 @@ function [N_,L_] = trellis()
     %         end
     %     end
     % end   
-    % 
+
     % RAB_ = flip(RAA_,2);
     % RAC_ = smudge(RAB_);
     % RAD_ = swap(RAC_,1);
@@ -88,12 +88,24 @@ function [N_,L_] = trellis()
     % RSC_ = smudge(RSB_);
     % RSD_ = swap(RSC_,1);
     % RSE_ = swap(RSD_,2);
-    % 
+
+    % L_(:,:,:,1)  = RAA_;
+    % L_(:,:,:,3)  = RAB_;
+    % L_(:,:,:,5)  = RAC_;
+    % L_(:,:,:,7)  = RAD_;
+    % L_(:,:,:,9)  = RAE_;
+
+    % L_(:,:,:,2)  = RSA_;
+    % L_(:,:,:,4)  = RSB_;
+    % L_(:,:,:,6)  = RSC_;
+    % L_(:,:,:,8)  = RSD_;
+    % L_(:,:,:,10) = RSE_;
+
     % save("N_.mat","N_")    ;
-    % 
+
     % save("RAA_.mat","RAA_");
     % save("RSA_.mat","RSA_");
-    % 
+
     % save("RAB_.mat","RAB_");
     % save("RSB_.mat","RSB_");
     % 
@@ -106,33 +118,9 @@ function [N_,L_] = trellis()
     % save("RAE_.mat","RAE_");
     % save("RSE_.mat","RSE_");
 
-    N_   = load("N_.mat")  ; N_   = N_.N_;
+    % save("L_.mat","L_")    ;
 
-    RAA_ = load("RAA_.mat"); RAA_ = RAA_.RAA_;
-    RSA_ = load("RSA_.mat"); RSA_ = RSA_.RSA_;
+    N_ = load("N_.mat"); N_ = N_.N_;
+    L_ = load("L_.mat"); L_ = L_.L_;
 
-    RAB_ = load("RAB_.mat"); RAB_ = RAB_.RAB_;
-    RSB_ = load("RSB_.mat"); RSB_ = RSB_.RSB_;
-
-    RAC_ = load("RAC_.mat"); RAC_ = RAC_.RAC_;
-    RSC_ = load("RSC_.mat"); RSC_ = RSC_.RSC_;
-
-    RAD_ = load("RAD_.mat"); RAD_ = RAD_.RAD_;
-    RSD_ = load("RSD_.mat"); RSD_ = RSD_.RSD_;
-
-    RAE_ = load("RAE_.mat"); RAE_ = RAE_.RAE_;
-    RSE_ = load("RSE_.mat"); RSE_ = RSE_.RSE_;
-
-    L_(:,:,:,1)  = RAA_;
-    L_(:,:,:,3)  = RAB_;
-    L_(:,:,:,5)  = RAC_;
-    L_(:,:,:,7)  = RAD_;
-    L_(:,:,:,9)  = RAE_;
-
-    L_(:,:,:,2)  = RSA_;
-    L_(:,:,:,4)  = RSB_;
-    L_(:,:,:,6)  = RSC_;
-    L_(:,:,:,8)  = RSD_;
-    L_(:,:,:,10) = RSE_;
-
-    % L_         = foldLeaf(L_);
+    % L_ = foldLeaf(L_);
