@@ -15,7 +15,7 @@ while( P < Z(Q) )
     if (sum(B(1,:)) == Q-1)
 
         P = P + 1;
-     end
+    end
 
     if (sum(B(1,:)) < Q)
 

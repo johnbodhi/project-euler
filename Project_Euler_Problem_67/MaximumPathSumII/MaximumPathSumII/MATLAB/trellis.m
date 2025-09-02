@@ -22,7 +22,7 @@ function [N_,L_] = trellis()
     %     AS_(i,1:i) = flip(A_(i,1:i),2);
     % end
     % A_  = A_'; AS_ = AS_';
-    % 
+
     % D = zeros(N_,N_,N_);
     % for k = N_:-1:1
     %     for j = 1:1:N_
@@ -59,7 +59,7 @@ function [N_,L_] = trellis()
     %     end
     % end
     % save("D.mat","D");
-    % 
+
     % D = load("D.mat"); D = D.D;
     % 
     % D_ = flip(D,2);
@@ -101,7 +101,7 @@ function [N_,L_] = trellis()
     % L_(:,:,:,8)  = RSD_;
     % L_(:,:,:,10) = RSE_;
 
-    % save("N_.mat","N_")    ;
+    % save("N_.mat","N_");
 
     % save("RAA_.mat","RAA_");
     % save("RSA_.mat","RSA_");
