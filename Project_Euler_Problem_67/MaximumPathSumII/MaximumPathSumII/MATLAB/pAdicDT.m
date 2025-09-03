@@ -30,5 +30,5 @@ function [F_] = pAdicDT(N_,F_,B_,L_)
             end            
         end
         [F_] = sol(S_,F_); [S_] = resetAcc(L_);    
-        
+
     end
