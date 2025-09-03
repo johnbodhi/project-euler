@@ -10,9 +10,10 @@ function [EXSPACE] = trellis()
 
     EXPSPACE     = decimate(R_)              ; 
     
-    save("NEXPSPACE.mat","NEXPSPACE_")  ;
+    save("NEXPSPACE.mat","NEXPSPACE_")       ;
 
-    N_           = load("N_.mat")       ; 
-    N_           = N_.N_                ;
-    NEXPSPACE    = load("NEXPSPACE.mat");    
-    NEXPSPACE    = NEXPSPACE.NEXPSPACE  ;
+    N_           = load("N_.mat")            ; 
+    N_           = N_.N_                     ;
+    
+    NEXPSPACE    = load("NEXPSPACE.mat")     ;    
+    NEXPSPACE    = NEXPSPACE.NEXPSPACE       ;

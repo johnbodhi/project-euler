@@ -1,12 +1,10 @@
 function [RA_,RS_] = mapScaffold(A_,D_)
 
-    N_ = size(A_,1);
+    N_ = size(A_,1); 
 
-    [AS_] = swap(A_,1); 
+    AS_ = swap(A_,2);
 
-    A_ = A_'; 
-    
-    AS_ = AS_';
+    A_ = A_'; AS_ = AS_';
 
     RA_  = zeros(N_,N_,ceil(N_/2));
     RS_  = zeros(N_,N_,ceil(N_/2));
