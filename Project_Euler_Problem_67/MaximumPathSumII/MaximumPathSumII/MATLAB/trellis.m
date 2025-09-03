@@ -17,7 +17,7 @@ function [NEXSPACE] = trellis()
     R_(:,:,:,7)  = RAD_; R_(:,:,:,8)  = RSD_;
     R_(:,:,:,9)  = RAE_; R_(:,:,:,10) = RSE_;
 
-    NEXPSPACE    = foldLeaves(R_); save("NEXPSPACE.mat","NEXPSPACE_");
+    EXPSPACE     = foldLeaves(R_); save("NEXPSPACE.mat","NEXPSPACE_");
 
     N_           = load("N_.mat")       ; 
     N_           = N_.N_                ;

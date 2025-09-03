@@ -1,11 +1,11 @@
-function [NEXPSPACE_] = foldLeaves(X_)
+function [EXPSPACE_] = foldLeaves(X_)
 
     M_ = size(X_,2);
     for k = size(X_,3):-1:1
         ii = k-1; jj = ii;
         for j = M_:-1:floor(M_-jj)
             
-            X_(:,j,k) = circshift(X_(:,j,k),-ii,1);
+            X_(:,j,k) = circshift(X_(:,j,k),-ii,1); 
             ii        = ii - 1;
         end
     end

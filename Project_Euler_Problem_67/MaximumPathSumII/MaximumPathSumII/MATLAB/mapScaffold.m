@@ -1,6 +1,8 @@
 function [RA_,RS_] = mapScaffold(A_,D_)
 
-    [AS_] = swap(A_,1);
+    N_ = size(A_,1);
+
+    [AS_] = swap(A_,1); 
 
     A_ = A_'; 
     
