@@ -14,6 +14,6 @@ function [EXSPACE] = trellis()
 
     N_           = load("N_.mat")            ; 
     N_           = N_.N_                     ;
-    
+
     NEXPSPACE    = load("NEXPSPACE.mat")     ;    
     NEXPSPACE    = NEXPSPACE.NEXPSPACE       ;
