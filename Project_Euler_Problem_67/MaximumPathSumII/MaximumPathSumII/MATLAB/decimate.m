@@ -1,30 +1,34 @@
 function [EXPSPACE_] = decimate(X_)
 
+
     M_ = size(X_,2);
-    for l = size(X_,4):-1:1
+    for l = size(X_,4):-1:2
         ii = l-1; jj = ii;
         for k = size(X_,3):-1:1
             for j = M_:-1:floor(M_-jj)
                 
-                X_(:,j,k) = circshift(X_(:,j,k,l),-ii,1); 
-                ii        = ii - 1;
+                X_(:,j,k,l) = circshift(X_(:,j,k,l),-ii,1); 
+                ii          = ii - 1;
             end
             ii = l-1; jj = ii;
         end
     end
     
     for l = size(X_,4):-1:1
-        for k = ceil(M_/2):-1:1
+        for k = size(X_,3):-1:1
     
-            L_(:,:,k,1) = X_(1:ceil(M_/2),1:ceil(M_/2),k) ;
-            L_(:,:,k,2) = X_(1:ceil(M_/2),ceil(M_/2):M_,k);  
+            RT_(:,:,k,l) = X_(1:ceil(M_/2),1:ceil(M_/2) ,k,l) ;
+            RB_(:,:,k,l) = X_(1:ceil(M_/2),ceil(M_/2):M_,k,l);  
             
-            L_(:,:,k,1) = L_(:,:,k,1)'        ;
-            L_(:,:,k,2) = flip(L_(:,:,k,2),2)';
+            RT_(:,:,k,l) = RT_(:,:,k,l)'        ;
+            RB_(:,:,k,l) = flip(RB_(:,:,k,l),2)';
     
             if( mod(M_,2) )
     
-                L_(size(L_,1),:,k,2) = 0;
+                RB_(size(RB_,1),:,k,l) = 0;
             end
         end
     end
+
+
+end
