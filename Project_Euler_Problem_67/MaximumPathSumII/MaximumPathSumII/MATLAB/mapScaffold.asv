@@ -15,8 +15,8 @@ function [RA_,RS_] = mapScaffold(A_,D_)
                 if(D_(i,j,k))
                                                   
                     RA_(i,j,k) = A_ (D_(i,j,k),j);   
-                    RS_(i,j,k) = AS_(D_(i,j,k),j);                 
+                    RS_(i,j,k) = AS_(D_(i,j,k),j);                  
                 end   
             end
         end
-    end    
+    end   
