@@ -8,7 +8,7 @@ function [EXSPACE] = trellis()
 
     [R_]         = transform(RAA_,RSA_)      ;
 
-    EXPSPACE     = decimate(R_)              ; 
+    EXPSPACE     = decimate(R_)            ; 
     
     save("NEXPSPACE.mat","NEXPSPACE_")       ;
 

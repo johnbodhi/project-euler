@@ -2,7 +2,7 @@ clear all; close all; clc; tic;
 
 % NEXPSPACE-TIME MARKOV DECISION PROCESS
 
-[N,L]      = trellis() ;
+[N,R]      = trellis() ;
 
 [Z,Q,EMAX] = pathing(N);
 

@@ -1,6 +1,5 @@
 function [ Y_ ] = swap( X_, S_ )
         
-
         if ( S_ == 1 )
 
             for l = 1:1:size(X_,4)
@@ -8,8 +7,12 @@ function [ Y_ ] = swap( X_, S_ )
                     for i = 1:1:size(X_,1)
                     
                         [I,~,~]              = find(X_(:,i,k,l))         ;
-                        N_                   = size(find(I),1)           ;
-                        X_(I(1):I(N_),i,k,l) = flip(X_(I(1):I(N_),i,k,l));
+
+                        if(I)
+
+                            N_                   = size(find(I),1)           ;
+                            X_(I(1):I(N_),i,k,l) = flip(X_(I(1):I(N_),i,k,l));
+                        end
                     end
                 end
             end
@@ -22,8 +25,12 @@ function [ Y_ ] = swap( X_, S_ )
                     for j = 1:1:size(X_,2)
                     
                         [~,J,~]              = find(X_(j,:,k,l))         ;
-                        M_                   = size(find(J),2)           ;
-                        X_(j,J(1):J(M_),k,l) = flip(X_(j,J(1):J(M_),k,l));
+
+                        if(J)
+
+                            M_                   = size(find(J),2)           ;
+                            X_(j,J(1):J(M_),k,l) = flip(X_(j,J(1):J(M_),k,l));
+                        end
                     end
                 end
             end
