@@ -1,6 +1,6 @@
 function [F_] = pAdicDT(N_,F_,B_,R_)
 
-    [S_] = resetAcc(L_); M = size(S_,2);
+    [S_] = resetAcc(R_); M = size(S_,2);
 
     for i = 1:1:size(B_,1)
 
@@ -15,6 +15,9 @@ function [F_] = pAdicDT(N_,F_,B_,R_)
                 for l = 1:1:M
                                                     
                     S_(l) = S_(l) + R_(ii,jj,k,l);
+                    
+
+
                 end                
                 jj = jj + 1;
                             
@@ -23,6 +26,9 @@ function [F_] = pAdicDT(N_,F_,B_,R_)
                 for l = 1:1:M
                     
                     S_(l) = S_(l) + R_(ii,jj,k,l);
+
+
+
                 end                
                 jj = jj + 1;
                 ii = ii + 1;

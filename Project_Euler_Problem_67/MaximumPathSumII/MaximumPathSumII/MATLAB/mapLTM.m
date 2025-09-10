@@ -1,10 +1,10 @@
-function [RA_,RS_] = mapScaffold(A_,D_)
+function [R_] = mapLTM(R_,D_)
                      
-    N_ = size(A_,1) ; 
+    N_   = size(R_,1)             ; 
                      
-    AS_ = swap(A_,2);
+    RS_  = swap(R_,2)             ;
                      
-    A_ = A_'; AS_ = AS_';
+    R_   = R_'; RS_ = RS_'        ;
                          
     RA_  = zeros(N_,N_,ceil(N_/2));
     RS_  = zeros(N_,N_,ceil(N_/2));
@@ -14,9 +14,10 @@ function [RA_,RS_] = mapScaffold(A_,D_)
             for i = 1:1:N_
                 if(D_(i,j,k))
                                                   
-                    RA_(i,j,k) = A_ (D_(i,j,k),j);   
-                    RS_(i,j,k) = AS_(D_(i,j,k),j);                 
+                    RA_(i,j,k) = R_ (D_(i,j,k),j);   
+                    RS_(i,j,k) = RS_(D_(i,j,k),j);                 
                 end   
             end
         end
-    end    
+    end
+

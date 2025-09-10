@@ -1,6 +1,6 @@
 function [R_] = transform(RAA_,RSA_)
 
-    RAB_ = swap(RAA_,1)        ; RSB_ = swap(RSA_,1)        ; 
+    RAB_ = swap(RAA_,1)        ; RSB_ = swap(RSA_,1)        ;
     RAC_ = smudge(flip(RAA_,2)); RSC_ = smudge(flip(RSA_,2));
     RAD_ = swap(RAC_,1)        ; RSD_ = swap(RSC_,1)        ;
 
