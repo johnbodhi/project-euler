@@ -1,36 +1,34 @@
-function [F_] = pAdicDT(N_,F_,B_,R_)
+function [F_] = pAdicDT(F_,B_,R_)
 
-    [S_] = resetAcc(R_); M = size(S_,2);
+    [S_] = resetAcc(R_);
+    
+    N = size(R_,1); M = size(S_,2);
 
     for i = 1:1:size(B_,1)
 
-        k = sum(B_(i,:))+1;
+        k = sum(B_(i,:))+1; ii = 1; jj = 1;
 
-        ii = 1; jj = 1;
-
-        for j = 1:1:N_
-        
-            if ( ~B_(i,j)   )
-            
+        for j = 1:1:N  
+            if ( ~B_(i,j)   )         
                 for l = 1:1:M
                                                     
-                    S_(l) = S_(l) + R_(ii,jj,k,l);
-
+                    S_(l) = S_(l) + RT_ (ii,jj,k,l);
+                    S_(l) = S_(l) + RB_ (ii,jj,k,l);
+                    S_(l) = S_(l) + RTS_(ii,jj,k,l);
+                    S_(l) = S_(l) + RBS_(ii,jj,k,l);
                 end                
-                jj = jj + 1;
-                            
-            elseif ( B_(i,j) )
-                                
+                jj = jj + 1;                            
+            elseif ( B_(i,j) )                             
                 for l = 1:1:M
                     
-                    S_(l) = S_(l) + R_(ii,jj,k,l);
-
+                    S_(l) = S_(l) + RT_ (ii,jj,k,l);
+                    S_(l) = S_(l) + RB_ (ii,jj,k,l);
+                    S_(l) = S_(l) + RTS_(ii,jj,k,l);
+                    S_(l) = S_(l) + RBS_(ii,jj,k,l);
                 end                
                 jj = jj + 1;
-                ii = ii + 1;
-                
-            end            
+                ii = ii + 1;               
+            end        
         end
-        [F_] = sol(S_,F_); [S_] = resetAcc(R_);
-        
+        [F_] = sol(S_,F_); [S_] = resetAcc(R_);    
     end

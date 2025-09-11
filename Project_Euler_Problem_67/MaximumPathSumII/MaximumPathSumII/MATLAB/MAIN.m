@@ -19,7 +19,7 @@ while( P < Z(Q) )
 
     if (sum(B(1,:)) < Q)
 
-        [F] = pAdicDT(N,F,B,L);
+        [F] = pAdicDT(F,B,R);
     end
 end
 toc;

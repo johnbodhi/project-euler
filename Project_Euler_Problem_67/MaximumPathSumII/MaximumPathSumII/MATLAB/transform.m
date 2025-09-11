@@ -8,7 +8,7 @@ function [R_] = transform(R_)
     R_(:,:,:,4) = swap(R_(:,:,:,3),1)         ; 
 
     R_(:,:,:,5) = RT_(:,:,:,2)                ;
-    R_(:,:,:,6) = swap(RT_(:,:,:,6),1)        ;
+    R_(:,:,:,6) = swap(R_(:,:,:,5),1)        ;
     R_(:,:,:,7) = smudge(flip(R_(:,:,:,6),2)) ;
     R_(:,:,:,8) = swap(R_(:,:,:,7),1)         ;
 
@@ -20,4 +20,4 @@ function [R_] = transform(R_)
     end
     R_ = RT_; % save("R_.mat","R_")  ;
     
-    % R_ = load("R_.mat"); R_ = R_.R_;
+    R_ = load("R_.mat"); R_ = R_.R_;

@@ -1,11 +1,10 @@
 function [D_] = scaffold(A_)
 
-    N_ = size(A_,1)    ; s% ave("N_.mat","N_");
+    N_ = size(A_,1)    ; % save("N_.mat","N_");
 
-    N_ = load("N_.mat"); N_ = N_.N_         ;
+    N_ = load("N_.mat"); N_ = N_.N_           ;
 
-    D = zeros(N_,N_,N_);
-
+    D = zeros(N_,N_,N_)                       ;
     for k = N_:-1:1
         for j = 1:1:N_
             for i = 1:1:N_           
@@ -28,7 +27,6 @@ function [D_] = scaffold(A_)
                         hh = hh + 1;
                     end              
                 elseif( k == 1 )
-
                     for j = 1:1:N_
                         for i = 1:1:N_
                             if( i == N_ )
@@ -40,8 +38,7 @@ function [D_] = scaffold(A_)
             end
         end
     end
-    D_ = flip(D,2);
+    D_ = flip(D,2)                   ;
 
-    % save("D_.mat","D_");
-
+    % save("D_.mat","D_")            ;
     % D_ = load("D_.mat"); D_ = D_.D_;
