@@ -20,4 +20,6 @@ function [R_] = mapLTM(R_,D_)
             end
         end
     end
+    R_(:,:,:,1) = RA_;
+    R_(:,:,:,2) = RS_;
 

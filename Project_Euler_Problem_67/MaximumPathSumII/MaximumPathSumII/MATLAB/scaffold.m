@@ -1,6 +1,6 @@
 function [D_] = scaffold(A_)
 
-    N_ = size(A_,1)    ; save("N_.mat","N_");
+    N_ = size(A_,1)    ; s% ave("N_.mat","N_");
 
     N_ = load("N_.mat"); N_ = N_.N_         ;
 
@@ -44,4 +44,4 @@ function [D_] = scaffold(A_)
 
     % save("D_.mat","D_");
 
-    D_ = load("D_.mat"); D_ = D_.D_;
+    % D_ = load("D_.mat"); D_ = D_.D_;

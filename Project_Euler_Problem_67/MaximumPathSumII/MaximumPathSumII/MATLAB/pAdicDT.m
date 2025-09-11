@@ -15,8 +15,6 @@ function [F_] = pAdicDT(N_,F_,B_,R_)
                 for l = 1:1:M
                                                     
                     S_(l) = S_(l) + R_(ii,jj,k,l);
-                    
-
 
                 end                
                 jj = jj + 1;
@@ -26,8 +24,6 @@ function [F_] = pAdicDT(N_,F_,B_,R_)
                 for l = 1:1:M
                     
                     S_(l) = S_(l) + R_(ii,jj,k,l);
-
-
 
                 end                
                 jj = jj + 1;
