@@ -6,10 +6,12 @@ function [F_] = pAdicDT(F_,B_,R_)
 
     for i = 1:1:size(B_,1)
 
-        k = sum(B_(i,:))+1; ii = 1; jj = 1;
+        k = sum(B_(i,:))+1; 
+        
+        ii = 1; jj = 1;
 
         for j = 1:1:N  
-            if ( ~B_(i,j)   )   
+            if ( ~B_(i,j)   )  
                 for l = M:-1:1
                                                     
                     S_(l)   = S_(l)   + RT_ (ii,jj,k,l);

@@ -10,7 +10,7 @@ function [EXSPACE] = trellis()
     [R_]         = transform(R_)             ;
 
 
-    [R_]         = decimate(R_)              ;
+    [R_]         = decimate(R_)            ;
 
     
     save("NEXPSPACE.mat","NEXPSPACE_")       ;
