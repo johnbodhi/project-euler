@@ -1,24 +1,15 @@
-function [EXSPACE] = trellis()
+function [R_] = trellis()
 
-    [R_]         = LTM()                     ;
+    [R_]    = LTM()          ;
 
+    [D_]    = scaffold(R_)   ;
 
-    [D_]         = scaffold(R_)              ;
+    [R_]    = mapLTM(R_,D_)  ;
 
-    [R_]         = mapLTM(R_,D_)             ;
+    [R_]    = transform(R_)  ;
 
-    [R_]         = transform(R_)             ;
+    [R_]    = decimate(R_)   ;
 
-
-    [R_]         = decimate(R_)            ;
-
-    
-    save("NEXPSPACE.mat","NEXPSPACE_")       ;
-
-
-    N_           = load("N_.mat")            ; 
-    N_           = N_.N_                     ;
-
-
-    NEXPSPACE    = load("NEXPSPACE.mat")     ;   
-    NEXPSPACE    = NEXPSPACE.NEXPSPACE       ;
+    save("R_.mat","R_")      ;
+    R_      = load("R_.mat") ;
+    R_      = R_.R_          ;
