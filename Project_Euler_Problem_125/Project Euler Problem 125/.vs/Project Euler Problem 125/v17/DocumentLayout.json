@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\jmgar\\OneDrive\\Documents\\GitHub\\project-euler\\Project_Euler_Problem_125\\Project Euler Problem 125\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{20C9127F-A136-495A-8035-59B924E8E07F}|Project Euler Problem 125\\Project Euler Problem 125.vcxproj|C:\\Users\\jmgar\\OneDrive\\Documents\\GitHub\\project-euler\\Project_Euler_Problem_125\\Project Euler Problem 125\\Project Euler Problem 125\\palindromicSums.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{20C9127F-A136-495A-8035-59B924E8E07F}|Project Euler Problem 125\\Project Euler Problem 125.vcxproj|solutionrelative:Project Euler Problem 125\\palindromicSums.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{20C9127F-A136-495A-8035-59B924E8E07F}|Project Euler Problem 125\\Project Euler Problem 125.vcxproj|C:\\Users\\jmgar\\OneDrive\\Documents\\GitHub\\project-euler\\Project_Euler_Problem_125\\Project Euler Problem 125\\Project Euler Problem 125\\palindromicSumsMain.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{20C9127F-A136-495A-8035-59B924E8E07F}|Project Euler Problem 125\\Project Euler Problem 125.vcxproj|solutionrelative:Project Euler Problem 125\\palindromicSumsMain.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "palindromicSumsMain.cpp",
+              "DocumentMoniker": "C:\\Users\\jmgar\\OneDrive\\Documents\\GitHub\\project-euler\\Project_Euler_Problem_125\\Project Euler Problem 125\\Project Euler Problem 125\\palindromicSumsMain.cpp",
+              "RelativeDocumentMoniker": "Project Euler Problem 125\\palindromicSumsMain.cpp",
+              "ToolTip": "C:\\Users\\jmgar\\OneDrive\\Documents\\GitHub\\project-euler\\Project_Euler_Problem_125\\Project Euler Problem 125\\Project Euler Problem 125\\palindromicSumsMain.cpp",
+              "RelativeToolTip": "Project Euler Problem 125\\palindromicSumsMain.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-09-20T19:29:06.429Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "palindromicSums.cpp",
+              "DocumentMoniker": "C:\\Users\\jmgar\\OneDrive\\Documents\\GitHub\\project-euler\\Project_Euler_Problem_125\\Project Euler Problem 125\\Project Euler Problem 125\\palindromicSums.cpp",
+              "RelativeDocumentMoniker": "Project Euler Problem 125\\palindromicSums.cpp",
+              "ToolTip": "C:\\Users\\jmgar\\OneDrive\\Documents\\GitHub\\project-euler\\Project_Euler_Problem_125\\Project Euler Problem 125\\Project Euler Problem 125\\palindromicSums.cpp",
+              "RelativeToolTip": "Project Euler Problem 125\\palindromicSums.cpp",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAkwDYAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-09-20T19:29:03.954Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
