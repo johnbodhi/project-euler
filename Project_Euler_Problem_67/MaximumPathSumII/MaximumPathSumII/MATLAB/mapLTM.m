@@ -25,3 +25,4 @@ function [R_] = mapLTM(R_,D_)
     R_          = zeros(N_,N_,ceil(N_/2),2);
     R_(:,:,:,1) = RA_                      ;
     R_(:,:,:,2) = RS_                      ;
+

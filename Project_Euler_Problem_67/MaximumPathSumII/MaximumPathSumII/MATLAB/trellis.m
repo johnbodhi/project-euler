@@ -1,4 +1,4 @@
-function [R_] = trellis()
+function [N_,R_] = trellis()
 
     [R_]    = LTM()          ;
 
@@ -10,7 +10,8 @@ function [R_] = trellis()
 
     [R_]    = decimate(R_)   ;
 
-    save("R_.mat","R_")      ;
-    
-    R_      = load("R_.mat") ;
-    R_      = R_.R_          ;
+    % save("R_.mat","R_")      ;
+    % 
+    % R_      = load("R_.mat") ;
+    % 
+    % R_      = R_.R_          ;

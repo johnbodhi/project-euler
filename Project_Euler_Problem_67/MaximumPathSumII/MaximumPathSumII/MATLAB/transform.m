@@ -18,6 +18,8 @@ function [R_] = transform(R_)
             RT_(:,:,l,k) = R_(:,:,k,l);
         end
     end
-    R_ = RT_; % save("R_.mat","R_")  ;
+    R_ = RT_; 
     
-    % R_ = load("R_.mat"); R_ = R_.R_;s
+    % save("R_.mat","R_")  ;
+    
+    % R_ = load("R_.mat"); R_ = R_.R_;

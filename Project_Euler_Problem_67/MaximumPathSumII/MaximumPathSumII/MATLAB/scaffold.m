@@ -4,7 +4,7 @@ function [D_] = scaffold(A_)
 
     % N_ = load("N_.mat"); N_ = N_.N_           ;
 
-    D = zeros(N_,N_,N_)                       ;
+    D = zeros(N_,N_,N_)                         ;
     for k = N_:-1:1
         for j = 1:1:N_
             for i = 1:1:N_           

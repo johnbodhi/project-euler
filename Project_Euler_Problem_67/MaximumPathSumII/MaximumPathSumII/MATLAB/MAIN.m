@@ -12,12 +12,12 @@ while( P < Z(Q) )
 
     [B,K] = directives(N,K,EMAX);
 
-    if (sum(B(1,:)) == Q-1)
+    if ( sum(B(1,:)) == Q-1 )
 
         P = P + 1;
     end
 
-    if (sum(B(1,:)) < Q)
+    if ( sum(B(1,:)) < Q )
 
         [F] = pAdicDT(F,B,R);
     end

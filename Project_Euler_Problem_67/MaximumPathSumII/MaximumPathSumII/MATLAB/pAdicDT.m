@@ -1,44 +1,43 @@
 function [F_] = pAdicDT(F_,B_,R_)
 
-    [S_] = resetAcc(R_);
-    
-    N = size(R_,1); M = size(S_,2);
+    [S_] = resetAcc(R_); N = size(R_,1);
 
     for i = 1:1:size(B_,1)
 
-        k = sum(B_(i,:))+1; 
-        
-        ii = 1; jj = 1;
+        l = sum(B_(i,:))+1; 
 
-        for j = 1:1:N  
+        for k = 1:1:size(R_,3)
 
-            if ( ~B_(i,j)   )  
+            ii = 1; jj = 1;
 
-                for l = 1:1:M
-                                                    
-                    S_(1) = S_(1) + RT_ (ii,jj,k,l);
-                    S_(1) = S_(1) + RB_ (ii,jj,k,l);
+            for j = 1:1:N  
+    
+                if ( ~B_(i,j)   )  
+                                                        
+                    S_(1) = S_(1) + R_(ii,jj,k,l,1);
+                    S_(1) = S_(1) + R_(ii,jj,k,l,2);
+    
+                    S_(2) = S_(2) + R_(ii,jj,k,l,3);
+                    S_(2) = S_(2) + R_(ii,jj,k,l,4);
+                 
+                    jj = jj + 1;   
+    
+                elseif ( B_(i,j) )   
+    
+                    S_(1) = S_(1) + R_(ii,jj,k,l,1);
+                    S_(1) = S_(1) + R_(ii,jj,k,l,2);
 
-                    S_(2) = S_(2) + RTS_(ii,jj,k,l);
-                    S_(2) = S_(2) + RBS_(ii,jj,k,l);
-                end             
-                jj = jj + 1;   
+                    S_(2) = S_(2) + R_(ii,jj,k,l,3);
+                    S_(2) = S_(2) + R_(ii,jj,k,l,4);
+ 
+                    jj = jj + 1;
+                    ii = ii + 1;  
+    
+                end     
+            end
+            [F_] = sol(S_,F_); [S_] = resetAcc(R_); 
 
-            elseif ( B_(i,j) )   
-
-                for l = 1:1:M
-
-                    S_(1) = S_(1) + RT_ (ii,jj,k,l);
-                    S_(1) = S_(1) + RB_ (ii,jj,k,l);
-
-                    S_(2) = S_(2) + RTS_(ii,jj,k,l);
-                    S_(2) = S_(2) + RBS_(ii,jj,k,l);
-                end    
-                jj = jj + 1;
-                ii = ii + 1;  
-
-            end     
-        end
-        [F_] = sol(S_,F_); [S_] = resetAcc(R_); 
-        
+        end      
     end
+
+   
