@@ -2,16 +2,26 @@ function [R_] = expSpace()
 
     [R_]    = LTM()          ;
 
-    [D_]    = trellis(R_)    ;
+    
+    for l = 1:1:size(R_,4)
 
-    [R_]    = mapping(R_,D_) ;
+        for k = 1:1:size(R_,3)
 
-    [R_]    = transform(R_)  ;
+            [D_]    = trellis(R_)    ;
+        
+            [R_]    = mapping(R_,D_) ;
+        
+            [R_]    = transform(R_)  ;
+        
+            [R_]    = decimate(R_)   ;
 
-    [R_]    = decimate(R_)   ;
+        end
+        
+    end
+
+
+
 
     % save("R_.mat","R_")      ;
-    % 
     % R_      = load("R_.mat") ;
-    % 
     % R_      = R_.R_          ;
