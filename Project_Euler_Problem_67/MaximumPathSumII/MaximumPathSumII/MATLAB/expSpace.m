@@ -1,14 +1,14 @@
-function [N_,R_] = expSpace()
+function [R_] = expSpace()
 
-    [R_]    = LTM()         ;
+    [R_]    = LTM()          ;
 
-    [D_]    = trellis(R_)   ;
+    [D_]    = trellis(R_)    ;
 
-    [R_]    = mapLTM(R_,D_) ;
+    [R_]    = mapping(R_,D_) ;
 
-    [R_]    = transform(R_) ;
+    [R_]    = transform(R_)  ;
 
-    [R_]    = decimate(R_)  ;
+    [R_]    = decimate(R_)   ;
 
     % save("R_.mat","R_")      ;
     % 

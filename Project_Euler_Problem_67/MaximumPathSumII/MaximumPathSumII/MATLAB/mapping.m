@@ -1,4 +1,4 @@
-function [R_] = mapLTM(R_,D_)
+function [R_] = mapping(R_,D_)
                      
     N_        = size(R_,1)         ; 
 
