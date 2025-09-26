@@ -2,7 +2,7 @@ clear all; close all; clc; tic;
 
 % EXPSPACE-TIME MARKOV DECISION PROCESS
 
-[N,R]      = expSpace();
+[R,N]      = expSpace();
 
 [Z,Q,EMAX] = pathing(N);
 
