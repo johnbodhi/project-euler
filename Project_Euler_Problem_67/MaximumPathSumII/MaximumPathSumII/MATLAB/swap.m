@@ -6,7 +6,7 @@ function [ Y_ ] = swap( X_, S_ )
                 for k = size(X_,3):-1:1
                     for i = 1:1:size(X_,1)
                     
-                        [I,~,~]              = find(X_(:,i,k,l))         ;
+                        [I,~,~]                  = find(X_(:,i,k,l))         ;
 
                         if(I)
 
@@ -24,7 +24,7 @@ function [ Y_ ] = swap( X_, S_ )
                 for k = size(X_,3):-1:1
                     for j = 1:1:size(X_,2)
                     
-                        [~,J,~]              = find(X_(j,:,k,l))         ;
+                        [~,J,~]                  = find(X_(j,:,k,l))         ;
 
                         if(J)
 

@@ -1,10 +1,11 @@
-function [D_] = trellis(A_)
+function [D_] = trellis(R_)
 
-    N_ = size(A_,1)    ; % save("N_.mat","N_");
+    N_ = size(R_,1)                  ; 
+    
+    % save("N_.mat","N_")            ;
+    % N_ = load("N_.mat"); N_ = N_.N_;
 
-    % N_ = load("N_.mat"); N_ = N_.N_           ;
-
-    D = zeros(N_,N_,N_)                         ;
+    D = zeros(N_,N_,N_)              ;
     for k = N_:-1:1
         for j = 1:1:N_
             for i = 1:1:N_           

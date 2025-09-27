@@ -12,7 +12,7 @@ function [F_] = pAdicDT(F_,B_,R_)
 
             for j = 1:1:N  
     
-                if ( ~B_(i,j)   )  
+                if  ( ~B_(i,j)   )  
                                                         
                     S_(1) = S_(1) + R_(ii,jj,k,l,1);
                     S_(1) = S_(1) + R_(ii,jj,k,l,2);

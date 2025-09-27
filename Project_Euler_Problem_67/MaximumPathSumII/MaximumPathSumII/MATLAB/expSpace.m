@@ -1,8 +1,8 @@
-function [R_,N_] = expSpace()
+function [R_] = expSpace()
 
     [R_]    = LTM()                  ;
 
-    for l = 1:1:size(R_,4)
+    while ( )
 
         for k = 1:1:size(R_,3)
 
@@ -13,6 +13,8 @@ function [R_,N_] = expSpace()
             [R_]    = transform(R_)  ;
         
             [R_]    = decimate(R_)   ;
+
+            [R_]    = cache(R_)      ;
 
         end
     end

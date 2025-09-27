@@ -2,15 +2,17 @@ clear all; close all; clc; tic;
 
 % EXPSPACE-TIME MARKOV DECISION PROCESS
 
-[R,N]      = expSpace();
+[R]     = expSpace();
 
-[Z,Q,EMAX] = pathing(N);
+[Z,Q]   = pathing(R);
 
-F = [ -1 10000 ]; K = 1; P = 0;
+F = [ -1 10000 ]; 
+
+K = 1; P = 0;
 
 while( P < Z(Q) )
 
-    [B,K] = directives(N,K,EMAX);
+    [B,K] = directives(K);
 
     if ( sum(B(1,:)) == Q-1 )
 
