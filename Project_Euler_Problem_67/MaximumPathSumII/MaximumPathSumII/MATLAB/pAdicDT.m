@@ -14,30 +14,28 @@ function [F_] = pAdicDT(F_,B_,R_)
     
                 if  ( ~B_(i,j)   )  
                                                         
-                    S_(1) = S_(1) + R_(ii,jj,k,l,1);
-                    S_(1) = S_(1) + R_(ii,jj,k,l,2);
+                    S_(1) = S_(1) + R_(ii,jj,k,l);
+                    S_(1) = S_(1) + R_(ii,jj,k,l);
     
-                    S_(2) = S_(2) + R_(ii,jj,k,l,3);
-                    S_(2) = S_(2) + R_(ii,jj,k,l,4);
+                    S_(2) = S_(2) + R_(ii,jj,k,l);
+                    S_(2) = S_(2) + R_(ii,jj,k,l);
                  
-                    jj = jj + 1;   
+                    jj    = jj + 1;   
     
                 elseif ( B_(i,j) )   
     
-                    S_(1) = S_(1) + R_(ii,jj,k,l,1);
-                    S_(1) = S_(1) + R_(ii,jj,k,l,2);
+                    S_(1) = S_(1) + R_(ii,jj,k,l);
+                    S_(1) = S_(1) + R_(ii,jj,k,l);
 
-                    S_(2) = S_(2) + R_(ii,jj,k,l,3);
-                    S_(2) = S_(2) + R_(ii,jj,k,l,4);
+                    S_(2) = S_(2) + R_(ii,jj,k,l);
+                    S_(2) = S_(2) + R_(ii,jj,k,l);
  
-                    jj = jj + 1;
-                    ii = ii + 1;  
+                    jj    = jj + 1;
+                    ii    = ii + 1;  
     
-                end     
+                end    
             end
             [F_] = sol(S_,F_); [S_] = resetAcc(R_); 
 
-        end      
+        end   
     end
-
-   

@@ -1,22 +1,19 @@
 function [R_] = expSpace()
 
-    [R_]    = LTM()                  ;
+    [R_]    = LTM()              ;
 
-    while ( )
-
-        for k = 1:1:size(R_,3)
-
-            [D_]    = trellis(R_)    ;
+    while (  )
         
-            [R_]    = mapping(R_,D_) ;
-        
-            [R_]    = transform(R_)  ;
-        
-            [R_]    = decimate(R_)   ;
+        [D_]    = trellis(R_)    ;
+    
+        [R_]    = mapping(R_,D_) ;
+    
+        [R_]    = transform(R_)  ;
+    
+        [R_]    = decimate(R_)   ;
 
-            [R_]    = cache(R_)      ;
+        [R_]    = cache(R_)      ;
 
-        end
     end
 
     % save("R_.mat","R_")      ;

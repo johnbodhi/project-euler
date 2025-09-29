@@ -6,7 +6,7 @@ clear all; close all; clc; tic;
 
 [Z,Q]   = pathing(R);
 
-F = [ -1 10000 ]; 
+F       = [ -1 10000 ]; 
 
 K = 1; P = 0;
 
