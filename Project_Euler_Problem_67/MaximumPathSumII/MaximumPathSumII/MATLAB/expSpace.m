@@ -2,7 +2,7 @@ function [R_] = expSpace()
 
     [R_]    = LTM()              ;
 
-    while (  )
+    while ( N_ ~= OPT )
         
         [D_]    = trellis(R_)    ;
     
@@ -12,7 +12,7 @@ function [R_] = expSpace()
     
         [R_]    = decimate(R_)   ;
 
-        [R_]    = cache(R_)      ;
+        [R_]    = lagrangians(R_)      ;
 
     end
 
