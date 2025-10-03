@@ -30,4 +30,4 @@ function [F_] = pAdicDT(F_,B_,R_)
         end
         [F_] = sol(S_,F_); [S_] = resetAcc(R_); 
     
-    end   
+    end
