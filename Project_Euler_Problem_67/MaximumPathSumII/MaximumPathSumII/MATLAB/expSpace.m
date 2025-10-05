@@ -2,7 +2,7 @@ function [R_] = expSpace( )
 
     [R_]    = LTM()                    ;
 
-    while ( N_ ~= OPT )
+    while ( ~OPT )
         
         [D_]    = trellis(R_)          ;
     
@@ -13,6 +13,8 @@ function [R_] = expSpace( )
         [R_]    = decimate(R_)         ;
 
         [R_]    = parameterize(R_)     ;
+
+        [OPT]   = optimum(R_)          ;
 
     end
 

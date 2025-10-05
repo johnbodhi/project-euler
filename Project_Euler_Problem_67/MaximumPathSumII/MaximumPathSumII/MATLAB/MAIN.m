@@ -2,13 +2,10 @@ clear all; close all; clc; tic;
 
 % EXPSPACE-TIME MARKOV DECISION PROCESS
 
-[R]     = expSpace()  ;
+[R]         = expSpace();
 
-[Z,Q]   = pathing(R)  ;
+[Z,Q,K,P,F] = pathing(R);
 
-F       = [ -1 10000 ]; 
-
-K = 0; P = 0;
 
 while( P < Z(Q) )
 

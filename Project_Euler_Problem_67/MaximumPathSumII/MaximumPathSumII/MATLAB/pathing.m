@@ -1,4 +1,4 @@
-function [Z_,Q_,EMAX_] = pathing(R_)
+function [Z_,Q_,K_,P_,F_] = pathing(R_)
 
     N_     = size(R_,1)               ;
 
@@ -8,5 +8,11 @@ function [Z_,Q_,EMAX_] = pathing(R_)
 
     [~,Q_] = max(Z_)                  ;
 
-    EMAX_  = log(sum(Z_))/log(2)      ;
+    % EMAX_  = log(sum(Z_))/log(2)      ;
+
+    K_     = 0                        ; 
+    
+    P_     = 0                        ;
+
+    F_      = [ -1 10000 ]            ;
    
