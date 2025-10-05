@@ -1,8 +1,8 @@
 function [R_] = expSpace( )
 
-    [R_]    = LTM()                    ;
+    [R_,OPT_]   = LTM()                ;
 
-    while ( ~OPT )
+    while ( ~OPT_ )
         
         [D_]    = trellis(R_)          ;
     
@@ -14,7 +14,7 @@ function [R_] = expSpace( )
 
         [R_]    = parameterize(R_)     ;
 
-        [OPT]   = optimum(R_)          ;
+        [OPT_]  = optimum(R_)          ;
 
     end
 

@@ -1,4 +1,4 @@
-function [A_] = LTM()
+function [A_,OPT_] = LTM()
 
     % A_ = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_tiny.csv") ;
     % A_ = readmatrix("C:\Users\jmgar\OneDrive\Documents\GitHub\project-euler\Project_Euler_Problem_67\MaximumPathSumII\MaximumPathSumII\Matrices\triangle_small.csv"); 
@@ -17,3 +17,5 @@ function [A_] = LTM()
     %         end
     %     end
     % end
+
+    OPT_ = 0;
