@@ -3,7 +3,7 @@ function [R_] = expSpace( )
     [R_,OPT_]   = LTM()                ;
 
     while ( ~OPT_ )
-        
+
         [D_]    = trellis(R_)          ;
     
         [R_]    = mapping(R_,D_)       ;
