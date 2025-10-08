@@ -8,6 +8,12 @@ function [A_,OPT_] = LTM()
     A_ = load("A_.mat");
     A_ = A_.A_         ;
 
+    % N_ = size(A_,1);
+    % save("N_.mat","N_");
+    N_ = load("N_.mat");
+    N_ = N_.N_         ;
+
+
     % N_ = 200; M_ = N_;
     % for j = 1:1:M_
     %     for i = 1:1:N_
