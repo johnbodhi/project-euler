@@ -1,20 +1,18 @@
 function [R_] = expSpace( )
 
-    [R_,OPT_]   = LTM()                ;
+    [R_,OPT_]   = LTM()                   ;
 
     while ( ~OPT_ )
 
-        [D_]    = trellis(R_)          ;
+        [D_]    = trellis(R_)             ;
     
-        [R_]    = mapping(R_,D_)       ;
+        [R_]    = mapping(R_,D_)          ;
     
-        [R_]    = transform(R_)        ;
-    
-        [R_]    = decimate(R_)         ;
+        [R_]    = exponentiate(R_)        ;
 
-        [R_]    = parameterize(R_)     ;
+        [R_]    = parameterize(R_)        ;
 
-        [OPT_]  = optimum(R_)          ;
+        [OPT_]  = optimum(R_)             ;
 
     end
 

@@ -32,4 +32,3 @@ function [RL_,RR_] = mapping(G_,D_)
             
         end
     end
-    
