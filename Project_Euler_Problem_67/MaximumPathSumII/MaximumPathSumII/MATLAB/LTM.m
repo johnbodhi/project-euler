@@ -13,8 +13,7 @@ function [A_,OPT_] = LTM()
     N_ = load("N_.mat");
     N_ = N_.N_         ;
 
-
-    % N_ = 200; M_ = N_;
+    % N_ = 20; M_ = N_;
     % for j = 1:1:M_
     %     for i = 1:1:N_
     %         if( i >= j )
