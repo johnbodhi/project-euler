@@ -1,8 +1,8 @@
-function [RL_,RR_] = mapping(G_,D_)
+function [R_] = mapping(G_,D_)
                      
-    N_             = size(G_,1)                           ;
-    M_             = size(G_,4)                           ;
-    P_             = size(G_,5)                           ;
+    N_            = size(G_,1)                            ;
+    M_            = size(G_,4)                            ;
+    P_            = size(G_,5)                            ;
 
     for m = 1:1:P_
         for l = 1:1:M_
@@ -27,9 +27,11 @@ function [RL_,RR_] = mapping(G_,D_)
                     end
                 end
             end            
-            RL_(:,:,:,l,m) = RA_                          ;
-            RR_(:,:,:,l,m) = RS_                          ;
+            RL_(:,:,:,l,m) = RA_                           ;
+            RR_(:,:,:,l,m) = RS_                           ;
             
         end
     end
+
+    R_   = zeros(N_,N_,ceil(N_/2),M_)                      ;
     
