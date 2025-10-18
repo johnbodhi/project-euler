@@ -4,7 +4,7 @@ function [R_] = exponentiate(R_)
     RER_(:,:,:,:,:)         = R_(:,:,:,:,:,2)                                     ;
 
     for m = 1:1:size(R_,5)
-
+        
         for n = 1:1:size(RE_,4)
 
             R_(:,:,:,1) = REL_(:,:,:,n,m)                                         ;
