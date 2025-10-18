@@ -32,3 +32,5 @@ function [RL_,RR_] = mapping(G_,D_)
             
         end
     end
+    R_(:,:,:,:,:,1) = RL_;
+    R_(:,:,:,:,:,2) = RR_;
