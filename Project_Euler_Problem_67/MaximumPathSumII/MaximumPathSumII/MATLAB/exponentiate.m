@@ -3,7 +3,7 @@ function [R_] = exponentiate(R_)
     REL_(:,:,:,:,:)         = R_(:,:,:,:,:,1)                                     ;
     RER_(:,:,:,:,:)         = R_(:,:,:,:,:,2)                                     ;
 
-    for m = 2:1:size(R_,5)
+    for m = 1:1:size(R_,5)
 
         for n = 1:1:size(RE_,4)
 
@@ -61,8 +61,8 @@ function [R_] = exponentiate(R_)
                 end
             end
         
-            RL_             = zeros(ceil(M_/2),ceil(M_/2),                     )  ;
-            RR_             = zeros(ceil(M_/2),ceil(M_/2),                     )  ;
+            RL_            = zeros(ceil(M_/2),ceil(M_/2),                     )   ;
+            RR_            = zeros(ceil(M_/2),ceil(M_/2),                     )   ;
 
             RL_(:,:,:,:,n) = RT_                                                  ; 
             RR_(:,:,:,:,n) = RB_                                                  ;
