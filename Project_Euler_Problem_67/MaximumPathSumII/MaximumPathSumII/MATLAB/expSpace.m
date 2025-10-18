@@ -10,7 +10,7 @@ function [R_] = expSpace( )
     
         [R_]    = exponentiate(R_)        ;
 
-        [R_]    = parameterize(R_)        ;
+        % [R_]    = parameterize(R_)      ;
 
         [OPT_]  = optimum(R_)             ;
 

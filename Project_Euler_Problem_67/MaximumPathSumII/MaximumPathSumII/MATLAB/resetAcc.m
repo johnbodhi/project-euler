@@ -1,3 +1,3 @@
-function [S_] = resetAcc(R_)
+function [S_] = resetAcc(M_)
 
-    S_ = zeros(1,2);
+    S_ = zeros(ceil(M_/2),2);

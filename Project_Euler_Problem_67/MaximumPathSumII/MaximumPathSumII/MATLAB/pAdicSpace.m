@@ -1,6 +1,6 @@
 function [F_] = pAdicSpace(F_,B_,G_)
 
-    [S_] = resetAcc(G_); M = size(B_,2);
+    M = size(B_,2); [S_] = resetAcc(M_); 
 
     for i = 1:1:size(B_,1)
     
