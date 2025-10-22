@@ -1,11 +1,10 @@
 function [RL_,RR_] = mapping(G_,D_)
                      
-    N_             = size(G_,1)                           ;
-    M_             = size(G_,4)                           ;
-    P_             = size(G_,5)                           ;
+    N_                = size(G_,1)                        ;
 
-    for m = 1:1:P_
-        for l = 1:1:M_
+    for m = 1:1:size(G_,5)  
+
+        for l = 1:1:size(G_,4) 
     
             RA(:,:,:) = G_(:,:,:,l,m)                     ;    
             RS(:,:,:) = swap(RA,2)                        ;
@@ -32,5 +31,5 @@ function [RL_,RR_] = mapping(G_,D_)
             
         end
     end
-    R_(:,:,:,:,:,1) = RL_;
-    R_(:,:,:,:,:,2) = RR_;
+    R_(:,:,:,:,:,1) = RL_                                 ;
+    R_(:,:,:,:,:,2) = RR_                                 ;

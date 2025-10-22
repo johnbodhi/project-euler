@@ -5,50 +5,50 @@ function [R_] = exponentiate(R_)
 
     for m = 1:1:size(R_,5)
         
-        for n = 1:1:size(RE_,4)
+        for n = 1:1:size(R_,4)
 
-            R_(:,:,:,1) = REL_(:,:,:,n,m)                                         ;
-            R_(:,:,:,2) = swap(R_(:,:,:,1),1)                                     ; 
-            R_(:,:,:,3) = smudge(flip(R_(:,:,:,2),2))                             ; 
-            R_(:,:,:,4) = swap(R_(:,:,:,3),1)                                     ;
+            G_(:,:,:,1) = REL_(:,:,:,n,m)                                         ;
+            G_(:,:,:,2) = swap(G_(:,:,:,1),1)                                     ; 
+            G_(:,:,:,3) = smudge(flip(G_(:,:,:,2),2))                             ; 
+            G_(:,:,:,4) = swap(G_(:,:,:,3),1)                                     ;
         
-            R_(:,:,:,5) = RER_(:,:,:,n,m)                                         ;
-            R_(:,:,:,6) = swap(R_(:,:,:,5),1)                                     ;
-            R_(:,:,:,7) = smudge(flip(R_(:,:,:,6),2))                             ;
-            R_(:,:,:,8) = swap(R_(:,:,:,7),1)                                     ;
+            G_(:,:,:,5) = RER_(:,:,:,n,m)                                         ;
+            G_(:,:,:,6) = swap(G_(:,:,:,5),1)                                     ;
+            G_(:,:,:,7) = smudge(flip(G_(:,:,:,6),2))                             ;
+            G_(:,:,:,8) = swap(G_(:,:,:,7),1)                                     ;
         
-            for k = 1:1:size(R_,3)
-                for l = 1:1:size(R_,4)
+            for k = 1:1:size(G_,3)
+                for l = 1:1:size(G_,4)
         
-                    RT_(:,:,l,k) = R_(:,:,k,l)                                    ;
+                    RT_(:,:,l,k) = G_(:,:,k,l)                                    ;
                 end
             end
-            R_ = RT_                                                              ;
+            G_ = RT_                                                              ;
         
-            M_ = size(R_,2)                                                       ;
-            for l = size(R_,4):-1:2
+            M_ = size(G_,2)                                                       ;
+            for l = size(G_,4):-1:2
                 ii = l-1; jj = ii;
-                for k = size(R_,3):-1:1
+                for k = size(G_,3):-1:1
                     for j = M_:-1:floor(M_-jj)
                         
-                        R_(:,j,k,l) = circshift(R_(:,j,k,l),-ii,1)                ;
-                        ii          = ii - 1;
+                        G_(:,j,k,l) = circshift(G_(:,j,k,l),-ii,1)                ;
+                        ii          = ii - 1                                      ;
                     end
                     ii = l-1; jj = ii;
                 end
             end
             
-            for l = size(R_,4):-1:1
-                for k = size(R_,3):-1:1
+            for l = size(G_,4):-1:1
+                for k = size(G_,3):-1:1
                     
-                    RT_(:,:,k,l) = R_(1:ceil(M_/2),1:ceil(M_/2),k,l)              ;
+                    RT_(:,:,k,l) = G_(1:ceil(M_/2),1:ceil(M_/2),k,l)              ;
         
                     if ( ~mod(M_,2) )
         
-                        RB_(:,:,k,l) = R_(1:ceil(M_/2),ceil(M_/2)+1:M_,k,l)       ;
+                        RB_(:,:,k,l) = G_(1:ceil(M_/2),ceil(M_/2)+1:M_,k,l)       ;
                     else
         
-                        RB_(:,:,k,l) = R_(1:ceil(M_/2),ceil(M_/2):M_,k,l)         ;
+                        RB_(:,:,k,l) = G_(1:ceil(M_/2),ceil(M_/2):M_,k,l)         ;
                     end
         
                     RT_(:,:,k,l) = RT_(:,:,k,l)'                                  ;
@@ -61,11 +61,11 @@ function [R_] = exponentiate(R_)
                 end
             end
         
-            RL_            = zeros(ceil(M_/2),ceil(M_/2),                     )   ;
-            RR_            = zeros(ceil(M_/2),ceil(M_/2),                     )   ;
+            RL_             = zeros(ceil(M_/2),ceil(M_/2),8,ceil(M_/2),(N_*M_) )  ;
+            RR_             = zeros(ceil(M_/2),ceil(M_/2),8,ceil(M_/2),(N_*M_) )  ;
 
-            RL_(:,:,:,:,n) = RT_                                                  ; 
-            RR_(:,:,:,:,n) = RB_                                                  ;
+            RL_(:,:,:,:,nn) = RT_                                                 ; 
+            RR_(:,:,:,:,nn) = RB_                                                 ;
 
         end
     end
