@@ -2,6 +2,7 @@ function [R_] = exponentiate(R_)
 
     REL_(:,:,:,:,:)         = R_(:,:,:,:,:,1)                                     ;
     RER_(:,:,:,:,:)         = R_(:,:,:,:,:,2)                                     ;
+    nm                      = 1                                                   ;
 
     for m = 1:1:size(R_,5)
         
@@ -24,8 +25,9 @@ function [R_] = exponentiate(R_)
                 end
             end
             G_ = RT_                                                              ;
-        
-            M_ = size(G_,2)                                                       ;
+            
+            N_ = size(G_,1);
+            M_ = size(G_,2);                                                       ;
             for l = size(G_,4):-1:2
                 ii = l-1; jj = ii;
                 for k = size(G_,3):-1:1
@@ -60,14 +62,18 @@ function [R_] = exponentiate(R_)
                     end
                 end
             end
+
+            if( nm <= 1 )
         
-            RL_             = zeros(ceil(M_/2),ceil(M_/2),8,ceil(M_/2),(N_*M_) )  ;
-            RR_             = zeros(ceil(M_/2),ceil(M_/2),8,ceil(M_/2),(N_*M_) )  ;
+                RL_         = zeros(ceil(M_/2),ceil(M_/2),8,ceil(M_/2),(N_*M_) )  ;
+                RR_         = zeros(ceil(M_/2),ceil(M_/2),8,ceil(M_/2),(N_*M_) )  ;
+            end
 
-            RL_(:,:,:,:,nn) = RT_                                                 ; 
-            RR_(:,:,:,:,nn) = RB_                                                 ;
+            RL_(:,:,:,:,nm) = RT_                                                 ; 
+            RR_(:,:,:,:,nm) = RB_                                                 ;
+            nm              = nm + 1                                              ;
 
-        end
+        end   
     end
     R_(:,:,:,:,:,1) = RL_;
     R_(:,:,:,:,:,2) = RR_;
