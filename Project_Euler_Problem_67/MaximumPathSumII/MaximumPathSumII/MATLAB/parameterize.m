@@ -7,7 +7,7 @@ function [R_] = parameterize(R_)
     % fewer and lesser convolutional binary groups, especially when the 
     % search space is large.
 
-    % Here, we are able to span forward and back ward linear sweeps 
+    % From here, we are able to span forward and back ward linear sweeps 
     % across all observations almost simultaneously.
 
     

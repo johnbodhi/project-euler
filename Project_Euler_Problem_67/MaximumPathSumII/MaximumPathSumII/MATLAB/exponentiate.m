@@ -26,8 +26,8 @@ function [R_] = exponentiate(R_)
             end
             G_ = RT_                                                              ;
             
-            N_ = size(G_,1);
-            M_ = size(G_,2);                                                       ;
+            N_ = size(G_,1)                                                       ;
+            M_ = size(G_,2)                                                       ;                                                       
             for l = size(G_,4):-1:2
                 ii = l-1; jj = ii;
                 for k = size(G_,3):-1:1
@@ -60,6 +60,7 @@ function [R_] = exponentiate(R_)
                          
                         RB_(ceil(M_/2),:,k,l) = 0                                 ;
                     end
+                    
                 end
             end
 
@@ -75,8 +76,8 @@ function [R_] = exponentiate(R_)
 
         end   
     end
-    R_(:,:,:,:,:,1) = RL_;
-    R_(:,:,:,:,:,2) = RR_;
+    R_(:,:,:,:,:,1) = RL_                                                         ;
+    R_(:,:,:,:,:,2) = RR_                                                         ;
     
     % save("R_.mat","R_");
     % R_ = load("R_.mat");
