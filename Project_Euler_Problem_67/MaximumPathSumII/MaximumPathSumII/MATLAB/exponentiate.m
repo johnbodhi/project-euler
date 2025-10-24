@@ -27,7 +27,8 @@ function [R_] = exponentiate(R_)
             G_ = RT_                                                              ;
             
             N_ = size(G_,1)                                                       ;
-            M_ = size(G_,2)                                                       ;                                                       
+            M_ = size(G_,2)                                                       ; 
+
             for l = size(G_,4):-1:2
                 ii = l-1; jj = ii;
                 for k = size(G_,3):-1:1
@@ -60,14 +61,15 @@ function [R_] = exponentiate(R_)
                          
                         RB_(ceil(M_/2),:,k,l) = 0                                 ;
                     end
-                    
+
                 end
             end
 
             if( nm <= 1 )
-        
-                RL_         = zeros(ceil(M_/2),ceil(M_/2),8,ceil(M_/2),(N_*M_) )  ;
-                RR_         = zeros(ceil(M_/2),ceil(M_/2),8,ceil(M_/2),(N_*M_) )  ;
+
+                P_          = N_ * M_                                             ;        
+                RL_         = zeros(ceil(M_/2),ceil(M_/2),8,ceil(M_/2),P_ )       ;
+                RR_         = zeros(ceil(M_/2),ceil(M_/2),8,ceil(M_/2),P_ )       ;
             end
 
             RL_(:,:,:,:,nm) = RT_                                                 ; 
