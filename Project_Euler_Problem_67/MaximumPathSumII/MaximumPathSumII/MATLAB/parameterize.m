@@ -11,3 +11,5 @@ function [R_] = parameterize(R_)
     % across all observations almost simultaneously.
 
     
+
+    

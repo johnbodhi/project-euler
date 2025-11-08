@@ -1,6 +1,6 @@
 clear all; close all; clc; tic;
 
-% EXPSPACE-TIME MARKOV DECISION PROCESS
+% NEXPSPACE-TIME MARKOV DECISION PROCESS
 
 [R]         = expSpace()             ;
 

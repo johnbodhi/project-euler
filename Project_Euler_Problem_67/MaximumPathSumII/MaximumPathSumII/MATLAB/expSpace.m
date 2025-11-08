@@ -4,15 +4,13 @@ function [R_] = expSpace( )
 
     while ( ~OPT_ )
 
-        [D_]    = trellis(R_)             ;
+        [D_]       = trellis(R_)          ;
     
-        [R_]    = mapping(R_,D_)          ;
+        [R_]       = mapping(R_,D_)       ;
     
-        [R_]    = exponentiate(R_)        ;
+        [R_]       = exponentiate(R_)     ;
 
-        [R_]    = parameterize(R_)        ;
-
-        [OPT_]  = optimize(R_)            ;
+        [F_,OPT_]  = optimize(R_)         ;
 
     end
 
