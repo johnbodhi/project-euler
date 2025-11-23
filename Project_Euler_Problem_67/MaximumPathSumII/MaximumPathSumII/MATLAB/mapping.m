@@ -16,13 +16,13 @@ function [R_] = mapping(G_,D_)
                     RA_(:,:,:) = zeros(N_,N_,ceil(N_/2))           ;
                     RS_(:,:,:) = zeros(N_,N_,ceil(N_/2))           ;     
             
-                    for k = 1:1:ceil(N_/2)
+                    for k_ = 1:1:ceil(N_/2)
                         for j = 1:1:N_
                             for i = 1:1:N_
-                                if(D_(i,j,k))
+                                if(D_(i,j,k_))
                                                                   
-                                    RA_(i,j,k) = RA(D_(i,j,k),j)   ;   
-                                    RS_(i,j,k) = RS(D_(i,j,k),j)   ;                
+                                    RA_(i,j,k_) = RA(D_(i,j,k_),j)   ;   
+                                    RS_(i,j,k_) = RS(D_(i,j,k_),j)   ;                
                                 end   
                             end
                         end
