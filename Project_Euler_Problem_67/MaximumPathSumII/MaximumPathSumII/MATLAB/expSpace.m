@@ -1,17 +1,17 @@
-function [R_] = expSpace( )
+function [R_,F_] = expSpace(  )
 
-    [R_,OPT_]   = LTM()                   ;
+    [R_,OPT_]   = LTM()                      ;
 
     while ( ~OPT_ )
 
-        [D_]       = trellis(R_)          ;
+        [D_]          = trellis(R_)          ;
     
-        [R_]       = mapping(R_,D_)       ;
+        [R_]          = mapping(R_,D_)       ;
     
-        [R_]       = exponentiate(R_)     ;
+        [R_]          = exponentiate(R_)     ;
 
-        [F_,OPT_]  = optimize(R_)         ;
-
+        [R_,F_,OPT_]  = optimize(R_)         ;
+        
     end
 
     % save("R_.mat","R_")                 ;

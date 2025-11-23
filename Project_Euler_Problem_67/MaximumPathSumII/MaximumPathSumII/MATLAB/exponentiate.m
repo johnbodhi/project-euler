@@ -4,8 +4,7 @@ function [R_] = exponentiate(R_)
     RER_(:,:,:,:,:)         = R_(:,:,:,:,:,2)                                     ;
     nm                      = 1                                                   ;
 
-    for m = 1:1:size(R_,5)
-        
+    for m = 1:1:size(R_,5)        
         for n = 1:1:size(R_,4)
 
             G_(:,:,:,1) = REL_(:,:,:,n,m)                                         ;
@@ -68,8 +67,8 @@ function [R_] = exponentiate(R_)
             if( nm <= 1 )
 
                 P_          = N_ * M_                                             ;        
-                RL_         = zeros(ceil(M_/2),ceil(M_/2),8,ceil(M_/2),P_ )       ;
-                RR_         = zeros(ceil(M_/2),ceil(M_/2),8,ceil(M_/2),P_ )       ;
+                RL_         = zeros(ceil(N_/2),ceil(M_/2),ceil(N_/2),8,P_ )       ;
+                RR_         = zeros(ceil(N_/2),ceil(M_/2),ceil(N_/2),8,P_ )       ;
             end
 
             RL_(:,:,:,:,nm) = RT_                                                 ; 
