@@ -36,4 +36,5 @@ function [R_] = mapping(G_,D_)
     end
     R_(:,:,:,:,:,:,1) = RL_                                        ;
     R_(:,:,:,:,:,:,2) = RR_                                        ;
-  
+
+end
