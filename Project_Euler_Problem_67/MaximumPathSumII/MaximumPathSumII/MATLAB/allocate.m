@@ -6,7 +6,7 @@ function [F_,B_,A_,STL_,STU_,SP_] = allocate(N_,Q_,MOD_)
     
     B_         = zeros(GENERATORS,N_-1)                                      ;
 
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     B_(3,1:ceil(Q_/2),1:ceil(Q_/2)) = permn( (MOD_:-1:0)', ceil(Q_/2), 1 )   ;
     
@@ -14,7 +14,7 @@ function [F_,B_,A_,STL_,STU_,SP_] = allocate(N_,Q_,MOD_)
 
     STU_               = (DATARANGE:-1:ceil(Q_/2))'                          ;
 
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     % We need an initial condition in SP_ to avoid bit-skipping in the
     % DNN...
@@ -25,7 +25,7 @@ function [F_,B_,A_,STL_,STU_,SP_] = allocate(N_,Q_,MOD_)
 
     B_(3,ceil(Q/2))                   = 0                                    ;
 
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     % We need room for back-propagation in the superposition array 
     % populated during the bit-flip convolution...
@@ -35,7 +35,7 @@ function [F_,B_,A_,STL_,STU_,SP_] = allocate(N_,Q_,MOD_)
 
     F_ = zeros( N_-1, DATARANGE )                                            ;
 
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     % We can batch process the convolution of the directives for the
     % decision tree...
