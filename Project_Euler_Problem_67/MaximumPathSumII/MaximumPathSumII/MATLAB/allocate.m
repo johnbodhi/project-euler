@@ -1,16 +1,20 @@
-function [F_,B_,A_,STL_,STU_,SP_] = allocate(N_,Q_,MOD_)
+function [F_,B_,A_,STL_,STU_,SP_] = allocate(N_,Q_)
 
     DATARANGE  = N_-floor(Q_/2)                                              ;
 
-    GENERATORS = 4                                                           ; 
-    
+    GENERATORS = 4                                                           ;
+
+    MOD_       = 1                                                           ;
+     
     B_         = zeros(GENERATORS,N_-1)                                      ;
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     B_(3,1:ceil(Q_/2),1:ceil(Q_/2)) = permn( (MOD_:-1:0)', ceil(Q_/2), 1 )   ;
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
-    STL_               = (ceil(Q_/2):-1:2)'                                  ;
+    STL_               = (Q_:-1:1)'                                          ;
 
     STU_               = (DATARANGE:-1:ceil(Q_/2))'                          ;
 
@@ -40,9 +44,9 @@ function [F_,B_,A_,STL_,STU_,SP_] = allocate(N_,Q_,MOD_)
     % We can batch process the convolution of the directives for the
     % decision tree...
 
-    A_ = zeros(N_)                                                           ;
+    A_ = zeros(ceil(N_/2),N_)                                                ;                                                      
 
-    for i = 1:1:N_
+    for i = 2:2:N_-1
 
-        A_(i,1:ceil(i/2)) = 1                                                ;
+        A_(floor(i/2)+1,1:ceil(i/2)) = 1                                     ;                                                
     end

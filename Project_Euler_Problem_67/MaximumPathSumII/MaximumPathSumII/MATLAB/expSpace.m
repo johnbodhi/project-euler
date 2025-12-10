@@ -17,3 +17,7 @@ function [R_,F_] = expSpace(  )
     % save("R_.mat","R_")                      ;
     % R_      = load("R_.mat")                 ;
     % R_      = R_.R_                          ;  
+
+    % save("F_.mat","F_")                      ;
+    % F_      = load("F_.mat")                 ;
+    % F_      = F_.F_                          ;  

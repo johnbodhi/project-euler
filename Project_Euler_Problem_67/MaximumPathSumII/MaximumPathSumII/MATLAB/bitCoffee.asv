@@ -14,14 +14,14 @@ function  [B_,SP_] = bitCoffee(I_,J_,B_,STL_,SPNC_,SPC_,SP_)
 
         if ( J_ == M_                                                                            )
  
-            if ( SPNC_(B_(STL_(I_)),J_)                                                          )
+            if( K_                                                                               )
 
                 SPNC_(B_(J_), STL_(I_)) = SPNC_(B_(J_),STL_(I_)) + 1                             ; 
 
                 SPC_              = SPC_ + 1                                                     ;
             end
             
-            if (                                                                                 )                                                                
+            if ( K_                                                             )                                                                
 
                 B_(STL_(J_))          = B_(J_)                                                   ;
                 B_(J_)                = 0                                                        ;

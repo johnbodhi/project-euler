@@ -15,6 +15,8 @@ while( P < Z(Q) )
         P   = P + 1                  ;
     end
 
+    
+
     if ( sum(B(1,:)) < Q )
 
         [F] = pAdicSpace(F,B,R)      ;
