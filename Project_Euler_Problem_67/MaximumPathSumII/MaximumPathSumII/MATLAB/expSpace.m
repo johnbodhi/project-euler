@@ -1,4 +1,4 @@
-function [R_,F_] = expSpace(  )
+function [R_,F_] = expSpace( )
 
     [R_,OPT_]   = LTM()                      ;
 

@@ -6,7 +6,7 @@ function [Z_,Q_,K_,P_,EMAX_,F_] = pathing(R_)
 
     Z_     = Z_(1:ceil(N_/2))         ;
 
-    [~,Q_] = max(Z_)                  ;
+    sum(Z_)
 
     EMAX_  = log(sum(Z_))/log(2)      ;
 
