@@ -13,8 +13,6 @@ function [ F_, OPT_ ] = optimize( R_ )
             P_                 = P_ + 1                           ;
         end
 
-        
-    
         if ( sum(B_(1,:)) < Q_ )
     
             [F_,OPT_]          = pAdicSpace(F_,B_,R_)             ;

@@ -1,4 +1,4 @@
-function [A_] = monteCarlo(N_,EMAX_)
+function [ A_ ] = monteCarlo(N_,EMAX_)
 
     if( 2^EMAX_ <= 2^52 )
 
