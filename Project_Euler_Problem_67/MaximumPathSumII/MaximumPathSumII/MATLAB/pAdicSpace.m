@@ -1,5 +1,16 @@
 function [F_] = pAdicSpace(F_,B_,G_)
 
+    % We need to reparameterize exponential space into an optimum
+    % sub-space distribution of Lagrangians to use in tandem with 
+    % the field of directives in p-adic space.
+
+    % This will enable further efficiency by reducing the search space to
+    % fewer and lesser convolutional binary groups, especially when the 
+    % search space is large.
+
+    % From here, we are able to span forward and back ward linear sweeps 
+    % across all observations almost simultaneously.
+
     M = size(B_,2); [S_] = resetAcc(M_); 
 
     for i = 1:1:size(B_,1)
@@ -12,7 +23,7 @@ function [F_] = pAdicSpace(F_,B_,G_)
     
             for j = 1:1:M
         
-                if  ( ~B_(i,j)   ) 
+                if  ( ~B_(i,j) )                     
                                                         
                     S_(1) = S_(1) + GA_(ii,jj,k,Q);
                     S_(1) = S_(1) + GA_(ii,jj,k,Q);

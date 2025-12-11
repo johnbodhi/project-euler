@@ -1,5 +1,7 @@
 function [F_ OPT_] = optimize(R_)
 
+    
+
     [R_]                       = parameterize(R_)                 ;
 
     [N_,Z_,Q_,K_,P_,EMAX_,F_]  = pathing(R_)                      ;
