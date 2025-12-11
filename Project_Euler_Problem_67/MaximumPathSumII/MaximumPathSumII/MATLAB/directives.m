@@ -18,7 +18,7 @@ function [A_,B_,K_,H_,P_]  = directives(N_,Q_,K_,P_,EMAX_,A_)
 
     for I_ = 1:1:size(A_,1)
     
-        G_(I_)    = sum(A_(I_,:),2)                        ;
+        G_(I_)    = sum(A_(I_,:),2)                       ;
     end
     H_ = max(G_)                                          ;
 
