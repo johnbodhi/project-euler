@@ -1,4 +1,4 @@
-function [F_,B_,A_,STL_,STU_,SP_] = allocate(N_,Q_)
+function [A_,B_,STL_,STU_,SP_,SPNC_,SPC_,F_] = allocate(N_,Q_)
 
     DATARANGE  = N_-floor(Q_/2)                                              ;
 
@@ -31,16 +31,6 @@ function [F_,B_,A_,STL_,STU_,SP_] = allocate(N_,Q_)
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-    % We need room for back-propagation in the superposition array 
-    % populated during the bit-flip convolution...
-
-    % We can use gradients to mimize our beliefs and expectations about the
-    % future bits...
-
-    F_ = zeros( N_-1, DATARANGE )                                            ;
-
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
     % We can batch process the convolution of the directives for the
     % decision tree...
 
@@ -50,3 +40,13 @@ function [F_,B_,A_,STL_,STU_,SP_] = allocate(N_,Q_)
 
         A_(floor(i/2)+1,1:ceil(i/2)) = 1                                     ;                                                
     end
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    % We need room for back-propagation in the superposition array 
+    % populated during the bit-flip convolution...
+
+    % We can use gradients to mimize our beliefs and expectations about the
+    % future bits...
+
+    F_ = zeros( N_-1, DATARANGE )                                            ;
