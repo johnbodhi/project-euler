@@ -15,7 +15,7 @@ function [A_] = monteCarlo(N_,EMAX_)
 
     B_(3,:)   = permn([1;0,],N_,K_)                ; 
 
-    B_(5,:)   = flip(B_(3,:),2)                    ;
+    B_(4,:)   = flip(B_(3,:),2)                    ;
 
     for i = 1:1:size(B_,1)
 
