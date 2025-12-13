@@ -1,4 +1,4 @@
-function  [B_,SP_] = bitCoffee(I_,J_,B_,STL_,SPNC_,SPC_,SP_)
+function  [B_,SP_] = bitCoffee(I_,J_,B_,STL_,STU_,SPNC_,SPC_,SP_)
 
         M_        = size(B_,2)                                                                   ;
 

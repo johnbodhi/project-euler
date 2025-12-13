@@ -19,5 +19,5 @@ function [A_] = monteCarlo(N_,EMAX_)
 
     for I_ = 1:1:size(B_,1)
 
-        A_(I_,:) = B_(I_,:)                          ;
+        A_(I_,:) = B_(I_,:)                           ;
     end

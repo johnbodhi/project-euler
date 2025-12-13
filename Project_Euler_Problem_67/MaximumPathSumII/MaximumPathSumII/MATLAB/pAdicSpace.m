@@ -1,4 +1,4 @@
-function [F_] = pAdicSpace(A_,B_,R_,F_)
+function [F_] = pAdicSpace(A_,B_,G_,F_)
 
     % We need to reparameterize exponential space into an optimum
     % sub-space distribution of Lagrangians to use in tandem with 
@@ -15,7 +15,7 @@ function [F_] = pAdicSpace(A_,B_,R_,F_)
 
     for i = 1:1:size(B_,1)
     
-        Q = sum(B_(i,:))+1; 
+        Q = sum(A_(i,:))+1; 
     
         ii = 1; jj = 1;
 
