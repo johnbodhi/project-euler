@@ -6,7 +6,7 @@ function [R_,F_] = expSpace( )
 
         [D_]          = trellis(R_)          ;
     
-        [R_]          = mapping(R_,D_)       ;
+        [R_]          = map(R_,D_)       ;
     
         [R_]          = exponentiate(R_)     ;
 

@@ -21,10 +21,11 @@ function  [B_,SP_] = bitCoffee(I_,J_,B_,STL_,SPNC_,SPC_,SP_)
                 SPC_              = SPC_ + 1                                                     ;
             end
             
-            if (                                                                                 )                                                                
+            if (                                                                                 )                                                                 
 
                 B_(STL_(J_))          = B_(J_)                                                   ;
                 B_(J_)                = 0                                                        ;
+            end
         end
     
     elseif ( B_(J_-1) && SPNC_(B_(J_-1), J_-1) && ~B_(J_) && ~SPNC_(B_(J_), J_)                  )                                                                                                                                                                                                          

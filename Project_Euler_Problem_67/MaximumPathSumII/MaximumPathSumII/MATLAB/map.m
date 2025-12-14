@@ -1,4 +1,4 @@
-function [R_] = mapping(G_,D_)
+function [R_] = map(G_,D_)
                      
     N_               = size(G_,1)                                  ;
 
@@ -36,5 +36,3 @@ function [R_] = mapping(G_,D_)
     end
     R_(:,:,:,:,:,:,1) = RL_                                        ;
     R_(:,:,:,:,:,:,2) = RR_                                        ;
-
-end
