@@ -16,10 +16,10 @@ function [A_,B_,K_,H_,P_,F_]  = directives(A_,N_,Q_,K_,P_,EMAX_)
 
     if ( P_ <= 1 )
         
-        [A_,B_,STL_,STU_,SP_,SPNC_,SPC_,F_] = allocate(N_,Q_)                      ;
+        [A_,STL_,STU_,SP_,SPNC_,SPC_,F_] = allocate(N_,Q_)                         ;
     end
     
-    [B_,STL_,STU_,SP_,SPNC_,SPC_]           = DNN(B_,STL_,STU_,SP_,SPNC_,SPC_)     ;
+    [B_,STL_,STU_,SP_,SPNC_,SPC_] = DNN(B_,STL_,STU_,SP_,SPNC_,SPC_)        
 
     for I_ = 1:1:size(A_,1)
     

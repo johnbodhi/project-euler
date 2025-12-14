@@ -1,4 +1,4 @@
-function [F_] = pAdicSpace(A_,B_,G_,F_)
+function [F_] = pAdicSpace(A_,G_,F_)
 
     % We need to reparameterize exponential space into an optimum
     % sub-space distribution of Lagrangians to use in tandem with 
@@ -11,9 +11,9 @@ function [F_] = pAdicSpace(A_,B_,G_,F_)
     % From here, we are able to span forward and back ward linear sweeps 
     % across all observations almost simultaneously.
 
-    M = size(B_,2); [S_] = resetAcc(M_); 
+    M_ = size(B_,2); [S_] = resetAcc(M_); 
 
-    for i = 1:1:size(B_,1)
+    for i = 1:1:size(A_,1)
     
         Q = sum(A_(i,:))+1; 
     
@@ -21,7 +21,7 @@ function [F_] = pAdicSpace(A_,B_,G_,F_)
 
         for k = 1:1:size(G_,3)
     
-            for j = 1:1:M
+            for j = 1:1:M_
         
                 if  ( ~B_(i,j) )                     
                                                         
